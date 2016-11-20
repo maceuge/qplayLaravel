@@ -10,6 +10,7 @@
     composer update
     
 3.- Crear la base de datos " qplaydb " desde MySql Worckbrench
+
 4.- Modificar el archivo .env para que se conecte a la base de datos creada
 
     DB_CONNECTION=mysql
