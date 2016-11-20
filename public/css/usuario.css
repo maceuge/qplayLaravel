@@ -1,0 +1,242 @@
+
+body {
+    padding-top: 65px;
+}
+
+/*--------------- navbar -------------------*/
+
+.navbar-inverse .navbar-nav > .open > a, 
+.navbar-inverse .navbar-nav > .open > a:hover, 
+.navbar-inverse .navbar-nav > .open > a:focus { 
+    background-color: #94d500;
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    background-color: #94d500;
+    color: #fff;
+}
+
+.dropdown-menu {
+    border: 1px solid #94d500;
+    background-color: #222;
+    border-radius: 0;
+    box-shadow: 0 0 12px #000;
+}
+
+.dropdown-menu > li > a {
+    padding: 7px 40px;
+    color: #94d500;
+}
+
+.dropdown-menu > li > a:hover {
+    background-color: #94d500;
+    color: #fff;
+}
+
+.dropdown-menu .divider {
+    background-color: #444;
+}
+
+.usercover {
+    padding-top: 60px;
+    padding-bottom: 10px;
+    background-image: url(../img/recital2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color:#fff;
+    
+}
+
+.username {
+    padding-top: 20px;
+    font-size: 39px;
+    font-family: 'Comfortaa', cursive;
+    color: #66ff1a;
+    text-shadow: 0px 0px 12px #000;
+}
+
+.user {
+    border: 6px solid #94d500;
+    box-shadow: 0 0 12px #000;
+}
+
+
+
+.post {
+    padding-top: 30px;
+    border-top: 2px solid #94d500;
+    background-color: #e9eaed; /* #555; */
+    padding-bottom: 40px;
+}
+
+
+.panel-bandas {
+    border: 1px solid #94d500;
+    background-color: #f2f2f2;
+    border-radius: 0;
+    box-shadow: 0 0 7px #d9d9d9;
+}
+
+ul > li {
+    font-family: 'Ubuntu', sans-serif;
+    color: #8c8c8c;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.panel-heading {
+    background-color: #94d500;
+    border-bottom: 1px solid #94d500;
+    border-radius: 0px;
+}
+
+.panel-title {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 17px;
+    color: #fff;
+}
+
+/* ------------posteo de los usuarios--------------------------------------------------- */
+
+
+.posteo {
+    padding: 12px 10px;
+    border: 1px solid #94d500;
+    background-color: #f2f2f2;
+    border-radius: 0;
+    box-shadow: 0 0 7px #d9d9d9;
+    color: #fff;
+}
+
+.media-heading {
+    font-family: 'Ubuntu', sans-serif;
+    color: #94d500;
+    font-size: 20px;
+}
+
+.postcoment {
+    font-family: 'Ubuntu', sans-serif;
+    color: #8c8c8c;
+    font-size: 14px;
+}
+
+.tupost {
+    padding-bottom: 30px;
+}
+
+.subuser {
+    border: 2px solid #94d500;
+    box-shadow: 0 0 1px #000;
+}
+
+.postcom {
+    padding-top: 10px;
+    padding-bottom: 7px;
+}
+
+.postcont {
+    margin-bottom: 10px;
+}
+
+/* ------------fin del posteo--------------------------------------------------- */
+
+.thumbnail {
+    display: block;
+    padding: 4px;
+    margin-bottom: 10px;
+    line-height: 1.42857143;
+    background-color: #222;
+    border: 1px solid #94d500;
+    box-shadow: 0 0 1px #ccc;
+    border-radius: 0px;
+    color: #fff;
+}
+
+h3 {
+   color: #fff; 
+}
+
+.thumcoment {
+   color: #fff; 
+   font-size: 15px;
+}
+
+/* ------------------footer--------------------------------------------- */
+
+.footeru {
+  background-color: #333333;
+  color: #c4c4c4;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+.footlog > i {
+    margin-bottom: 7px;
+}
+
+/* --------------------------------------------------------------- */
+
+
+.form-control {
+    font-size: 15px;
+    border-radius: 2;
+    border-color: #94d500;
+    height: 45px;
+    padding-left: 18px;
+    padding-right: 18px;
+    background-color: #d9d9d9;
+    color: #595959;
+}
+
+.input-group > input {
+    box-shadow: 0 0 7px #d9d9d9;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.input-group > input:focus {
+    border: 1px solid #94d500;
+    box-shadow: 5 5 10px #a6a6a6;
+}
+
+
+
+.input-group-addon {
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: bolder;
+    color: #001a00;
+    text-align: center;
+    background-color: #94d500;
+    border: 1px solid #94d500;
+    border-radius: 0px;
+}
+
+
+/*-------------- boton del post general -------------------*/
+
+.btn-post {
+    border-radius: 2;
+    border-color: #94d500;
+    background-color: #d9d9d9;
+    color: #94d500;
+    height: 45px;
+   /* padding: 12px 17px;*/
+    transition: all 0.4s ease-in-out;
+}
+
+.btn-post:hover, .btn-post:focus {
+    border-color: #94d500;
+    background-color: #94d500;
+    color: #fff;
+    box-shadow: 0 0 7px #595959;
+}
+
+/*--------------fin del boton del post general -------------------*/
+
+
+

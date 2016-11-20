@@ -27,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/userlog';
 
     /**
      * Create a new controller instance.
@@ -49,6 +49,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
+            'surname' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
@@ -62,10 +63,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $rdate = $data['anionac'].'-'.$data['mesnac'].'-'.$data['dianac'];
+        $time = strtotime($rdate);
+        $birthdate = date('Y-m-d',$time);
+
         return User::create([
             'name' => $data['name'],
+            'surname' => $data['surname'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'birthday' => $birthdate,
         ]);
     }
 }

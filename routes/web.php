@@ -11,6 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Rutas de Logueo y Registro
+Auth::routes();
+Route::get('/home', 'HomeController@index');
+
+// Pagina Principal
+Route::get('/', function () { return view('/home/index'); });
+// Pagina FAQs
+Route::get('/faqs', function () { return view('/home/faqs'); });
+// Pagina de Usuario Logueado
+Route::get('/userlog', function () { return view('/user/show'); });
+
+
+
+
+
+

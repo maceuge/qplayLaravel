@@ -1,0 +1,213 @@
+
+
+.login {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-image: url(../img/tocguitLog.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color:#fff;
+}
+
+.olvidcont {
+    text-decoration: none;
+    float: right;
+    padding-top: 3px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    color: #c4c4c4;
+    transition: all 0.3s ease-in-out;
+}
+
+.olvidcont:hover {
+    color: #94d500;
+}
+
+.recordarme {
+    float: left;
+    padding-left: 43px;
+    padding-top: 3px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    color: #c4c4c4;
+}
+
+.logtit {
+    color: #fff;
+    text-shadow: 0 0 7px #000000;
+}
+
+.form-control {
+    font-size: 17px;
+    border-radius: 0;
+    border-color: #94d500;
+    height: 50px;
+    padding-left: 18px;
+    padding-right: 18px;
+    background-color: #222;
+    color: #94d500;
+}
+
+.form-group > input {
+    box-shadow: 0 0 12px #000;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.form-group > input:focus {
+    border: 1px solid #94d500;
+    box-shadow: 0 0 9px #94d500;
+}
+
+.input-group-addon {
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: bolder;
+    color: #001a00;
+    text-align: center;
+    background-color: #94d500;
+    border: 1px solid #94d500;
+    border-radius: 0px;
+}
+
+/* efecto cuando se produce un error en el campo */
+
+.errorph {
+    border: 1px solid #e62e00;
+    border-radius: 0;
+    padding-left: 12px;
+    padding-top: 10px;
+    background-color: #330000;
+    color: #e62e00;
+    box-shadow: 0 0 12px #000;
+}
+
+.onerrorph > input {
+    font-size: 17px;
+    border-color: #e62e00;
+    color: #e62e00;
+    box-shadow: 0 0 12px #000;
+}
+
+.onerrorph > input:focus {
+    border: 1px solid #e62e00;
+    box-shadow: 0 0 12px #e62e00;
+}
+
+.errcript {
+    font-size: 15px;
+    color: #e62e00;
+}
+
+.onerror > input {
+    font-size: 17px;
+    border-color: #e62e00;
+    background-color: #330000;
+    color: #e62e00;
+    box-shadow: 0 0 12px #000;
+}
+
+.onerror > input:focus {
+    border: 1px solid #e62e00;
+    box-shadow: 0 0 12px #e62e00;
+}
+
+
+
+/*-------------------------------------------fin efecto-*/
+
+.btn-login {
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 20px;
+    border-radius: 0;
+    border-color: #94d500;
+    background-color: #222;
+    margin-top: 25px;
+    padding: 9px 28px;
+    box-shadow: 0 0 12px #000;
+    color: #94d500;
+    transition: all 0.4s ease-in-out;
+}
+
+.btn-login:hover {
+    border-color: #fff;
+    background-color: #94d500;
+    color: #fff;
+    box-shadow: 0 0 9px #94d500;
+}
+
+.btn-login:focus {
+    border-color: #94d500;
+    background-color: #222;
+    color: #fff;
+    box-shadow: 0 0 12px #000;
+}
+
+
+/*-------------------------Estilo del CheckBox-*/
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 53px;
+  height: 29px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #94d500; /* #2196F3; */
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #94d500;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(23px);
+  -ms-transform: translateX(23px);
+  transform: translateX(23px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/*----------------------FIN---Estilo del CheckBox-*/
+
+
