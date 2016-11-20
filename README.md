@@ -1,3 +1,39 @@
+# Instalacion del Proyecto
+
+1.- Descargar el proyecto del git:
+    
+    git clone https://github.com/maceuge/qplayLaravel.git
+    
+2.- Una vez descargado correr el comando del composer dentro de la carpeta para descargar 
+    las dependencias y generar la carpeta vendor
+    
+    composer update
+    
+3.- Crear la base de datos " qplaydb " desde MySql Worckbrench
+4.- Modificar el archivo .env para que se conecte a la base de datos creada
+
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=qplaydb
+    DB_USERNAME={su usuario}
+    DB_PASSWORD={su contraseña}
+    
+5.- Ejecutar las migraciones para creacion de tablas
+    
+    php artisan migrate
+    
+6.- Luego ejecute el servidor de Laravel para probar el proyecto, registrando cuenta 
+    y ingresando dentro del la pagina principal del User
+         
+    php artisan serv
+         
+    
+####  Asta aqui es todo por el momento ___________________________
+
+
+
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
