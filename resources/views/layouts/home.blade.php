@@ -124,7 +124,7 @@
     </div>
 </div>
 @else
-    <div class="container-fluid footeru">
+    <div class="container footeru">
         <div class="row">
             <div class="col-md-3">
                 <p class="text-center footlog">
@@ -138,8 +138,8 @@
                     <i class="fa fa-android"></i>
                 </p>
             </div>
-            <div class="col-md-6"></div>
-            <div class="col-md-3">
+            <div class="col-md-4"></div>
+            <div class="col-md-5">
                 <p class="font-maven text-center footp">Copyright <i class="fa fa-copyright"></i> 2016 QPlay <i class="fa fa-registered"></i> All Rights Reserved.</p>
             </div>
         </div>

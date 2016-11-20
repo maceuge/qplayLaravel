@@ -44,13 +44,13 @@
             <div class="col-sm-6">
                 <h3 class="text-center font-comfortaa">Grupos</h3>
 
-                <img src="img/img1.jpg" alt="..." class="img-square" width="160" height="160">
-                <img src="img/img2.jpg" alt="..." class="img-square" width="160" height="160">
-                <img src="img/img3.jpg" alt="..." class="img-square" width="160" height="160">
+                <img src="img/img1.jpg" alt="..." class="img-squarex" width="160" height="160">
+                <img src="img/img2.jpg" alt="..." class="img-squarex" width="160" height="160">
+                <img src="img/img3.jpg" alt="..." class="img-squarex" width="160" height="160">
 
-                <img src="img/img4.jpg" alt="..." class="img-square" width="160" height="160">
-                <img src="img/img5.jpg" alt="..." class="img-square" width="160" height="160">
-                <img src="img/img6.jpg" alt="..." class="img-square" width="160" height="160">
+                <img src="img/img4.jpg" alt="..." class="img-squarex" width="160" height="160">
+                <img src="img/img5.jpg" alt="..." class="img-squarex" width="160" height="160">
+                <img src="img/img6.jpg" alt="..." class="img-squarex" width="160" height="160">
 
             </div>
             <div class="col-sm-6">

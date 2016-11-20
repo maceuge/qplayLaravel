@@ -14,189 +14,235 @@
 @endsection
 
 @section('content')
+
+    <?php
+       $user = Auth::user();
+       $fullname = $user->name.' '.$user->surname;
+
+    ?>
+
     <!-- COMIENZO DE LA FOTO -->
-        <div class="container-fluid usercover">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <img src="/img/user.jpg" class="img-circle user center-block" alt="Usuario" width="230" height="230">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <p class="username text-center">{{ Auth::user()->name.' '.Auth::user()->surname }}</p>
-                </div>
-                <div class="col-md-3 col-xs-12">
-
-                    <div class="botsub">
-                        <input type="file" name="file-1" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} archivos seleccionados" multiple />
-                        <label for="file-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="iborrainputfile" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg>
-                            <span class="iborrainputfile">Subir Avatar</span>
-                        </label>
-                    </div>
-
-                </div>
+<div class="container usercover">
+    <div class="row pull-bottom">
+        <div class="col-md-2 col-sm-12">
+            <img src="/img/user.jpg" class="img-square user center-block" alt="Usuario" width="150" height="150">
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <p class="username">{{ $fullname }}</p>
+            <p class="mail">{{ $user->email }}</p>
+        </div>
+        <div class="col-md-3 col-md-offset-3 col-sm-12">
+            <div class="botsub">
+                <input type="file" name="file-1" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} archivos seleccionados" multiple />
+                <label for="file-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="iborrainputfile" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg>
+                    <span class="iborrainputfile">Subir Avatar</span>
+                </label>
             </div>
         </div>
-        <!-- FIN DE LA FOTO -->
+    </div>
+</div>
+<!-- FIN DE LA FOTO -->
 
-        <div class="container-fluid post">
-            <div class="row">
-
-                <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="panel panel-bandas">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Bandas que te gustan</h3>
+<!-- Comienzo del cuerpo de la info y posteo -->
+<div class="container post">
+    <div class="row">
+        {{-- seccion izquirda con las bandas instrumentos y info personal--}}
+        <div class="col-md-4 col-sm-12">
+        <div class="widget">
+            <div class="widget-header">
+                <h3 class="widget-caption titleover">Sobre Mi</h3>
+            </div>
+            <div class="widget-body bordered-top bordered-sky">
+                <ul class="list-unstyled profile-about margin-none">
+                    <li class="padding-v-5">
+                        <div class="row">
+                            <div class="col-sm-4"><span class="text-muted">Fecha de Nacimiento</span></div>
+                            <div class="col-sm-8">{{ $user->birthday }}</div>
                         </div>
-                        <div class="panel-body">
-
-
+                    </li>
+                    <li class="padding-v-5">
+                        <div class="row">
+                            <div class="col-sm-4"><span class="text-muted">Email</span></div>
+                            <div class="col-sm-8">{{ $user->email }}</div>
                         </div>
-                    </div>
-
-                    <div class="panel panel-bandas">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Instrumentos que tocas</h3>
+                    </li>
+                    <li class="padding-v-5">
+                        <div class="row">
+                            <div class="col-sm-4"><span class="text-muted">Sexo</span></div>
+                            <div class="col-sm-8">----</div>
                         </div>
-                        <div class="panel-body">
-
-
+                    </li>
+                    <li class="padding-v-5">
+                        <div class="row">
+                            <div class="col-sm-4"><span class="text-muted">Direccion</span></div>
+                            <div class="col-sm-8">----</div>
                         </div>
-                    </div>
-
-                </div>
-
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="container">
-                        <div class="row tupost">
-                            <div class="col-md-6 col-sm-12">
-                                <form class="form" id="form" action="" method="post">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="post" name="post" placeholder="Que cuentas hoy?" maxlength="55">
-                                        <span class="input-group-btn">
-                  <button class="btn btn-post" type="button"><i class="fa fa-play-circle-o fa-2x"></i></button>
-                </span>
-                                    </div>
-                                    <!-- button type="submit" class="btn btn-login center-block">Ingresar</button -->
-                                </form>
-                            </div>
+                    </li>
+                    <li class="padding-v-5">
+                        <div class="row">
+                            <div class="col-sm-4"><span class="text-muted">Usuario</span></div>
+                            <div class="col-sm-8">----</div>
                         </div>
-                        <div class="row postcont">
-                            <div class="col-md-6 col-sm-12">
-
-                                <div class="media posteo">
-                                    <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object img-circle subuser" src="img/user.jpg" alt="Javier" width="64" height="64">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h3 class="media-heading">Javier Da Silva</h3>
-                                        <p class="postcoment">Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                            sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                                            magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                                            vel illum dolore eu feugiat nulla facilisis at vero eros et
-                                        </p>
-                                    </div>
-                                    <div class="">
-                                        <form class="form" id="posteo" action="" method="post">
-                                            <div class="input-group postcom">
-                                                <input type="text" class="form-control" id="post" name="postcom" placeholder="Comentario...">
-                                                <span class="input-group-btn">
-                        <button class="btn btn-post" type="button"><i class="fa fa-play-circle-o fa-2x"></i></button>
-                      </span>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="row postcont">
-                            <div class="col-md-6 col-sm-12">
-
-                                <div class="media posteo">
-                                    <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object img-circle subuser" src="img/user.jpg" alt="Javier" width="64" height="64">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h3 class="media-heading">Alberto Fernandez</h3>
-                                        <p class="postcoment">Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                            sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                                            magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                                            quis nostrud exerci
-                                        </p>
-                                        <img src="img/img5.jpg" alt="Evento" width="250" height="250">
-                                    </div>
-                                    <div class="">
-                                        <form class="form" id="posteo" action="" method="post">
-                                            <div class="input-group postcom">
-                                                <input type="text" class="form-control" id="post" name="postcom" placeholder="Comentario...">
-                                                <span class="input-group-btn">
-                        <button class="btn btn-post" type="button"><i class="fa fa-play-circle-o fa-2x"></i></button>
-                      </span>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="row postcont">
-                            <div class="col-md-6 col-sm-12">
-
-                                <div class="media posteo">
-                                    <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object img-circle subuser" src="img/usero.jpg" alt="Javier" width="64" height="64">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h3 class="media-heading">Laura Acosta</h3>
-                                        <p class="postcoment">Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                            sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                                            magna aliquam erat volutpat. Ut wisi enim ad minim veniam</p>
-                                    </div>
-                                    <div class="">
-                                        <form class="form" id="posteo" action="" method="post">
-                                            <div class="input-group postcom">
-                                                <input type="text" class="form-control" id="post" name="postcom" placeholder="Comentario">
-                                                <span class="input-group-btn">
-                        <button class="btn btn-post" type="button"><i class="fa fa-play-circle-o fa-2x"></i></button>
-                      </span>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div> <!-- fin del container de la columna del medio -->
-                </div><!-- fin de la columna del medio -->
-
-                <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="thumbnail">
-                        <img src="img/img4.jpg" alt="Evento" width="242" height="200">
-                        <div class="caption">
-                            <h3>Recital de Los Beatles</h3>
-                            <p class="thumcoment">No te pierdas en esta oportunidad el gran recital que te partira
-                                la cabeza en dos y no sabras mas de donde venis! Cerveza gratis
-                                toda la noche y luego le daremos un ticket para el pancho bajon.
-                                Participa con tu entrada por una bicicleta de payaso. Veni, te estamos
-                                esperando</p>
-                            <p>
-                                <a href="#" class="btn btn-login" role="button">Participar</a>
-                                <a href="#" class="btn btn-login" role="button">Rechazar</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
+                    </li>
+                </ul>
             </div>
         </div>
+
+            {{--Bandas que te gustan--}}
+            <div class="widget">
+                <div class="widget-header">
+                    <h3 class="widget-caption titleover">Bandas</h3>
+                </div>
+                <div class="widget-body bordered-top bordered-palegreen">
+                    <ul class="list-unstyled profile-about margin-none">
+                        <li class="padding-v-5">
+                            <div class="row">
+                                <div class="col-sm-4"><span class="text-muted">Banda</span></div>
+                                <div class="col-sm-8">{{ $user->birthday }}</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            {{--Instrumentos que te gustan--}}
+            <div class="widget">
+                <div class="widget-header">
+                    <h3 class="widget-caption titleover">Instrumentos</h3>
+                </div>
+                <div class="widget-body bordered-top bordered-yellow">
+                    <ul class="list-unstyled profile-about margin-none">
+                        <li class="padding-v-5">
+                            <div class="row">
+                                <div class="col-sm-4"><span class="text-muted">Instrumento</span></div>
+                                <div class="col-sm-8"> Nivel {{ $user->birthday }}</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            {{-- lista de amigos --}}
+
+            <div class="widget widget-friends">
+                <div class="widget-header">
+                    <h3 class="widget-caption">Amigos</h3>
+                </div>
+                <div class="widget-body bordered-top  bordered-red">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="img-grid" style="margin: 0 auto;">
+                                <li>
+                                    <a href="#">
+                                        <img src="/img/user.jpg" alt="image" width="65" height="65">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="/img/user.jpg" alt="image" width="65" height="65">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="/img/user.jpg" alt="image" width="65" height="65">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="/img/user.jpg" alt="image" width="65" height="65">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="/img/user.jpg" alt="image" width="65" height="65">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="col-md-8 col-sm-12">
+            {{-- Barra principal del POST--}}
+            <div class="box profile-info n-border-top">
+                <form>
+                    <textarea class="form-control input-lg p-text-area" rows="2" placeholder="Que cuentas hoy?"></textarea>
+                </form>
+                <div class="box-footer box-form">
+                    <button type="button" class="btn btn-success pull-right">Post</button>
+                    <ul class="nav nav-pills">
+                        {{--<li><a href="#"><i class="fa fa-map-marker"></i></a></li>--}}
+                        <li><a href="#"><i class="fa fa-camera"></i></a></li>
+                        <li><a href="#"><i class=" fa fa-film"></i></a></li>
+                        {{--<li><a href="#"><i class="fa fa-microphone"></i></a></li>--}}
+                    </ul>
+                </div>
+            </div>
+
+            {{-- Lista de post realizados --}}
+            <div class="box box-widget">
+                <div class="box-header with-border">
+                    <div class="user-block">
+                        <img class="img-circle" src="/img/user.jpg" alt="User Image">
+                        <span class="usernamebox"><a href="#">{{ $fullname }}.</a></span>
+                        <span class="description">Publicado - 7:30 PM Hoy</span>
+                    </div>
+                </div>
+
+                <div class="box-body" style="display: block;">
+                    {{--<img class="img-responsive show-in-modal" src="img/Post/young-couple-in-love.jpg" alt="Photo">--}}
+                    <p>Hoy me levante con ganas de rockandroll baby! Que podemos hacer hoy?</p>
+                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Compartir</button>
+                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Me Gusta</button>
+                    <span class="pull-right text-muted">127 Me Gusta - 3 comentarios</span>
+                </div>
+                <div class="box-footer box-comments" style="display: block;">
+                    <div class="box-comment">
+                        <img class="img-circle img-sm" src="/img/user.jpg" alt="User Image">
+                        <div class="comment-text">
+                                    <span class="usernamebox">
+                                    Maria Gonzales
+                                    <span class="text-muted pull-right">8:03 PM Hoy</span>
+                                    </span>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias corporis
+                            dolores eius est facilis itaque quidem sapiente voluptate? Adipisci aperiam at
+                            doloribus eveniet harum incidunt obcaecati provident sunt vero.
+                        </div>
+                    </div>
+
+                    <div class="box-comment">
+                        <img class="img-circle img-sm" src="/img/user.jpg" alt="User Image">
+                        <div class="comment-text">
+                                    <span class="usernamebox">
+                                    Luna Stark
+                                    <span class="text-muted pull-right">8:03 PM Hoy</span>
+                                    </span>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias corporis
+                            dolores eius est facilis itaque quidem sapiente voluptate? Adipisci aperiam at
+                            doloribus eveniet harum incidunt obcaecati provident sunt vero.
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer" style="display: block;">
+                    <form action="#" method="post">
+                        <img class="img-responsive img-circle img-sm" src="/img/user.jpg" alt="Alt Text">
+                        <div class="img-push">
+                            <input type="text" class="form-control input-sm" placeholder="Presiona Enter para comentar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div><!-- fin de la columna del medio -->
+
+    </div>  {{--fin del row del post--}}
+</div> {{--fin del contenedor del post--}}
 
 @endsection
 
