@@ -1,8 +1,8 @@
 @extends('layouts.home')
 
 @section('css')
-    <link rel="stylesheet" href="css/usuario.css" type="text/css" />
-    <link rel="stylesheet" href="css/file-input.css" type="text/css" />
+    <link rel="stylesheet" href="/css/usuario.css" type="text/css" />
+    <link rel="stylesheet" href="/css/file-input.css" type="text/css" />
 @endsection
 
 @section('navbar')
@@ -219,25 +219,23 @@
                             </div>
                         </div>
 
+                            <div class="box-body" style="display: block;">
+                                <form action="/posting" method="post" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                            <textarea class="form-control" style="margin-bottom: 7px;" name="post" rows="2" maxlength="254">{{ $post->$post }}</textarea>
+                                <a href="/edition/{{ $post->id }}" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Editar</a>
+                                {{--<a href="/delete/{{ $post->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>--}}
+                                <span class="pull-right text-muted">0 Comentarios</span>
+                                </form>
+                            </div>
+
                             {{--<div class="box-body" style="display: block;">--}}
-                                {{--<form action="/posting" method="post" enctype="multipart/form-data">--}}
-                                    {{--{{ csrf_field() }}--}}
-                                    {{--<textarea class="form-control input-lg p-text-area" name="post" rows="2" placeholder="Que cuentas hoy?" maxlength="254">--}}
-                                    {{--{{ $postline->$post }}--}}
-                                {{--</textarea>--}}
-                                {{--<a href="/edition/{{ $post->id }}" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Editar</a>--}}
+                                {{--<img class="img-responsive show-in-modal" src="img/Post/young-couple-in-love.jpg" alt="Photo">--}}
+                                {{--<p>{{ $post->post }}</p>--}}
+                                {{--<a href="/edit/{{ $post->id }}" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Editar</a>--}}
                                 {{--<a href="/delete/{{ $post->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>--}}
                                 {{--<span class="pull-right text-muted">0 Comentarios</span>--}}
-                                {{--</form>--}}
                             {{--</div>--}}
-
-                            <div class="box-body" style="display: block;">
-                                {{--<img class="img-responsive show-in-modal" src="img/Post/young-couple-in-love.jpg" alt="Photo">--}}
-                                <p>{{ $post->post }}</p>
-                                <a href="/edit/{{ $post->id }}" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Editar</a>
-                                <a href="/delete/{{ $post->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
-                                <span class="pull-right text-muted">0 Comentarios</span>
-                            </div>
 
 
                         <div class="box-footer" style="display: block;">
