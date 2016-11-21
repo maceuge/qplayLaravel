@@ -26,4 +26,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function band () {
+        return $this->hasMany(Band::class);
+    }
+
+    public function instrument () {
+        return $this->hasMany(Instrument::class);
+    }
+
+    public function post () {
+        return $this->hasMany(Post::class);
+    }
+
+
 }

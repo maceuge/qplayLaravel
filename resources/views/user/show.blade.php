@@ -18,7 +18,8 @@
     <?php
        $user = Auth::user();
        $fullname = $user->name.' '.$user->surname;
-
+       $bands = $user->band;
+       $inst = $user->instrument;
     ?>
 
     <!-- COMIENZO DE LA FOTO -->
@@ -57,7 +58,7 @@
                 <ul class="list-unstyled profile-about margin-none">
                     <li class="padding-v-5">
                         <div class="row">
-                            <div class="col-sm-4"><span class="text-muted">Fecha de Nacimiento</span></div>
+                            <div class="col-sm-4"><span class="text-muted">Nacimiento</span></div>
                             <div class="col-sm-8">{{ $user->birthday }}</div>
                         </div>
                     </li>
@@ -96,12 +97,21 @@
                 </div>
                 <div class="widget-body bordered-top bordered-palegreen">
                     <ul class="list-unstyled profile-about margin-none">
+                        @forelse($bands as $band)
                         <li class="padding-v-5">
                             <div class="row">
                                 <div class="col-sm-4"><span class="text-muted">Banda</span></div>
-                                <div class="col-sm-8">{{ $user->birthday }}</div>
+                                <div class="col-sm-8">{{ $band->band }}</div>
                             </div>
                         </li>
+                        @empty
+                        <li class="padding-v-5">
+                            <div class="row">
+                                <div class="col-sm-4"><span class="text-muted">Banda</span></div>
+                                <div class="col-sm-8">Sin Registro</div>
+                            </div>
+                        </li>
+                        @endforelse
                     </ul>
                 </div>
             </div>
@@ -113,12 +123,21 @@
                 </div>
                 <div class="widget-body bordered-top bordered-yellow">
                     <ul class="list-unstyled profile-about margin-none">
+                        @forelse($inst as $instrument)
+                        <li class="padding-v-5">
+                            <div class="row">
+                                <div class="col-sm-4"><span class="text-muted">{{ $instrument->instrument }}</span></div>
+                                <div class="col-sm-8"> Nivel {{ $instrument->level }}</div>
+                            </div>
+                        </li>
+                        @empty
                         <li class="padding-v-5">
                             <div class="row">
                                 <div class="col-sm-4"><span class="text-muted">Instrumento</span></div>
-                                <div class="col-sm-8"> Nivel {{ $user->birthday }}</div>
+                                <div class="col-sm-8">Sin Registro</div>
                             </div>
                         </li>
+                        @endforelse
                     </ul>
                 </div>
             </div>

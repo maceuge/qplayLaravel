@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Instrument;
 use App\User;
+use App\Band;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -67,12 +70,33 @@ class RegisterController extends Controller
         $time = strtotime($rdate);
         $birthdate = date('Y-m-d',$time);
 
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'birthday' => $birthdate,
         ]);
+
+        $user->save();
+
+        for ($i = 0; $i < count($data['bandas']); $i++) {
+            $bandas = Band::create([
+                'user_id' => $user->id,
+                'band' => $data['bandas'][$i],
+            ]);
+            $bandas->save();
+        }
+
+        for ($i = 0; $i < count($data['inst']); $i++) {
+            $instrument = Instrument::create([
+                'user_id' => $user->id,
+                'instrument' => $data['inst'][$i],
+                'level' => $data['nivelinst'][$i],
+            ]);
+            $instrument->save();
+        }
+
+        return $user;
     }
 }

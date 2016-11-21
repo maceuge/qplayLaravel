@@ -58,5 +58,5 @@
 @endsection
 
 @section('plugin')
-    {{--<script type="text/javascript" src="/js/logval.js"></script>--}}
+    <script type="text/javascript" src="/js/logval.js"></script>
 @endsection

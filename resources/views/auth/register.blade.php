@@ -149,7 +149,7 @@
                             <div class="row row-padding">
                                 <div id="bandas">
                                     <div class="col-xs-12 col-md-4">
-                                        <input type="text" class="form-control" id="band" name="bandas[]" placeholder="Banda 1" maxlength="30">
+                                        <input type="text" class="form-control" id="band" name="bandas[]" value="{{ old('bandas[]') }}" placeholder="Banda 1" maxlength="30">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-md-4">
@@ -165,7 +165,7 @@
                             <div class="row row-padding">
                                 <div id="instrument">
                                     <div class="col-md-6 col-xs-12">
-                                        <input type="text" class="form-control" name="inst[]" placeholder="Instrumento 1" maxlength="30">
+                                        <input type="text" class="form-control" name="inst[]" value="{{ old('inst[]') }}" placeholder="Instrumento 1" maxlength="30">
                                     </div>
                                     <div class="col-md-4 col-xs-8 instselect">
                                         <select class="form-control selcontenido" name="nivelinst[]">
@@ -197,5 +197,5 @@
 @endsection
 
 @section('plugin')
-    {{--<script type="text/javascript" src="/js/validacion_register.js"></script>--}}
+    <script type="text/javascript" src="/js/validacion_register.js"></script>
 @endsection
