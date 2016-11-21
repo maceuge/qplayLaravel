@@ -20,7 +20,14 @@ Route::get('/', function () { return view('/home/index'); });
 // Pagina FAQs
 Route::get('/faqs', function () { return view('/home/faqs'); });
 // Pagina de Usuario Logueado
-Route::get('/userlog', function () { return view('/user/show'); });
+//Route::get('/userlog', function () { return view('/user/show'); });
+Route::get('/userlog', 'PostController@orderpost');
+// Ruta para hacer el post
+Route::post('/posting', 'PostController@posting');
+// rutas para editar y borrar
+Route::get('/edit/{id}', 'PostController@editPost');
+Route::get('/delete/{id}', 'PostController@deletePost');
+
 
 
 
