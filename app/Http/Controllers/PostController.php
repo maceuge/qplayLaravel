@@ -22,19 +22,21 @@ class PostController extends Controller
     }
 
     public function orderpost () {
-        $post = Post::orderBy('id', 'desc')->get();
-        //dd($post);
-        //$post = Post::all()->sortBy("created_at");
+        $user = Auth::user();
+        $post = Post::orderBy('created_at', 'desc')->where('user_id', $user->id)->get();
         return view('/user/show', [
-            'posts' => $post,
+            'posted' => $post,
         ]);
     }
 
     public function editPost ($id) {
+        $user = Auth::user();
         $postline = Post::find($id);
+        $post = Post::orderBy('created_at', 'desc')->where('user_id', $user->id)->get();
         //dd($postline);
         return view('/user/show', [
             'postline' => $postline,
+            'posted' => $post,
         ]);
 
     }

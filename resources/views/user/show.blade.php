@@ -20,7 +20,7 @@
        $fullname = $user->name.' '.$user->surname;
        $bands = $user->band;
        $inst = $user->instrument;
-       $posts = $user->post;
+       //$posts = $user->post;
     ?>
 
     <!-- COMIENZO DE LA FOTO -->
@@ -193,7 +193,6 @@
                 <form action="/posting" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <textarea class="form-control input-lg p-text-area" name="post" rows="2" placeholder="Que cuentas hoy?" maxlength="254"></textarea>
-
                     <div class="box-footer box-form">
                         <button type="submit" class="btn btn-success pull-right">Post</button>
                         <ul class="nav nav-pills">
@@ -207,7 +206,7 @@
             </div>
 
             @if(isset($postline))
-                @forelse($posts as $post)
+                @forelse($posted as $post)
                     @if($postline->id == $post->id)
                     {{-- Lista de post realizados --}}
 
@@ -229,15 +228,6 @@
                                 <span class="pull-right text-muted">0 Comentarios</span>
                                 </form>
                             </div>
-
-                            {{--<div class="box-body" style="display: block;">--}}
-                                {{--<img class="img-responsive show-in-modal" src="img/Post/young-couple-in-love.jpg" alt="Photo">--}}
-                                {{--<p>{{ $post->post }}</p>--}}
-                                {{--<a href="/edit/{{ $post->id }}" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Editar</a>--}}
-                                {{--<a href="/delete/{{ $post->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>--}}
-                                {{--<span class="pull-right text-muted">0 Comentarios</span>--}}
-                            {{--</div>--}}
-
 
                         <div class="box-footer" style="display: block;">
                             <form action="#" method="post">
@@ -283,7 +273,7 @@
 
 
             @else
-                @forelse($posts as $post)
+                @forelse($posted as $post)
                     {{-- Lista de post realizados --}}
                     <div class="box box-widget">
                         <div class="box-header with-border">
