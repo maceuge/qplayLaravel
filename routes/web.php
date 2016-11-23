@@ -27,6 +27,7 @@ Route::post('/posting', 'PostController@posting');
 // rutas para editar y borrar
 Route::get('/edit/{id}', 'PostController@editPost');
 Route::get('/delete/{id}', 'PostController@deletePost');
+Route::post('/edition/{id}', 'PostController@updateWithEditedPost');
 
 
 

@@ -210,6 +210,7 @@
                 @forelse($posts as $post)
                     @if($postline->id == $post->id)
                     {{-- Lista de post realizados --}}
+
                     <div class="box box-widget">
                         <div class="box-header with-border">
                             <div class="user-block">
@@ -220,10 +221,10 @@
                         </div>
 
                             <div class="box-body" style="display: block;">
-                                <form action="/posting" method="post" enctype="multipart/form-data">
+                                <form action="/edition/{{$post->id}}" method="post" enctype="multipart/form-data">
                                     {{ csrf_field() }}
-                            <textarea class="form-control" style="margin-bottom: 7px;" name="post" rows="2" maxlength="254">{{ $post->$post }}</textarea>
-                                <a href="/edition/{{ $post->id }}" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Editar</a>
+                            <textarea class="form-control" style="margin-bottom: 7px;" name="post" rows="2" maxlength="254" >{{ $post->post }}</textarea>
+                                <button type="submit" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Editar</button>
                                 {{--<a href="/delete/{{ $post->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>--}}
                                 <span class="pull-right text-muted">0 Comentarios</span>
                                 </form>

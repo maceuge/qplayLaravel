@@ -6,7 +6,7 @@ editButton.addEventListener('click', editarPost)
 
 function editarPost (){
     fullPost.innerHTML = '<form method="get" action="/show/postEditado" >
-        <textarea name="Post " cols="40" rows="7"></textarea>
+        <textarea name="Post " cols="40" rows="7">' +texto+ '</textarea>
          <button type="submit">
         </form>'
 }

@@ -22,7 +22,9 @@ class PostController extends Controller
     }
 
     public function orderpost () {
-        $post = Post::orderBy('post', 'desc')->get();
+        $post = Post::orderBy('id', 'desc')->get();
+        //dd($post);
+        //$post = Post::all()->sortBy("created_at");
         return view('/user/show', [
             'posts' => $post,
         ]);
@@ -30,7 +32,7 @@ class PostController extends Controller
 
     public function editPost ($id) {
         $postline = Post::find($id);
-
+        //dd($postline);
         return view('/user/show', [
             'postline' => $postline,
         ]);
@@ -43,5 +45,10 @@ class PostController extends Controller
         return redirect('/userlog');
     }
 
+    public function updateWithEditedPost(Request $request, $id){
+        Post::where("id", $id)->update(array("post" => $request['post']));
+
+        return redirect('/userlog');
+    }
 
 }
