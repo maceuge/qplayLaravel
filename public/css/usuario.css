@@ -157,7 +157,8 @@ ul > li {
 /*====================== Timeline posts ================*/
 
 .usernamebox {
-    padding-top: 20px;
+    /*padding-top: 20px;*/
+    padding-left: 11px;
     font-size: 15px;
     font-family: 'Comfortaa', cursive;
     color: #122b40;
