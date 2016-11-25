@@ -29,6 +29,9 @@ Route::get('/edit/{id}', 'PostController@editPost');
 Route::get('/delete/{id}', 'PostController@deletePost');
 Route::post('/edition/{id}', 'PostController@updateWithEditedPost');
 
+// Subir Avatar
+Route::post('/avatarUpload', 'PerfilController@avatarUpload');
+
 
 
 
