@@ -53,7 +53,8 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#"><i class="fa fa-users"></i> Amigos</a></li>
+                            <li><a href="/busfrends"><i class="fa fa-users"></i> Buscar Amigos</a></li>
+                            <li><a href=""><i class="fa fa-users"></i> Amigos</a></li>
                             <li><a href="#"><i class="fa fa-unlock-alt"></i> Privacidad</a></li>
                             <li><a href="#"><i class="fa fa-gear"></i> Configuracion</a></li>
                             <li role="separator" class="divider"></li>

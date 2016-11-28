@@ -98,6 +98,22 @@ ul > li {
 
 /* ------------fin del user cover--------------------------------------------------- */
 
+/* ------------Amigos cover--------------------------------------------------- */
+
+.amicover {
+    /*padding-top: 150px;*/
+    height: 190px;
+    padding-bottom: 10px;
+    background-image: url(../img/amigos.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color:#fff;
+}
+
+
+
+/* ------------fin de amigos cover--------------------------------------------------- */
+
 /* ------------------footer--------------------------------------------- */
 
 .footeru {

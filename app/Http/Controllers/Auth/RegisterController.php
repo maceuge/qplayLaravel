@@ -76,6 +76,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'birthday' => $birthdate,
+            'avatar' => '/img/default_male.jpg',
         ]);
 
         $user->save();

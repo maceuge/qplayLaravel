@@ -31,8 +31,16 @@ Route::post('/edition/{id}', 'PostController@updateWithEditedPost');
 
 // Subir Avatar
 Route::post('/avatarUpload', 'PerfilController@avatarUpload');
+//Buscar Amigos
+Route::get('/busfrends', 'PerfilController@busfrends');
+// Agregar Amigos
+Route::get('/addfriend/{id}', 'FriendController@addfriend');
 
 
+// Proteccion del middleware si no estas logueado
+Route::group(['middleware' => ['auth']], function () {
+
+});
 
 
 

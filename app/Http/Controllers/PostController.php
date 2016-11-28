@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Friend;
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
     public function posting (Request $request) {
-
         $user = Auth::user();
         $post = Post::create([
             'user_id' => $user->id,
@@ -18,7 +19,6 @@ class PostController extends Controller
 
         $post->save();
         return redirect('/userlog');
-
     }
 
     public function orderpost () {
@@ -33,7 +33,6 @@ class PostController extends Controller
         $user = Auth::user();
         $postline = Post::find($id);
         $post = Post::orderBy('created_at', 'desc')->where('user_id', $user->id)->get();
-        //dd($postline);
         return view('/user/show', [
             'postline' => $postline,
             'posted' => $post,
@@ -49,7 +48,6 @@ class PostController extends Controller
 
     public function updateWithEditedPost(Request $request, $id){
         Post::where("id", $id)->update(array("post" => $request['post']));
-
         return redirect('/userlog');
     }
 
