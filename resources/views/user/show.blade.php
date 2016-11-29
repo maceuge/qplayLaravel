@@ -20,7 +20,7 @@
        $fullname = $user->name.' '.$user->surname;
        $bands = $user->band;
        $inst = $user->instrument;
-       $friends = $user->friend;
+       //$friends = $user->friend;
 
     ?>
 
@@ -152,17 +152,17 @@
                         <div class="col-md-12">
                             <ul class="img-grid" style="margin: 0 auto;">
                                 <li>
-                                    <a href="#">
+                                    <a href="/busfrends">
                                         <img src="/img/add.jpg" alt="Add Friend" width="65" height="65">
                                     </a>
                                 </li>
-                                @foreach($friends as $friend)
+                                 @for($i = 0; $i < count($friends); $i++)
                                 <li>
                                     <a href="#">
-                                        <img src="{{ $myf = \App\User::find($friend->friend_id)->avatar }}" alt="image" width="65" height="65">
+                                        <img src="{{ $friends[$i]->avatar }}" alt="image" width="65" height="65">
                                     </a>
                                 </li>
-                                @endforeach
+                                @endfor
                             </ul>
                         </div>
                     </div>
@@ -289,6 +289,37 @@
                 @empty
                     <p>Sin posts actualmente</p>
                 @endforelse
+
+                @for($i = 0; $i < count($friends); $i++)
+                        @forelse($friends[$i]->post as $frpost)
+                        <div class="box box-widget bordered-info">
+                            <div class="box-header with-border">
+                                <div class="user-block">
+                                    <img class="img-circle" src="{{ $friends[$i]->avatar }}" alt="User Image">
+                                    <span class="usernamebox"><a href="#">{{ $friends[$i]->name.' '.$friends[$i]->surname }}.</a></span>
+                                    <span class="description">Publicado - {{ $frpost->created_at  }}</span>
+                                </div>
+                            </div>
+
+                            <div class="box-body" style="display: block;">
+                                <p>{{ $frpost->post }}</p>
+                                <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
+                                <span class="pull-right text-muted">0 Comentarios</span>
+                            </div>
+
+                            <div class="box-footer" style="display: block;">
+                                <form action="#" method="post">
+                                    <img class="img-responsive img-circle img-sm" src="{{ $user->avatar }}" alt="Alt Text">
+                                    <div class="img-push">
+                                        <input type="text" class="form-control input-sm" placeholder="Presiona Enter para comentar">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        @empty
+                        @endforelse
+                @endfor
+
             @endif
 
 

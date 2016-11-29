@@ -37,6 +37,7 @@ Route::get('/busfrends', 'PerfilController@busfrends');
 Route::get('/addfriend/{id}', 'FriendController@addfriend');
 
 
+
 // Proteccion del middleware si no estas logueado
 Route::group(['middleware' => ['auth']], function () {
 

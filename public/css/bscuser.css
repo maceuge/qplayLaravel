@@ -1,0 +1,9 @@
+.rowline {
+    border-bottom: 1px solid #cccccc;
+    padding-top: 18px;
+}
+
+.single {
+    font-size: 15px;
+    color: #636b6f;
+}

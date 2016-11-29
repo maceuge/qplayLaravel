@@ -22,6 +22,11 @@ body {
     padding-bottom: 12px;
 }
 
+.navbar-inverse .navbar-nav > li > a.navicon {
+    margin-top: 10px;
+    padding-bottom: 12px;
+}
+
 .dropdown-menu {
     border: 1px solid #94d500;
     background-color: #222;
@@ -49,7 +54,7 @@ body {
     /*padding-top: 150px;*/
     height: 350px;
     padding-bottom: 10px;
-    background-image: url(../img/recital2.jpg);
+    background-image: url(../img/userlog2.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     color:#fff;

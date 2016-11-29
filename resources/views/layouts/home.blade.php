@@ -46,9 +46,24 @@
                 <li><a class="btn btn-nav font-ubuntu" href="{{ url('/login') }}"><i class="fa fa-user-circle-o fa-lg"></i> Conectate </a></li>
                 <li><a class="btn btn-nav font-ubuntu" href="{{ url('/register') }}"><i class="fa fa-pencil-square-o fa-lg"></i> Registrate </a></li>
                 @else
+                    <li>
+                        <a class="btn navicon" href="{{ url('/userlog') }}">
+                            <i class="fa fa-user-circle-o fa-lg"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn navicon" href="#">
+                            <i class="fa fa-calendar fa-lg"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn navicon" href="#">
+                            <i class="fa fa-comments fa-lg"></i>
+                        </a>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <img class="img-circle subuser" src="{{ $user->avatar }}" alt="user" width="40" height="40">
+                            <img class="img-circle subuser" src="{{ $user->avatar.' ' }}" alt="user" width="40" height="40">&nbsp;&nbsp;
                             {{ Auth::user()->name.' '.Auth::user()->surname }} <span class="caret"></span>
                         </a>
 

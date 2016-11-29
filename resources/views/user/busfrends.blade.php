@@ -2,6 +2,7 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/usuario.css" type="text/css" />
+    <link rel="stylesheet" href="/css/bscuser.css" type="text/css" />
 @endsection
 
 @section('navbar')
@@ -31,17 +32,30 @@
 <div class="container post">
     @forelse($buscfrends as $friend)
         @if($friend->id != $user->id)
-    <div class="row">
-        <div class="col-md-2 col-md-offset-1">
-            <img src="{{ $friend->avatar }}" class="img-square center-block" width="150" height="150">
-        </div>
-        <div class="col-md-4">
-            <p>Nombre: {{ $friend->name.' '.$friend->surname }}</p>
-            <p>Mail: {{ $friend->email }}</p>
-            <p>Bandas: {{ $friend->avatar }}</p>
-            <p>Instrumentos: {{ $friend->avatar }}</p>
+    <div class="row rowline">
+        <div class="col-md-2 col-md-offset-2">
+            <img src="{{ $friend->avatar }}" class="img-square center-block thumbnail" width="150" height="150">
         </div>
         <div class="col-md-5">
+            <p class="single">Nombre: <b>{{ $friend->name.' '.$friend->surname }}</b></p>
+            <p class="single">Mail: <b>{{ $friend->email }}</b></p>
+            <p class="single">Bandas:
+            @forelse($friend->band as $frendband)
+                <b>{{ $frendband->band. ' - ' }}</b>
+            @empty
+                <b>No tiene bandas favoritas.</b><
+            @endforelse
+            </p>
+
+            <p class="single">Instrumentos:
+            @forelse($friend->instrument as $frendband)
+                <b>{{ $frendband->instrument.' - ' }}</b>
+            @empty
+                <b>No toca ningun instrumento</b>
+            @endforelse
+            </p>
+        </div>
+        <div class="col-md-3">
                 <a href="/addfriend/{{ $friend->id }}" class="btn btn-info">Agregar <i class="fa fa-plus-circle"></i></a>
         </div>
     </div>
