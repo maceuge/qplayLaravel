@@ -14,13 +14,15 @@
 // Rutas de Logueo y Registro
 Auth::routes();
 Route::get('/home', 'HomeController@index');
-
 // Pagina Principal
 Route::get('/', function () { return view('/home/index'); });
 // Pagina FAQs
 Route::get('/faqs', function () { return view('/home/faqs'); });
+
+// Proteccion del middleware si no estas logueado
+Route::group(['middleware' => ['auth']], function () {
+
 // Pagina de Usuario Logueado
-//Route::get('/userlog', function () { return view('/user/show'); });
 Route::get('/userlog', 'PostController@orderpost');
 // Ruta para hacer el post
 Route::post('/posting', 'PostController@posting');
@@ -38,10 +40,7 @@ Route::get('/addfriend/{id}', 'FriendController@addfriend');
 
 
 
-// Proteccion del middleware si no estas logueado
-Route::group(['middleware' => ['auth']], function () {
-
-});
+}); // fin del middleware auth
 
 
 
