@@ -190,74 +190,8 @@
                 </form>
             </div>
 
-            @if(isset($postline))
-                @forelse($posted as $post)
-                    @if($postline->id == $post->id)
-                    {{-- Lista de post realizados --}}
-
-                    <div class="box box-widget">
-                        <div class="box-header with-border">
-                            <div class="user-block">
-                                <img class="img-circle" src="{{ $user->avatar }}" alt="User Image">
-                                <span class="usernamebox"><a href="#">{{ $fullname }}.</a></span>
-                                <span class="description">Publicado - {{ $post->created_at }}</span>
-                            </div>
-                        </div>
-
-                            <div class="box-body" style="display: block;">
-                                <form action="/edition/{{$post->id}}" method="post" enctype="multipart/form-data">
-                                    {{ csrf_field() }}
-                            <textarea class="form-control" style="margin-bottom: 7px;" name="post" rows="2" maxlength="254" >{{ $post->post }}</textarea>
-                                <button type="submit" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Editar</button>
-                                {{--<a href="/delete/{{ $post->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>--}}
-                                <span class="pull-right text-muted">0 Comentarios</span>
-                                </form>
-                            </div>
-
-                        <div class="box-footer" style="display: block;">
-                            <form action="#" method="post">
-                                <img class="img-responsive img-circle img-sm" src="{{ $user->avatar }}" alt="Alt Text">
-                                <div class="img-push">
-                                    <input type="text" class="form-control input-sm" placeholder="Presiona Enter para comentar">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    @else
-                        {{-- Lista de post realizados --}}
-                        <div class="box box-widget">
-                            <div class="box-header with-border">
-                                <div class="user-block">
-                                    <img class="img-circle" src="{{ $user->avatar }}" alt="User Image">
-                                    <span class="usernamebox"><a href="#">{{ $fullname }}.</a></span>
-                                    <span class="description">Publicado - {{ $post->created_at }}</span>
-                                </div>
-                            </div>
-                            <div class="box-body" style="display: block;">
-                                {{--<img class="img-responsive show-in-modal" src="img/Post/young-couple-in-love.jpg" alt="Photo">--}}
-                                <p>{{ $post->post }}</p>
-                                <a href="/edit/{{ $post->id }}" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Editar</a>
-                                <a href="/delete/{{ $post->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
-                                <span class="pull-right text-muted">0 Comentarios</span>
-                            </div>
-
-                            <div class="box-footer" style="display: block;">
-                                <form action="#" method="post">
-                                    <img class="img-responsive img-circle img-sm" src="{{ $user->avatar }}" alt="Alt Text">
-                                    <div class="img-push">
-                                        <input type="text" class="form-control input-sm" placeholder="Presiona Enter para comentar">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                    @endif
-                @empty
-                    <p>Sin posts actualmente</p>
-                @endforelse
 
 
-            @else
                 @forelse($posted as $post)
                     {{-- Lista de post realizados --}}
                     <div class="box box-widget">
@@ -271,8 +205,8 @@
 
                         <div class="box-body" style="display: block;">
                             {{--<img class="img-responsive show-in-modal" src="img/Post/young-couple-in-love.jpg" alt="Photo">--}}
-                            <p>{{ $post->post }}</p>
-                            <a href="/edit/{{ $post->id }}" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Editar</a>
+                            <p id="contenido{{$post->id}}">{{ $post->post }}</p>
+                            <button id="edit{{$post->id}}" class="btn btn-warning btn-xs botonEditar"><i class="fa fa-edit"></i> Editar</button>
                             <a href="/delete/{{ $post->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
                             <span class="pull-right text-muted">0 Comentarios</span>
                         </div>
@@ -319,9 +253,6 @@
                         @empty
                         @endforelse
                 @endfor
-
-            @endif
-
 
 
             {{-- Lista de post realizados  OJO ES SOLO UN MODELO A USAR  NOOO BORRARRR!!! --}}
@@ -396,4 +327,6 @@
             </script>
    <script type="text/javascript" src="/js/bootstrap_file-input.js"></script>
    {{--<script type="text/javascript" src="/js/jquery.custom-file-input.js"></script>--}}
+    <script type="text/javascript" src="/js/edit.js"></script>
+
 @endsection
