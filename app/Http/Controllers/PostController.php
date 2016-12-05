@@ -22,23 +22,6 @@ class PostController extends Controller
         return redirect('/userlog');
     }
 
-    public function orderpost () {
-        $user = Auth::user();
-        $post = Post::orderBy('created_at', 'desc')->where('user_id', $user->id)->get();
-
-        $friendlist = [];
-        $userfriends = $user->friend;
-        foreach ($userfriends as $friend) {
-            array_push($friendlist, $friend->friend_id);
-        }
-        $friends = User::whereIn('id', $friendlist)->get();
-        //dd($friends[0]->name);
-        return view('/user/show', [
-            'posted' => $post,
-            'friends' => $friends,
-        ]);
-    }
-
     public function editPost ($id) {
         $user = Auth::user();
         $postline = Post::find($id);

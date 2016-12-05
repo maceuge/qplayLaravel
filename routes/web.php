@@ -13,7 +13,7 @@
 
 // Rutas de Logueo y Registro
 Auth::routes();
-Route::get('/home', 'HomeController@index');
+//Route::get('/', 'HomeController@index');
 // Pagina Principal
 Route::get('/', function () { return view('/home/index'); });
 // Pagina FAQs
@@ -23,26 +23,24 @@ Route::get('/faqs', function () { return view('/home/faqs'); });
 Route::group(['middleware' => ['auth']], function () {
 
 // Pagina de Usuario Logueado
-Route::get('/userlog', 'PostController@orderpost');
+Route::get('/userlog', 'PerfilController@wallview');
 // Ruta para hacer el post
 Route::post('/posting', 'PostController@posting');
-// rutas para editar y borrar
+// Rutas para editar y borrar
 Route::get('/edit/{id}', 'PostController@editPost');
 Route::get('/delete/{id}', 'PostController@deletePost');
 Route::post('/edition/{id}', 'PostController@updateWithEditedPost');
-
 // Subir Avatar
 Route::post('/avatarUpload', 'PerfilController@avatarUpload');
-//Buscar Amigos
+// Buscar Amigos
 Route::get('/busfrends', 'PerfilController@busfrends');
 // Agregar Amigos
 Route::get('/addfriend/{id}', 'FriendController@addfriend');
-
-
+// Eliminar Amigo
+Route::get('/delfriend/{id}', 'FriendController@delfriend');
+// Perfil de Amigo
+Route::get('/friend/{id}', 'FriendController@friendperfil');
 
 }); // fin del middleware auth
-
-
-
 
 

@@ -16,10 +16,6 @@
 
 @section('content')
 
-    <?php
-      $user = Auth::user();
-    ?>
-
 <!-- COMIENZO DE LA FOTO -->
 <div class="container amicover">
     <div class="row">
@@ -32,6 +28,7 @@
 <div class="container post">
     @forelse($buscfrends as $friend)
         @if($friend->id != $user->id)
+{{--            @for($i = 0;$i < count($userfriends);$i++)--}}
     <div class="row rowline">
         <div class="col-md-2 col-md-offset-2">
             <img src="{{ $friend->avatar }}" class="img-square center-block thumbnail" width="150" height="150">
@@ -56,9 +53,16 @@
             </p>
         </div>
         <div class="col-md-3">
-                <a href="/addfriend/{{ $friend->id }}" class="btn btn-info">Agregar <i class="fa fa-plus-circle"></i></a>
+
+{{--                @if($userfriends[$i]->id != $friend->id)--}}
+                <a href="/addfriend/{{ $friend->id }}" class="btn btn-info">Seguir <i class="fa fa-arrow-circle-o-right"></i></a>
+                {{--@else--}}
+                <a href="/delfriend/{{ $friend->id }}" class="btn btn-danger">Dejar de Seguir <i class="fa fa-window-close-o"></i></a>
+                {{--@endif--}}
+
         </div>
     </div>
+            {{--@endfor--}}
         @endif
     @empty
         <div class="row">

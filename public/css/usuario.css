@@ -1,6 +1,8 @@
 
 body {
     padding-top: 55px;
+    background-image: url("../img/Music_mosaic.jpg");
+    background-repeat:repeat;
 }
 
 /*--------------- navbar -------------------*/
@@ -86,7 +88,7 @@ body {
 .post {
     padding-top: 30px;
     border-top: 2px solid #94d500;
-    background-color: #e9eaed; /* #555; */
+    background-color: #cccccc; /* #555; #e9eaed*/
     padding-bottom: 40px;
 }
 
@@ -174,6 +176,10 @@ ul > li {
 }
 
 /*--------------fin del diseño del input -------------------*/
+
+.btn {
+    border-radius: 0px;
+}
 
 /*====================== Timeline posts ================*/
 

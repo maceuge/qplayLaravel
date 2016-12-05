@@ -98,6 +98,12 @@ class RegisterController extends Controller
             $instrument->save();
         }
 
+        $onlyfriend = Friend::create([
+            'user_id' => $user->id,
+            'friend_id' => $user->id,
+        ]);
+        $onlyfriend->save();
+
         return $user;
     }
 }

@@ -16,12 +16,9 @@
 @section('content')
 
     <?php
-       $user = Auth::user();
        $fullname = $user->name.' '.$user->surname;
        $bands = $user->band;
        $inst = $user->instrument;
-       //$friends = $user->friend;
-
     ?>
 
     <!-- COMIENZO DE LA FOTO -->
@@ -145,7 +142,7 @@
             {{-- lista de amigos --}}
             <div class="widget widget-friends">
                 <div class="widget-header">
-                    <h3 class="widget-caption">Amigos</h3>
+                    <h3 class="widget-caption">Siguiendo</h3>
                 </div>
                 <div class="widget-body bordered-top  bordered-red">
                     <div class="row">
@@ -156,12 +153,14 @@
                                         <img src="/img/add.jpg" alt="Add Friend" width="65" height="65">
                                     </a>
                                 </li>
-                                 @for($i = 0; $i < count($friends); $i++)
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ $friends[$i]->avatar }}" alt="image" width="65" height="65">
-                                    </a>
-                                </li>
+                                @for($i = 0; $i < count($friends); $i++)
+                                    @if ($friends[$i]->id != $user->id)
+                                    <li>
+                                        <a href="/friend/{{ $friends[$i]->id }}">
+                                            <img src="{{ $friends[$i]->avatar }}" alt="image" width="65" height="65">
+                                        </a>
+                                    </li>
+                                    @endif
                                 @endfor
                             </ul>
                         </div>
@@ -179,7 +178,7 @@
                     {{ csrf_field() }}
                     <textarea class="form-control input-lg p-text-area" name="post" rows="2" placeholder="Que cuentas hoy?" maxlength="254"></textarea>
                     <div class="box-footer box-form">
-                        <button type="submit" class="btn btn-success pull-right">Post</button>
+                        <button type="submit" class="btn btn-success pull-right"> Comentar</button>
                         <ul class="nav nav-pills">
                             {{--<li><a href="#"><i class="fa fa-map-marker"></i></a></li>--}}
                             <li><a href="#"><i class="fa fa-camera"></i></a></li>
@@ -190,139 +189,41 @@
                 </form>
             </div>
 
-            @if(isset($postline))
-                @forelse($posted as $post)
-                    @if($postline->id == $post->id)
-                    {{-- Lista de post realizados --}}
+    {{-- este sector imprime lospost sin apretar el boton de editar --}}
 
-                    <div class="box box-widget">
-                        <div class="box-header with-border">
-                            <div class="user-block">
-                                <img class="img-circle" src="{{ $user->avatar }}" alt="User Image">
-                                <span class="usernamebox"><a href="#">{{ $fullname }}.</a></span>
-                                <span class="description">Publicado - {{ $post->created_at }}</span>
-                            </div>
-                        </div>
-
-                            <div class="box-body" style="display: block;">
-                                <form action="/edition/{{$post->id}}" method="post" enctype="multipart/form-data">
-                                    {{ csrf_field() }}
-                            <textarea class="form-control" style="margin-bottom: 7px;" name="post" rows="2" maxlength="254" >{{ $post->post }}</textarea>
-                                <button type="submit" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Editar</button>
-                                {{--<a href="/delete/{{ $post->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>--}}
-                                <span class="pull-right text-muted">0 Comentarios</span>
-                                </form>
-                            </div>
-
-                        <div class="box-footer" style="display: block;">
-                            <form action="#" method="post">
-                                <img class="img-responsive img-circle img-sm" src="{{ $user->avatar }}" alt="Alt Text">
-                                <div class="img-push">
-                                    <input type="text" class="form-control input-sm" placeholder="Presiona Enter para comentar">
-                                </div>
-                            </form>
-                        </div>
+    @if(!empty($post))
+        @for($i = 0;$i < count($post);$i++)
+            <div class="box box-widget {{ ($post[$i]->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}">
+                <div class="box-header with-border {{ ($post[$i]->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}">
+                    <div class="user-block">
+                        <img class="img-circle" src="{{ $post[$i]->user->avatar }}" alt="User Image">
+                        <span class="usernamebox">{{ $post[$i]->user->name.' '.$post[$i]->user->surname }}</span>
+                        <span class="description">Publicado - {{ $post[$i]->created_at }}</span>
                     </div>
-                    @else
-                        {{-- Lista de post realizados --}}
-                        <div class="box box-widget">
-                            <div class="box-header with-border">
-                                <div class="user-block">
-                                    <img class="img-circle" src="{{ $user->avatar }}" alt="User Image">
-                                    <span class="usernamebox"><a href="#">{{ $fullname }}.</a></span>
-                                    <span class="description">Publicado - {{ $post->created_at }}</span>
-                                </div>
-                            </div>
-                            <div class="box-body" style="display: block;">
-                                {{--<img class="img-responsive show-in-modal" src="img/Post/young-couple-in-love.jpg" alt="Photo">--}}
-                                <p>{{ $post->post }}</p>
-                                <a href="/edit/{{ $post->id }}" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Editar</a>
-                                <a href="/delete/{{ $post->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
-                                <span class="pull-right text-muted">0 Comentarios</span>
-                            </div>
+                </div>
 
-                            <div class="box-footer" style="display: block;">
-                                <form action="#" method="post">
-                                    <img class="img-responsive img-circle img-sm" src="{{ $user->avatar }}" alt="Alt Text">
-                                    <div class="img-push">
-                                        <input type="text" class="form-control input-sm" placeholder="Presiona Enter para comentar">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
+                <div class="box-body" style="display: block;">
+                    <p>{{ $post[$i]->post }}</p>
+                    @if ($post[$i]->user->id == $user->id)
+                    <a href="/edit/{{ $post[$i]->id }}" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Editar</a>
+                    <a href="/delete/{{ $post[$i]->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
                     @endif
-                @empty
-                    <p>Sin posts actualmente</p>
-                @endforelse
+                    <span class="pull-right text-muted">0 Comentarios</span>
+                </div>
 
-
-            @else
-                @forelse($posted as $post)
-                    {{-- Lista de post realizados --}}
-                    <div class="box box-widget">
-                        <div class="box-header with-border">
-                            <div class="user-block">
-                                <img class="img-circle" src="{{ $user->avatar }}" alt="User Image">
-                                <span class="usernamebox"><a href="#">{{ $fullname }}.</a></span>
-                                <span class="description">Publicado - {{ $post->created_at }}</span>
-                            </div>
+                <div class="box-footer" style="display: block;">
+                    <form action="#" method="post">
+                        <img class="img-responsive img-circle img-sm" src="{{ $user->avatar }}" alt="Alt Text">
+                        <div class="img-push">
+                            <input type="text" class="form-control input-sm {{ ($post[$i]->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}" placeholder="Presiona Enter para comentar">
                         </div>
-
-                        <div class="box-body" style="display: block;">
-                            {{--<img class="img-responsive show-in-modal" src="img/Post/young-couple-in-love.jpg" alt="Photo">--}}
-                            <p>{{ $post->post }}</p>
-                            <a href="/edit/{{ $post->id }}" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Editar</a>
-                            <a href="/delete/{{ $post->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
-                            <span class="pull-right text-muted">0 Comentarios</span>
-                        </div>
-
-                        <div class="box-footer" style="display: block;">
-                            <form action="#" method="post">
-                                <img class="img-responsive img-circle img-sm" src="{{ $user->avatar }}" alt="Alt Text">
-                                <div class="img-push">
-                                    <input type="text" class="form-control input-sm" placeholder="Presiona Enter para comentar">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                @empty
-                    <p>Sin posts actualmente</p>
-                @endforelse
-
-                @for($i = 0; $i < count($friends); $i++)
-                        @forelse($friends[$i]->post as $frpost)
-                        <div class="box box-widget bordered-info">
-                            <div class="box-header with-border">
-                                <div class="user-block">
-                                    <img class="img-circle" src="{{ $friends[$i]->avatar }}" alt="User Image">
-                                    <span class="usernamebox"><a href="#">{{ $friends[$i]->name.' '.$friends[$i]->surname }}.</a></span>
-                                    <span class="description">Publicado - {{ $frpost->created_at  }}</span>
-                                </div>
-                            </div>
-
-                            <div class="box-body" style="display: block;">
-                                <p>{{ $frpost->post }}</p>
-                                <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
-                                <span class="pull-right text-muted">0 Comentarios</span>
-                            </div>
-
-                            <div class="box-footer" style="display: block;">
-                                <form action="#" method="post">
-                                    <img class="img-responsive img-circle img-sm" src="{{ $user->avatar }}" alt="Alt Text">
-                                    <div class="img-push">
-                                        <input type="text" class="form-control input-sm" placeholder="Presiona Enter para comentar">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        @empty
-                        @endforelse
-                @endfor
-
-            @endif
-
-
+                    </form>
+                </div>
+            </div>
+        @endfor
+    @else
+        <p class="text-center">Sin posts actualmente</p>
+    @endif
 
             {{-- Lista de post realizados  OJO ES SOLO UN MODELO A USAR  NOOO BORRARRR!!! --}}
 
@@ -395,5 +296,4 @@
                 });
             </script>
    <script type="text/javascript" src="/js/bootstrap_file-input.js"></script>
-   {{--<script type="text/javascript" src="/js/jquery.custom-file-input.js"></script>--}}
 @endsection
