@@ -16,8 +16,8 @@
 @section('content')
     <!-- COMIENZO DE JUMBOTRON -->
     <div class="jumbotron text-center">
-        <h1 class="font-russo">Un lugar para ir juntos a la par</h1>
-        <p class="font-exo">Compartí tus intereses y pasiones con tus almas gemelas en todo tiempo y lugar!</p>
+        <h1 class="font-russo">Un lugar para disfrutar toda la música!</h1>
+        <p class="font-exo">Descubrí bandas, recitales, conciertos, meetups, peñas y mucho más!!!</p>
     </div>
     <!-- FIN DEL JUMBOTRON -->
 
@@ -30,8 +30,8 @@
                 </div>
             </div>
             <div class="col-md-5 col-md-offset-2">
-                <h1 class="font-comfortaa">Disfruta de una buena compania</h1>
-                <p class="font-maven">Conectate, juntate, comparti, desarolla y disfruta con tus almas gemelas en todo momento y lugar sin limites. Ahora con <span class="font-poiret logspot">QPlay</span> podes encontrarte con todos aquellos que tienen los mismos gustos musicales que vos! No te lo pierdas!</p>
+                <h1 class="font-comfortaa">La música se disfruta más si es con amigos</h1>
+                <p class="font-maven"><span class="font-poiret logspot">QPlay</span> te ayuda a conocer gente que comparte tus intereses musicales, ya sea para armar una banda, o ir a escuchar un buen recital!</p>
             </div>
             <div class="col-md-2"></div>
         </div>
@@ -42,7 +42,7 @@
     <div class="container-fluid event">
         <div class="row image">
             <div class="col-sm-6">
-                <h3 class="text-center font-comfortaa">Grupos</h3>
+                <h3 class="text-center font-comfortaa">Músicos y Bandas</h3>
 
                 <img src="img/img1.jpg" alt="..." class="img-squarex" width="160" height="160">
                 <img src="img/img2.jpg" alt="..." class="img-squarex" width="160" height="160">
@@ -58,23 +58,23 @@
                 <div class="event-info">
                     <h3 class="font-comfortaa">Guitarreada en Parque Nacional</h3>
                     <i class="fa fa-share fa-lg"></i>
-                    <p class="font-maven">Si estas embolado en tu casa venite a conocernos</p>
+                    <p class="font-maven">Este viernes acercate con tu instrumento al parque desde las 22 hs. para pasar una noche diferente, tocando temas populares.</p>
                 </div>
                 <div class="event-info">
                     <h3 class="font-comfortaa">Rock & Roll en Luna Park</h3>
                     <i class="fa fa-share fa-lg"></i>
-                    <p class="font-maven">A puro rock en el Luna! no te lo pierdas</p>
+                    <p class="font-maven">A puro rock en el Luna! Inscribí tu banda!</p>
                 </div>
                 <div class="event-info">
                     <h3 class="font-comfortaa">Festival de Folklore</h3>
                     <i class="fa fa-share fa-lg"></i>
-                    <p class="font-maven">Para todos los amantes que les gusta disfrutar</p>
+                    <p class="font-maven">Para todos los amantes de la tradición, se están organizando micros para ir a Jesús María. Reserva tu lugar!!!</p>
                 </div>
-                <div class="event-info">
+                {{--<div class="event-info">
                     <h3 class="font-comfortaa">Tu vida como un Electo</h3>
                     <i class="fa fa-share fa-lg"></i>
                     <p class="font-maven">Venite a disfrutar de los mejores DJs</p>
-                </div>
+                </div>--}}
             </div>
         </div>
     </div>
@@ -84,8 +84,8 @@
     <div class="container-fluid">
         <div class="row gray2">
             <div class="col-md-6 col-md-offset-1 col-sm-12">
-                <h1 class="font-comfortaa">Conectate sin limites estes donde estes.</h1>
-                <p class="font-maven">Ahora podes estar conectado con tu tablet o celular desde cualquier navegador mobile!
+                <h1 class="font-comfortaa">Conectate sin límites, estés donde estés.</h1>
+                <p class="font-maven">Ahora podés estar conectado con tu tablet o celular desde cualquier navegador móvil!
                     <i class="fa fa-mobile fa-tel"></i>
                 </p>
                 <p class="text-center">

@@ -77,7 +77,7 @@
                             <li><a href="/searchfriends"><i class="fa fa-users"></i> Buscar Amigos</a></li>
                             <li><a href="/userlog"><i class="fa fa-list"></i> Mi Muro</a></li>
                             <li><a href="#"><i class="fa fa-unlock-alt"></i> Privacidad</a></li>
-                            <li><a href="#"><i class="fa fa-gear"></i> Configuracion</a></li>
+                            <li><a href="#"><i class="fa fa-gear"></i> Configuración</a></li>
                             <li role="separator" class="divider"></li>
                             <li>
                                 <a href="{{ url('/logout') }}"
@@ -111,13 +111,13 @@
                 <li><p></p></li>
                 <li><a href="{{ url('/register') }}" class="footlink">Registrate</a></li>
                 <li><p></p></li>
-                <li><a href="/faqs" class="footlink">Preguntas (FAQs)</a></li>
+                <li><a href="/faqs" class="footlink">Preguntas Frecuentes</a></li>
             </ul>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <p class="font-maven footp text-center">Diseñado y desarollado por Eugenio Vorontsov - Maggie Tobar - Sebastian Crosta</p>
+            <p class="font-maven footp text-center">Diseñado y desarollado por: Eugenio Vorontsov - Maggie Tobar - Sebastian Crosta</p>
         </div>
     </div>
     <div class="row">

@@ -9,7 +9,7 @@
 @endsection
 
 @section('slogan')
-     <p class="navbar-text font-farsan">Conectate con tus amigos. <i class="fa fa-users"></i></p>
+     <p class="navbar-text font-farsan">Conectate con tus amigos <i class="fa fa-users"></i></p>
 @endsection
 
     @section('content')
