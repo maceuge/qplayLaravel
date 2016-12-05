@@ -75,6 +75,21 @@
                         <input type="password" name="password_confirmation" class="form-control" placeholder="Repita su contrase&ntilde;a" maxlength="30">
                     </div>
 
+                    <div class="form-group">
+                        <label class="radio-inline">
+                            <input type="radio" name="gender" value="Hombre"checked>Hombre
+                        </label>
+
+                        <label class="radio-inline">
+                            <input type="radio" name="gender" value="Mujer">Mujer
+                        </label>
+
+                        <label class="radio-inline">
+                            <input type="radio" name="gender" value="Otro">Otro
+                        </label>
+
+                    </div>
+
                     {{--aqui empieza la joda--}}
 
                     <div class="row">

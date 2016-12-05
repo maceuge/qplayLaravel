@@ -203,9 +203,9 @@
                 </div>
 
                 <div class="box-body" style="display: block;">
-                    <p>{{ $post[$i]->post }}</p>
+                    <p id="contenido{{$post[$i]->id}}">{{ $post[$i]->post }}</p>
                     @if ($post[$i]->user->id == $user->id)
-                    <a href="/edit/{{ $post[$i]->id }}" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Editar</a>
+                    <button id="edit{{$post[$i]->id}}" class="btn btn-warning btn-xs botonEditar"><i class="fa fa-edit"></i> Editar</button>
                     <a href="/delete/{{ $post[$i]->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
                     @endif
                     <span class="pull-right text-muted">0 Comentarios</span>
@@ -296,4 +296,5 @@
                 });
             </script>
    <script type="text/javascript" src="/js/bootstrap_file-input.js"></script>
+   <script type="text/javascript" src="/js/edit.js"></script>
 @endsection

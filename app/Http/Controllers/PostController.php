@@ -22,17 +22,6 @@ class PostController extends Controller
         return redirect('/userlog');
     }
 
-    public function editPost ($id) {
-        $user = Auth::user();
-        $postline = Post::find($id);
-        $post = Post::orderBy('created_at', 'desc')->where('user_id', $user->id)->get();
-        return view('/user/show', [
-            'postline' => $postline,
-            'posted' => $post,
-        ]);
-
-    }
-
     public function deletePost ($id) {
         $post = Post::find($id);
         $post->delete();
