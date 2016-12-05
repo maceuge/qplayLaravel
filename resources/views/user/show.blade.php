@@ -68,7 +68,7 @@
                     <li class="padding-v-5">
                         <div class="row">
                             <div class="col-sm-4"><span class="text-muted">Sexo</span></div>
-                            <div class="col-sm-8">----</div>
+                            <div class="col-sm-8">{{ $user->gender }}</div>
                         </div>
                     </li>
                     <li class="padding-v-5">

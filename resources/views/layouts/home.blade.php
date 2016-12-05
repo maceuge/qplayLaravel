@@ -63,7 +63,7 @@
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <img class="img-circle subuser" src="/{{ $user->avatar.' ' }}" alt="user" width="40" height="40">&nbsp;&nbsp;
+                            <img class="img-circle subuser" src="{{ $user->avatar.' ' }}" alt="user" width="40" height="40">&nbsp;&nbsp;
                             {{ Auth::user()->name.' '.Auth::user()->surname }} <span class="caret"></span>
                         </a>
 

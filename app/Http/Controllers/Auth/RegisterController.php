@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Instrument;
 use App\User;
 use App\Band;
+use App\Friend;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -31,6 +32,7 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/userlog';
+    protected $avatar;
 
     /**
      * Create a new controller instance.
@@ -70,13 +72,20 @@ class RegisterController extends Controller
         $time = strtotime($rdate);
         $birthdate = date('Y-m-d',$time);
 
+        if($data['gender'] == 'Hombre') {
+            $this->avatar = "/img/default_male.jpg";
+        } else {
+            $this->avatar = "/img/default_female.jpg";
+        }
+
         $user = User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'birthday' => $birthdate,
-            'avatar' => '/img/default_male.jpg',
+            'gender' => $data['gender'],
+            'avatar' => $this->avatar,
         ]);
 
         $user->save();

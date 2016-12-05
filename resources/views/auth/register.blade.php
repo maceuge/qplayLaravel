@@ -77,15 +77,15 @@
 
                     <div class="form-group">
                         <label class="radio-inline">
-                            <input type="radio" name="gender" value="Hombre"checked>Hombre
+                            <input type="radio" name="gender" value="Hombre" checked />Hombre
                         </label>
 
                         <label class="radio-inline">
-                            <input type="radio" name="gender" value="Mujer">Mujer
+                            <input type="radio" name="gender" value="Mujer" />Mujer
                         </label>
 
                         <label class="radio-inline">
-                            <input type="radio" name="gender" value="Otro">Otro
+                            <input type="radio" name="gender" value="Otro" />Otro
                         </label>
 
                     </div>

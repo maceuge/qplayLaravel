@@ -16,7 +16,7 @@ class PerfilController extends Controller
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
             $filename = str_slug($user->name) . '-' . $user->id . '.' . $file->extension();
-            $filestorage = $file->storeAs('avatar', $filename, env('PUBLIC_STORAGE', 'public'));
+            $filestorage = $file->storeAs('/avatar', $filename, env('PUBLIC_STORAGE', 'public'));
             $user->avatar = $filestorage;
             $user->save();
         }
