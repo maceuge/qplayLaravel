@@ -12,10 +12,20 @@
 */
 
 // Rutas de Logueo y Registro
+
 Auth::routes();
+
+
 //Route::get('/', 'HomeController@index');
+
 // Pagina Principal
-Route::get('/', function () { return view('/home/index'); });
+Route::get('/', function () {
+    if (! \Illuminate\Support\Facades\Auth::check()){
+        return view('/home/index');
+    } else{
+        return redirect('/userlog');
+    }
+});
 // Pagina FAQs
 Route::get('/faqs', function () { return view('/home/faqs'); });
 
