@@ -17,7 +17,7 @@
 <div class="container usercover">
     <div class="row pull-bottom">
          <div class="col-md-2 col-sm-12">
-              <img src="/{{ $friend->avatar }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+              <img src="{{ $friend->avatar }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
          </div>
          <div class="col-md-6 col-sm-12">
              <p class="username">{{ $friend->name.' '.$friend->surname }}</p>
@@ -153,7 +153,7 @@
          <div class="box box-widget bordered-info">
              <div class="box-header with-border">
                   <div class="user-block">
-                       <img class="img-circle" src="/{{ $friend->avatar }}" alt="User Image">
+                       <img class="img-circle" src="{{ $friend->avatar }}" alt="User Image">
                        <span class="usernamebox"><a href="#">{{ $friend->name.' '.$friend->surname }}.</a></span>
                        <span class="description">Publicado - {{ $post->created_at  }}</span>
                   </div>
@@ -165,7 +165,7 @@
              </div>
              <div class="box-footer" style="display: block;">
                  <form action="#" method="post">
-                     <img class="img-responsive img-circle img-sm" src="/{{ $user->avatar }}" alt="Alt Text">
+                     <img class="img-responsive img-circle img-sm" src="{{ $user->avatar }}" alt="Alt Text">
                      <div class="img-push">
                          <input type="text" class="form-control input-sm" placeholder="Presiona Enter para comentar">
                      </div>
