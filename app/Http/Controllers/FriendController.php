@@ -25,7 +25,7 @@ class FriendController extends Controller
 
     public function delfriend ($id) {
         $friend = Friend::where('friend_id', $id)->delete();
-        return redirect('/busfrends');
+        return redirect('/searchfriends');
     }
 
     public function friendperfil ($id) {

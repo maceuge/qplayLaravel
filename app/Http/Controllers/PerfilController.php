@@ -48,7 +48,7 @@ class PerfilController extends Controller
         ]);
     }
 
-    public function busfrends () {
+    public function searchfriends () {
         $user = Auth::user();
         $buscfrends = User::all();
        // $friend = Friend::all();
@@ -62,7 +62,7 @@ class PerfilController extends Controller
         }
         $friends = User::whereIn('id', $friendlist)->get();
 
-        return view('/user/busfrends', [
+        return view('/user/searchfriends', [
             'user' => $user,
             'buscfrends' => $buscfrends,
             'userfriends' => $friends,

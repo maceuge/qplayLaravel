@@ -35,7 +35,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            @if (Auth::guest())
             <a class="navbar-brand font-poiret logo" href="{{ url('/') }}">{{ config('app.name') }}</a>
+
+            @else
+                <a class="navbar-brand font-poiret logo" href="{{ url('/userlog') }}">{{ config('app.name') }}</a>
+            @endif
+
             @yield('slogan')
         </div>
 
@@ -68,7 +74,7 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="/busfrends"><i class="fa fa-users"></i> Buscar Amigos</a></li>
+                            <li><a href="/searchfriends"><i class="fa fa-users"></i> Buscar Amigos</a></li>
                             <li><a href="/userlog"><i class="fa fa-list"></i> Mi Muro</a></li>
                             <li><a href="#"><i class="fa fa-unlock-alt"></i> Privacidad</a></li>
                             <li><a href="#"><i class="fa fa-gear"></i> Configuracion</a></li>

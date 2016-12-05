@@ -74,8 +74,10 @@ class RegisterController extends Controller
 
         if($data['gender'] == 'Hombre') {
             $this->avatar = "/img/default_male.jpg";
-        } else {
+        } elseif ($data['gender'] == 'Hombre') {
             $this->avatar = "/img/default_female.jpg";
+        } else{
+            $this->avatar = "/img/default_other.jpg";
         }
 
         $user = User::create([

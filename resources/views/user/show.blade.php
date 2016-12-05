@@ -94,11 +94,12 @@
                 </div>
                 <div class="widget-body bordered-top bordered-palegreen">
                     <ul class="list-unstyled profile-about margin-none">
+
                         @forelse($bands as $band)
                         <li class="padding-v-5">
                             <div class="row">
-                                <div class="col-sm-4"><span class="text-muted">Banda</span></div>
-                                <div class="col-sm-8">{{ $band->band }}</div>
+                                {{--<div class="col-sm-6"><span class="text-muted">Banda</span></div>--}}
+                                <div class="col-sm-6">{{ $band->band }}</div>
                             </div>
                         </li>
                         @empty
@@ -149,7 +150,7 @@
                         <div class="col-md-12">
                             <ul class="img-grid" style="margin: 0 auto;">
                                 <li>
-                                    <a href="/busfrends">
+                                    <a href="/searchfriends">
                                         <img src="/img/add.jpg" alt="Add Friend" width="65" height="65">
                                     </a>
                                 </li>

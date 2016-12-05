@@ -32,7 +32,7 @@ Route::post('/edition/{id}', 'PostController@updateWithEditedPost');
 // Subir Avatar
 Route::post('/avatarUpload', 'PerfilController@avatarUpload');
 // Buscar Amigos
-Route::get('/busfrends', 'PerfilController@busfrends');
+Route::get('/searchfriends', 'PerfilController@searchfriends');
 // Agregar Amigos
 Route::get('/addfriend/{id}', 'FriendController@addfriend');
 // Eliminar Amigo
