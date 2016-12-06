@@ -51,10 +51,7 @@ class PerfilController extends Controller
     public function searchfriends () {
         $user = Auth::user();
         $buscfriends = User::all()->sortBy('id');
-       // $friend = Friend::all();
         $friendlist = [];
-
-        //dd($friend->id);
 
         $userfriends = $user->friend;
         foreach ($userfriends as $friend) {

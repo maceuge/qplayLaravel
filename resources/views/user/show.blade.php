@@ -190,14 +190,14 @@
                 </div>
 
                 <div class="box-body" style="display: block;">
-                    <p id="contenido{{$post[$i]->id}}">{{ $post[$i]->post }}</p>
+                    <p class="posted" id="contenido{{$post[$i]->id}}">{{ $post[$i]->post }}</p>
                     @if ($post[$i]->user->id == $user->id)
                     <button id="edit{{$post[$i]->id}}" class="btn btn-warning btn-xs botonEditar"><i class="fa fa-edit"></i> Editar</button>
                     <a href="/delete/{{ $post[$i]->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
                     @else
                     <a href="" class="btn btn-info btn-xs"><i class="fa fa-thumbs-up"></i> Like</a>
                     @endif
-                    <span class="pull-right text-muted">{{ count($post[$i]->coment) }} Comentarios</span>
+                    <span class="pull-right text-muted"><span class="badge">{{ count($post[$i]->coment) }}</span> Comentarios</span>
                 </div>
 
                 @foreach($post[$i]->coment as $coments)
@@ -205,7 +205,7 @@
                     <div class="box-comment">
                         <img class="img-circle img-sm" src="{{ $coments->user->avatar }}" alt="User Image">
                         <div class="comment-text">
-                            <span class="usernamebox">{{ $coments->user->name.' '.$coments->user->surname }}
+                            <span class="usernamecom">{{ $coments->user->name.' '.$coments->user->surname }}
                                 <span class="text-muted pull-right">{{ $coments->created_at }}</span>
                             </span>
                             {{ $coments->coment }}

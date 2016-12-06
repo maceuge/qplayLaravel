@@ -1,3 +1,4 @@
+@import url(//fonts.googleapis.com/css?family=Lato:400|Inconsolata);
 
 body {
     padding-top: 55px;
@@ -181,14 +182,21 @@ ul > li {
     border-radius: 0px;
 }
 
+
+.posted {
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 15px;
+    color: #373737;
+}
+
 /*====================== Timeline posts ================*/
 
 .usernamebox {
-    /*padding-top: 20px;*/
     padding-left: 11px;
-    font-size: 15px;
+    font-size: 16px;
+    font-weight:bold;
     font-family: 'Comfortaa', cursive;
-    color: #122b40;
+    color: #337ab7;
     text-shadow: 0px 0px 5px #cccccc;
 }
 
@@ -234,6 +242,7 @@ ul > li {
     font-weight: 600;
 }
 .user-block .description {
+    font-family: Lato,"Helvetica Neue",Arial,Verdana,Tahoma,"Lucida Sans",FreeSans,"Lucida Sans Unicode","Luxi Sans",sans-serif;
     color: #999;
     font-size: 13px;
 }
@@ -300,10 +309,14 @@ ul > li {
     float: left;
 }
 .box-comments .comment-text {
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 14px;
     margin-left: 40px;
     color: #555;
 }
-.box-comments .username {
+.box-comments .usernamecom {
+    font-family: 'Comfortaa', cursive;
+    font-size: 14px;
     color: #444;
     display: block;
     font-weight: 600;

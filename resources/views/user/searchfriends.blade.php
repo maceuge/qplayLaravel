@@ -28,7 +28,7 @@
 <div class="container post">
     @forelse($buscfrends as $friend)
         @if($friend->id != $user->id)
-{{--            @for($i = 0;$i < count($userfriends);$i++)--}}
+
     <div class="row rowline">
         <div class="col-md-2 col-md-offset-2">
             <img src="{{ $friend->avatar }}" class="img-square center-block thumbnail" width="150" height="150">
@@ -40,7 +40,7 @@
             @forelse($friend->band as $friendBand)
                 <b>{{ $friendBand->band }} @if ($friendBand != $friend->band->last()) - @endif </b>
             @empty
-                <b>No tiene bandas favoritas.</b><
+                <b>No tiene bandas favoritas.</b>
             @endforelse
             </p>
 
@@ -48,7 +48,7 @@
             @forelse($friend->instrument as $friendInst)
                 <b>{{ $friendInst->instrument }} @if ($friendInst != $friend->instrument->last()) -  @endif </b>
             @empty
-                <b>No toca ningun instrumento</b>
+                <b>No toca ningun instrumento.</b>
             @endforelse
             </p>
         </div>
