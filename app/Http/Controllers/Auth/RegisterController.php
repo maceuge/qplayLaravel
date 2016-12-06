@@ -93,20 +93,24 @@ class RegisterController extends Controller
         $user->save();
 
         for ($i = 0; $i < count($data['bandas']); $i++) {
-            $bandas = Band::create([
-                'user_id' => $user->id,
-                'band' => $data['bandas'][$i],
-            ]);
-            $bandas->save();
+            if($data['bandas'][$i]) {
+                $bandas = Band::create([
+                    'user_id' => $user->id,
+                    'band' => $data['bandas'][$i],
+                ]);
+                $bandas->save();
+            }
         }
 
         for ($i = 0; $i < count($data['inst']); $i++) {
+            if($data['inst'][$i]){
             $instrument = Instrument::create([
                 'user_id' => $user->id,
                 'instrument' => $data['inst'][$i],
                 'level' => $data['nivelinst'][$i],
             ]);
             $instrument->save();
+            }
         }
 
         $onlyfriend = Friend::create([

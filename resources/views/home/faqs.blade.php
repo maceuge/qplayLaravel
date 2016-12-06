@@ -24,17 +24,17 @@
 
                 <dl>
                     <dt data-target="0">Qué tengo que hacer para registrarme en Qplay?</dt>
-                    <dd> Hacé click en el botón registrarse, o <a href="register.php">acá</a>, completá el formulario y listo!</dd>
+                    <dd> Hacé click en el botón registrarse, o <a href="/register">acá</a>, completá el formulario y listo!</dd>
                 </dl>
 
                 <dl>
                     <dt data-target="1">Cómo hago ingresar en mi cuenta?</dt>
-                    <dd>Buscá el botón que dice "Conectate", tanto en la parte superior como en la inferior de la página o en <a href="login.php"> este link</a>, poné tus datos y ya está.</dd>
+                    <dd>Buscá el botón que dice "Conectate", tanto en la parte superior como en la inferior de la página o en <a href="/login"> este link</a>, poné tus datos y ya está.</dd>
                 </dl>
 
                 <dl>
                     <dt data-target="2">Qué hago si me olvidé la clave?</dt>
-                    <dd>Accedé a <a href="forgotpass.php"> este link </a>, poné tu dirección de correo y te va a llegar un mail con lo necesario para resetear la contraseña de tu cuenta.</dd>
+                    <dd>Accedé a <a href="/password/reset"> este link </a>, poné tu dirección de correo y te va a llegar un mail con lo necesario para resetear la contraseña de tu cuenta.</dd>
                 </dl>
 
                 <dl>

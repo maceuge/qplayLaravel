@@ -37,16 +37,16 @@
             <p class="single">Nombre: <b>{{ $friend->name.' '.$friend->surname }}</b></p>
             <p class="single">Mail: <b>{{ $friend->email }}</b></p>
             <p class="single">Bandas:
-            @forelse($friend->band as $frendband)
-                <b>{{ $frendband->band. ' - ' }}</b>
+            @forelse($friend->band as $friendBand)
+                <b>{{ $friendBand->band }} @if ($friendBand != $friend->band->last()) - @endif </b>
             @empty
                 <b>No tiene bandas favoritas.</b><
             @endforelse
             </p>
 
             <p class="single">Instrumentos:
-            @forelse($friend->instrument as $frendband)
-                <b>{{ $frendband->instrument.' - ' }}</b>
+            @forelse($friend->instrument as $friendInst)
+                <b>{{ $friendInst->instrument }} @if ($friendInst != $friend->instrument->last()) -  @endif </b>
             @empty
                 <b>No toca ningun instrumento</b>
             @endforelse
@@ -54,11 +54,11 @@
         </div>
         <div class="col-md-3">
 
-{{--                @if($userfriends[$i]->id != $friend->id)--}}
+                @if(! $isFriend[$friend->id])
                 <a href="/addfriend/{{ $friend->id }}" class="btn btn-info">Seguir <i class="fa fa-arrow-circle-o-right"></i></a>
-                {{--@else--}}
+                @else
                 <a href="/delfriend/{{ $friend->id }}" class="btn btn-danger">Dejar de Seguir <i class="fa fa-window-close-o"></i></a>
-                {{--@endif--}}
+                @endif
 
         </div>
     </div>

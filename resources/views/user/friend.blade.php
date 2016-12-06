@@ -54,19 +54,7 @@
                                     <li class="padding-v-5">
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Sexo</span></div>
-                                            <div class="col-sm-8">----</div>
-                                        </div>
-                                    </li>
-                                    <li class="padding-v-5">
-                                        <div class="row">
-                                            <div class="col-sm-4"><span class="text-muted">Direccion</span></div>
-                                            <div class="col-sm-8">----</div>
-                                        </div>
-                                    </li>
-                                    <li class="padding-v-5">
-                                        <div class="row">
-                                            <div class="col-sm-4"><span class="text-muted">Usuario</span></div>
-                                            <div class="col-sm-8">----</div>
+                                            <div class="col-sm-8">{{ $friend->gender }}</div>
                                         </div>
                                     </li>
                                 </ul>
@@ -126,7 +114,7 @@
                         </div>
 
                         {{-- lista de amigos --}}
-                        <div class="widget widget-friends">
+                        {{--<div class="widget widget-friends">
                             <div class="widget-header">
                                 <h3 class="widget-caption">Amigos</h3>
                             </div>
@@ -134,20 +122,22 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <ul class="img-grid" style="margin: 0 auto;">
-                                           {{-- @for($i = 0; $i < count($friends); $i++)
+                                            @for($i = 0; $i < count($friends); $i++)
                                                 <li>
                                                     <a href="#">
                                                         <img src="{{ $friends[$i]->avatar }}" alt="image" width="65" height="65">
                                                     </a>
                                                 </li>
-                                            @endfor --}}
+                                            @endfor
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
+
+                    </div>
+                    --}}
+                    </div>
 <div class="col-md-8 col-sm-12">
      @forelse($posts as $post)
          <div class="box box-widget bordered-info">
@@ -160,7 +150,7 @@
              </div>
              <div class="box-body" style="display: block;">
                  <p>{{ $post->post }}</p>
-                 <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
+                 {{--<a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>--}}
                  <span class="pull-right text-muted">0 Comentarios</span>
              </div>
              <div class="box-footer" style="display: block;">
