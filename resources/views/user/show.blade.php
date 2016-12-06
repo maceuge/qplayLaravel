@@ -112,8 +112,8 @@
                         @forelse($inst as $instrument)
                         <li class="padding-v-5">
                             <div class="row">
-                                <div class="col-sm-4"><span class="text-muted">{{ $instrument->instrument }}</span></div>
-                                <div class="col-sm-8"> Nivel {{ $instrument->level }}</div>
+                                <div class="col-sm-8"><span class="text-muted">{{ $instrument->instrument }}</span></div>
+                                <div class="col-sm-4"> {{ $instrument->level }}</div>
                             </div>
                         </li>
                         @empty
