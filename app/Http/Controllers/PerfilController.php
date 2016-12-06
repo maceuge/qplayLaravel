@@ -50,7 +50,7 @@ class PerfilController extends Controller
 
     public function searchfriends () {
         $user = Auth::user();
-        $buscfrends = User::all();
+        $buscfriends = User::all()->sortBy('id');
        // $friend = Friend::all();
         $friendlist = [];
 
@@ -60,12 +60,30 @@ class PerfilController extends Controller
         foreach ($userfriends as $friend) {
             array_push($friendlist, $friend->friend_id);
         }
-        $friends = User::whereIn('id', $friendlist)->get();
+        $friends = User::whereIn('id', $friendlist)->orderBy('id')->get();
+
+        //buscFriends son todos los usuarios del universo
+        //friends son tus amigos.
+        $isFriend = [];
+        $indexFriends = 0;
+
+        for($i = 0; $i < count($buscfriends); $i++){
+            if($buscfriends[$i]->id == $friends[$indexFriends]->id){
+                $isFriend[$buscfriends[$i]->id] = true ;
+
+                if($indexFriends < count($friends) -1 ){
+                    $indexFriends++;
+                }
+            } else {
+                $isFriend[$buscfriends[$i]->id] = false ;
+            }
+        }
 
         return view('/user/searchfriends', [
             'user' => $user,
-            'buscfrends' => $buscfrends,
+            'buscfrends' => $buscfriends,
             'userfriends' => $friends,
+            'isFriend' => $isFriend,
         ]);
     }
 

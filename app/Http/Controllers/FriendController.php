@@ -20,7 +20,7 @@ class FriendController extends Controller
         ]);
 
         $friendslist->save();
-        return redirect('/userlog');
+        return redirect('/searchfriends');
     }
 
     public function delfriend ($id) {

@@ -54,11 +54,11 @@
         </div>
         <div class="col-md-3">
 
-{{--                @if($userfriends[$i]->id != $friend->id)--}}
+                @if(! $isFriend[$friend->id])
                 <a href="/addfriend/{{ $friend->id }}" class="btn btn-info">Seguir <i class="fa fa-arrow-circle-o-right"></i></a>
-                {{--@else--}}
+                @else
                 <a href="/delfriend/{{ $friend->id }}" class="btn btn-danger">Dejar de Seguir <i class="fa fa-window-close-o"></i></a>
-                {{--@endif--}}
+                @endif
 
         </div>
     </div>
