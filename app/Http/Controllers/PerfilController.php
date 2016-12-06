@@ -40,7 +40,7 @@ class PerfilController extends Controller
             }
         }
         $post = Post::whereIn('id', $postlist)->orderBy('created_at', 'desc')->get();
-        //dd($friendlist);
+
         return view('/user/show', [
             'user' => $user,
             'post' => $post,

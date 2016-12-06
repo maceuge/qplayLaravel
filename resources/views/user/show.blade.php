@@ -190,8 +190,6 @@
                 </form>
             </div>
 
-    {{-- este sector imprime lospost sin apretar el boton de editar --}}
-
     @if(!empty($post))
         @for($i = 0;$i < count($post);$i++)
             <div class="box box-widget {{ ($post[$i]->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}">
@@ -208,82 +206,42 @@
                     @if ($post[$i]->user->id == $user->id)
                     <button id="edit{{$post[$i]->id}}" class="btn btn-warning btn-xs botonEditar"><i class="fa fa-edit"></i> Editar</button>
                     <a href="/delete/{{ $post[$i]->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
+                    @else
+                    <a href="" class="btn btn-info btn-xs"><i class="fa fa-thumbs-up"></i> Like</a>
                     @endif
-                    <span class="pull-right text-muted">0 Comentarios</span>
+                    <span class="pull-right text-muted">{{ count($post[$i]->coment) }} Comentarios</span>
                 </div>
 
+                @foreach($post[$i]->coment as $coments)
+                <div class="box-footer box-comments" style="display: block;">
+                    <div class="box-comment">
+                        <img class="img-circle img-sm" src="{{ $coments->user->avatar }}" alt="User Image">
+                        <div class="comment-text">
+                            <span class="usernamebox">{{ $coments->user->name.' '.$coments->user->surname }}
+                                <span class="text-muted pull-right">{{ $coments->created_at }}</span>
+                            </span>
+                            {{ $coments->coment }}
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
                 <div class="box-footer" style="display: block;">
-                    <form action="#" method="post">
+                    <form action="/addcoment/{{$post[$i]->id}}" method="post">
+                        {{ csrf_field() }}
                         <img class="img-responsive img-circle img-sm" src="{{ $user->avatar }}" alt="Alt Text">
                         <div class="img-push">
-                            <input type="text" class="form-control input-sm {{ ($post[$i]->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}" placeholder="Presiona Enter para comentar">
+                            <input type="text" name="coment" class="form-control input-sm {{ ($post[$i]->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}" placeholder="Presiona Enter para comentar">
                         </div>
                     </form>
                 </div>
             </div>
         @endfor
     @else
-        <p class="text-center">Sin posts actualmente</p>
+        <p>Sin posts actualmente</p>
     @endif
 
-            {{-- Lista de post realizados  OJO ES SOLO UN MODELO A USAR  NOOO BORRARRR!!! --}}
-
-            {{--<div class="box box-widget">--}}
-                {{--<div class="box-header with-border">--}}
-                    {{--<div class="user-block">--}}
-                        {{--<img class="img-circle" src="/img/user.jpg" alt="User Image">--}}
-                        {{--<span class="usernamebox"><a href="#">{{ $fullname }}.</a></span>--}}
-                        {{--<span class="description">Publicado - 7:30 PM Hoy</span>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-
-                {{--<div class="box-body" style="display: block;">--}}
-                    {{--<img class="img-responsive show-in-modal" src="img/Post/young-couple-in-love.jpg" alt="Photo">--}}
-                    {{--<p>Hoy me levante con ganas de rockandroll baby! Que podemos hacer hoy?</p>--}}
-                    {{--<button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Compartir</button>--}}
-                    {{--<button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Me Gusta</button>--}}
-                    {{--<span class="pull-right text-muted">127 Me Gusta - 3 comentarios</span>--}}
-                {{--</div>--}}
-                {{--<div class="box-footer box-comments" style="display: block;">--}}
-                    {{--<div class="box-comment">--}}
-                        {{--<img class="img-circle img-sm" src="/img/user.jpg" alt="User Image">--}}
-                        {{--<div class="comment-text">--}}
-                                    {{--<span class="usernamebox">--}}
-                                    {{--Maria Gonzales--}}
-                                    {{--<span class="text-muted pull-right">8:03 PM Hoy</span>--}}
-                                    {{--</span>--}}
-                            {{--Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias corporis--}}
-                            {{--dolores eius est facilis itaque quidem sapiente voluptate? Adipisci aperiam at--}}
-                            {{--doloribus eveniet harum incidunt obcaecati provident sunt vero.--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
-                    {{--<div class="box-comment">--}}
-                        {{--<img class="img-circle img-sm" src="/img/user.jpg" alt="User Image">--}}
-                        {{--<div class="comment-text">--}}
-                                    {{--<span class="usernamebox">--}}
-                                    {{--Luna Stark--}}
-                                    {{--<span class="text-muted pull-right">8:03 PM Hoy</span>--}}
-                                    {{--</span>--}}
-                            {{--Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias corporis--}}
-                            {{--dolores eius est facilis itaque quidem sapiente voluptate? Adipisci aperiam at--}}
-                            {{--doloribus eveniet harum incidunt obcaecati provident sunt vero.--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="box-footer" style="display: block;">--}}
-                    {{--<form action="#" method="post">--}}
-                        {{--<img class="img-responsive img-circle img-sm" src="/img/user.jpg" alt="Alt Text">--}}
-                        {{--<div class="img-push">--}}
-                            {{--<input type="text" class="form-control input-sm" placeholder="Presiona Enter para comentar">--}}
-                        {{--</div>--}}
-                    {{--</form>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-
-
         </div><!-- fin de la columna del medio -->
-
     </div>  {{--fin del row del post--}}
 </div> {{--fin del contenedor del post--}}
 

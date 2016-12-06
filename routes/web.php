@@ -40,6 +40,9 @@ Route::get('/delfriend/{id}', 'FriendController@delfriend');
 // Perfil de Amigo
 Route::get('/friend/{id}', 'FriendController@friendperfil');
 
+// Agregar Comentarios
+Route::post('/addcoment/{post_id}','PostController@addcoment');
+
 }); // fin del middleware auth
 
 
