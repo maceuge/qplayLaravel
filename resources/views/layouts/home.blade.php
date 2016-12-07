@@ -69,7 +69,11 @@
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <img class="img-circle subuser" src="{{ $user->avatar.' ' }}" alt="user" width="40" height="40">&nbsp;&nbsp;
+                            @if($user->avatar == '/img/default_male.jpg' || $user->avatar == '/img/default_female.jpg' || $user->avatar == '/img/default_other.jpg')
+                                <img class="img-circle subuser" src="{{ $user->avatar.' ' }}" alt="user" width="40" height="40">&nbsp;&nbsp;
+                            @else
+                                <img class="img-circle subuser" src="/{{ $user->avatar.' ' }}" alt="user" width="40" height="40">&nbsp;&nbsp;
+                            @endif
                             {{ Auth::user()->name.' '.Auth::user()->surname }} <span class="caret"></span>
                         </a>
 

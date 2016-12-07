@@ -25,7 +25,11 @@
 <div class="container usercover">
     <div class="row pull-bottom">
         <div class="col-md-2 col-sm-12">
+            @if($user->avatar == '/img/default_male.jpg' || $user->avatar == '/img/default_female.jpg' || $user->avatar == '/img/default_other.jpg')
             <img src="{{ $user->avatar }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+            @else
+                <img src="/{{ $user->avatar }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+            @endif
         </div>
         <div class="col-md-6 col-sm-12">
             <p class="username">{{ $fullname }}</p>

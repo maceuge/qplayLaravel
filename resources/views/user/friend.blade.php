@@ -17,7 +17,11 @@
 <div class="container usercover">
     <div class="row pull-bottom">
          <div class="col-md-2 col-sm-12">
-              <img src="{{ $friend->avatar }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+             @if($friend->avatar == '/img/default_male.jpg' || $friend->avatar == '/img/default_female.jpg' || $friend->avatar == '/img/default_other.jpg')
+                 <img src="{{ $friend->avatar }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+             @else
+                 <img src="/{{ $friend->avatar }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+             @endif
          </div>
          <div class="col-md-6 col-sm-12">
              <p class="username">{{ $friend->name.' '.$friend->surname }}</p>
@@ -118,7 +122,11 @@
          <div class="box box-widget bordered-info">
              <div class="box-header with-border">
                   <div class="user-block">
-                       <img class="img-circle" src="{{ $friend->avatar }}" alt="User Image">
+                      @if($friend->avatar == '/img/default_male.jpg' || $friend->avatar == '/img/default_female.jpg' || $friend->avatar == '/img/default_other.jpg')
+                          <img class="img-circle" src="{{ $friend->avatar }}" alt="User Image">
+                      @else
+                          <img class="img-circle" src="/{{ $friend->avatar }}" alt="User Image">
+                      @endif
                        <span class="usernamebox"><a href="#">{{ $friend->name.' '.$friend->surname }}.</a></span>
                        <span class="description">Publicado - {{ $post->created_at  }}</span>
                   </div>
@@ -134,9 +142,17 @@
              @foreach($post->coment as $coments)
                  <div class="box-footer box-comments" style="display: block;">
                      <div class="box-comment">
-                         <img class="img-circle img-sm" src="{{ $coments->user->avatar }}" alt="User Image">
+                         @if($coments->user->avatar == '/img/default_male.jpg' || $coments->user->avatar == '/img/default_female.jpg' || $coments->user->avatar == '/img/default_other.jpg')
+                             <img class="img-circle img-sm" src="{{ $coments->user->avatar }}" alt="User Image">
+                         @else
+                             <img class="img-circle img-sm" src="/{{ $coments->user->avatar }}" alt="User Image">
+                         @endif
+
                          <div class="comment-text">
                             <span class="usernamecom">{{ $coments->user->name.' '.$coments->user->surname }}
+                                @if ($coments->user->id == $user->id)
+                                    <span><a class="clcoment" href="/delcoment/{{ $coments->id }}"><i class="fa fa-close fright fa-lg"></i></a></span>
+                                @endif
                                 <span class="text-muted pull-right">{{ $coments->created_at }}</span>
                             </span>
                              {{ $coments->coment }}
@@ -166,4 +182,5 @@
 
 @section('plugin')
    <script type="text/javascript" src="/js/navanim.js"></script>
+   <script type="text/javascript" src="/js/closepost.js"></script>
 @endsection
