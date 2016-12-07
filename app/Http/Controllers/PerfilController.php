@@ -65,6 +65,7 @@ class PerfilController extends Controller
         $indexFriends = 0;
 
         for($i = 0; $i < count($buscfriends); $i++){
+
             if($buscfriends[$i]->id == $friends[$indexFriends]->id){
                 $isFriend[$buscfriends[$i]->id] = true ;
 
@@ -75,6 +76,8 @@ class PerfilController extends Controller
                 $isFriend[$buscfriends[$i]->id] = false ;
             }
         }
+
+
 
         return view('/user/searchfriends', [
             'user' => $user,

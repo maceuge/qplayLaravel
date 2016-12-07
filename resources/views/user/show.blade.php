@@ -112,8 +112,8 @@
                         @forelse($inst as $instrument)
                         <li class="padding-v-5">
                             <div class="row">
-                                <div class="col-sm-4"><span class="text-muted">{{ $instrument->instrument }}</span></div>
-                                <div class="col-sm-8"> Nivel {{ $instrument->level }}</div>
+                                <div class="col-sm-8"><span class="text-muted">{{ $instrument->instrument }}</span></div>
+                                <div class="col-sm-4"> {{ $instrument->level }}</div>
                             </div>
                         </li>
                         @empty
@@ -146,7 +146,7 @@
                                     @if ($friends[$i]->id != $user->id)
                                     <li>
                                         <a href="/friend/{{ $friends[$i]->id }}">
-                                            <img src="{{ $friends[$i]->avatar }}" alt="image" width="65" height="65">
+                                            <img src="{{ $friends[$i]->avatar }}" title="{{$friends[$i]->name}} {{$friends[$i]->surname}}" width="65" height="65">
                                         </a>
                                     </li>
                                     @endif

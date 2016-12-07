@@ -20,8 +20,7 @@ function editarPost (){
 
     console.log("anduvo");
 
-    post.innerHTML = '<form method="post" action="/edition/' + id +
-        '"><textarea class="form-control input-lg p-text-area" name="post" cols="40" rows="3">' + texto +
-        '</textarea><div class="box-footer box-form"><button type="submit" class="btn btn-success pull-right">Guardar</button></div></form>';
+    post.innerHTML = '<div><form method="post" action="/edition/' + id +
+        '"><input type="text" class="form-control input-lg p-text-area" name="post" cols="40" rows="3" value="'+texto+'" autofocus></input></form></div>';
 }
 
