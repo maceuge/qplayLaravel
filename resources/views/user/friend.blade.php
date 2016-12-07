@@ -71,7 +71,6 @@
                                     @forelse($friend->band as $band)
                                         <li class="padding-v-5">
                                             <div class="row">
-                                                <div class="col-sm-4"><span class="text-muted">Banda</span></div>
                                                 <div class="col-sm-8">{{ $band->band }}</div>
                                             </div>
                                         </li>
@@ -112,32 +111,8 @@
                                 </ul>
                             </div>
                         </div>
-
-                        {{-- lista de amigos --}}
-                        {{--<div class="widget widget-friends">
-                            <div class="widget-header">
-                                <h3 class="widget-caption">Amigos</h3>
-                            </div>
-                            <div class="widget-body bordered-top  bordered-red">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <ul class="img-grid" style="margin: 0 auto;">
-                                            @for($i = 0; $i < count($friends); $i++)
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="{{ $friends[$i]->avatar }}" alt="image" width="65" height="65">
-                                                    </a>
-                                                </li>
-                                            @endfor
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-
                     </div>
-                    --}}
-                    </div>
+
 <div class="col-md-8 col-sm-12">
      @forelse($posts as $post)
          <div class="box box-widget bordered-info">
@@ -148,16 +123,34 @@
                        <span class="description">Publicado - {{ $post->created_at  }}</span>
                   </div>
              </div>
+
              <div class="box-body" style="display: block;">
-                 <p>{{ $post->post }}</p>
-                 {{--<a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>--}}
-                 <span class="pull-right text-muted">0 Comentarios</span>
+                 <p class="posted">{{ $post->post }}</p>
+                 <a href="" class="btn btn-info btn-xs"><i class="fa fa-thumbs-up"></i> Me Gusta</a>
+                 <a href="" class="btn btn-warning btn-xs"><i class="fa fa-thumbs-down"></i> No me Gusta</a>
+                 <span class="pull-right text-muted"><span class="badge">{{ count($post->coment) }}</span> Comentarios</span>
              </div>
+
+             @foreach($post->coment as $coments)
+                 <div class="box-footer box-comments" style="display: block;">
+                     <div class="box-comment">
+                         <img class="img-circle img-sm" src="{{ $coments->user->avatar }}" alt="User Image">
+                         <div class="comment-text">
+                            <span class="usernamecom">{{ $coments->user->name.' '.$coments->user->surname }}
+                                <span class="text-muted pull-right">{{ $coments->created_at }}</span>
+                            </span>
+                             {{ $coments->coment }}
+                         </div>
+                     </div>
+                 </div>
+             @endforeach
+
              <div class="box-footer" style="display: block;">
-                 <form action="#" method="post">
+                 <form action="/addcomentfriend/{{$post->id}}/frd/{{ $friend->id }}" method="post">
+                     {{ csrf_field() }}
                      <img class="img-responsive img-circle img-sm" src="{{ $user->avatar }}" alt="Alt Text">
                      <div class="img-push">
-                         <input type="text" class="form-control input-sm" placeholder="Presiona Enter para comentar">
+                         <input type="text" name="coment" class="form-control input-sm {{ ($post->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}" placeholder="Presiona Enter para comentar">
                      </div>
                  </form>
              </div>

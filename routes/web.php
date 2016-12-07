@@ -39,6 +39,7 @@ Route::post('/posting', 'PostController@posting');
 // Rutas para editar y borrar
 Route::get('/delete/{id}', 'PostController@deletePost');
 Route::post('/edition/{id}', 'PostController@updateWithEditedPost');
+Route::get('/delcoment/{id}', 'PostController@delcoment');
 // Subir Avatar
 Route::post('/avatarUpload', 'PerfilController@avatarUpload');
 // Buscar Amigos
@@ -48,10 +49,14 @@ Route::get('/addfriend/{id}', 'FriendController@addfriend');
 // Eliminar Amigo
 Route::get('/delfriend/{id}', 'FriendController@delfriend');
 // Perfil de Amigo
-Route::get('/friend/{id}', 'FriendController@friendperfil');
+Route::get('friend/{id}', 'FriendController@friendperfil');
+
+ //   Route::patch('store/{id}',['as' => 'friend/{id}', 'uses' => 'FriendController@friendperfil']);
 
 // Agregar Comentarios
 Route::post('/addcoment/{post_id}','PostController@addcoment');
+// Agregar Comentarios en la vista del perfil de amigo
+Route::post('/addcomentfriend/{post_id}/frd/{frd_id}','PostController@addcomentfriend');
 
 }); // fin del middleware auth
 

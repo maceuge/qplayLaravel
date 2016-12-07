@@ -185,6 +185,9 @@
                     <div class="user-block">
                         <img class="img-circle" src="{{ $post[$i]->user->avatar }}" alt="User Image">
                         <span class="usernamebox">{{ $post[$i]->user->name.' '.$post[$i]->user->surname }}</span>
+                        @if ($post[$i]->user->id == $user->id)
+                        <a class="close clpost" href="/delete/{{ $post[$i]->id }}"><i class="fa fa-close fright"></i></a>
+                        @endif
                         <span class="description">Publicado - {{ $post[$i]->created_at }}</span>
                     </div>
                 </div>
@@ -193,9 +196,11 @@
                     <p class="posted" id="contenido{{$post[$i]->id}}">{{ $post[$i]->post }}</p>
                     @if ($post[$i]->user->id == $user->id)
                     <button id="edit{{$post[$i]->id}}" class="btn btn-warning btn-xs botonEditar"><i class="fa fa-edit"></i> Editar</button>
-                    <a href="/delete/{{ $post[$i]->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
+                    <a href="" class="btn btn-info btn-xs"><i class="fa fa-thumbs-up"></i> Me Gusta</a>
+                    <a href="" class="btn btn-danger btn-xs"><i class="fa fa-thumbs-down"></i> No me Gusta</a>
                     @else
-                    <a href="" class="btn btn-info btn-xs"><i class="fa fa-thumbs-up"></i> Like</a>
+                    <a href="" class="btn btn-info btn-xs"><i class="fa fa-thumbs-up"></i> Me Gusta</a>
+                    <a href="" class="btn btn-danger btn-xs"><i class="fa fa-thumbs-down"></i> No me Gusta</a>
                     @endif
                     <span class="pull-right text-muted"><span class="badge">{{ count($post[$i]->coment) }}</span> Comentarios</span>
                 </div>
@@ -206,6 +211,9 @@
                         <img class="img-circle img-sm" src="{{ $coments->user->avatar }}" alt="User Image">
                         <div class="comment-text">
                             <span class="usernamecom">{{ $coments->user->name.' '.$coments->user->surname }}
+                                @if ($coments->user->id == $user->id)
+                                <span><a class="clcoment" href="/delcoment/{{ $coments->id }}"><i class="fa fa-close fright fa-lg"></i></a></span>
+                                @endif
                                 <span class="text-muted pull-right">{{ $coments->created_at }}</span>
                             </span>
                             {{ $coments->coment }}
@@ -242,6 +250,7 @@
                     $('input[type=file]').bootstrapFileInput();
                 });
             </script>
+   <script type="text/javascript" src="/js/closepost.js"></script>
    <script type="text/javascript" src="/js/bootstrap_file-input.js"></script>
    <script type="text/javascript" src="/js/edit.js"></script>
 @endsection
