@@ -1,1 +1,2 @@
 mklink /D "D:\WebFullStack\qplayLaravel\public\avatar" "D:\WebFullStack\qplayLaravel\storage\app\public\avatar"
+mklink /D "D:\DH_class\qplay\public\avatar" "D:\DH_class\qplay\storage\app\public\avatar"

@@ -81,11 +81,11 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             @if($user->avatar)
-                                <img src="{{ $user->avatar }}" class="img-circle subuser" alt="user" width="40" height="40">
+                                <img src="/{{ $user->avatar }}" class="img-circle subuser" alt="user" width="40" height="40">
                             @else
-                                @if ($user->gender == 'hombre')
+                                @if ($user->gender == 'Hombre')
                                     <img src="{{ asset('/img/default_male.jpg') }}" class="img-circle subuser" alt="user" width="40" height="40">
-                                @elseif ($user->gender == 'mujer' )
+                                @elseif ($user->gender == 'Mujer' )
                                     <img src="{{ asset('/img/default_female.jpg') }}" class="img-circle subuser" alt="user" width="40" height="40">
                                 @else
                                     <img src="{{ asset('/img/default_other.jpg') }}" class="img-circle subuser" alt="user" width="40" height="40">

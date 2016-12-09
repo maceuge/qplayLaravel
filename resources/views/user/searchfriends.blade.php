@@ -31,19 +31,19 @@
    @forelse($resultado as $valor)
    @if($valor->id != $user->id)
    <div class="row rowline">
-        <div class="col-md-2 col-md-offset-2">
+        <div class="col-md-2 col-md-offset-2 col-sm-12">
             @if($valor->avatar)
-                <img src="{{ $valor->avatar }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
+                <img src="/{{ $valor->avatar }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
             @else
-                @if ($valor->gender == 'hombre')
-                    <img src="{{ asset('/img/default_male.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
-                @elseif ($valor->gender == 'mujer' )
-                    <img src="{{ asset('/img/default_female.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
+                @if ($valor->gender == 'Hombre')
+                    <img src="{{ asset('img/default_male.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
+                @elseif ($valor->gender == 'Mujer' )
+                    <img src="{{ asset('img/default_female.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
                 @else
-                    <img src="{{ asset('/img/default_other.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
+                    <img src="{{ asset('img/default_other.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
                 @endif
             @endif</div>
-        <div class="col-md-5">
+        <div class="col-md-5 col-sm-12">
             <p class="single">Nombre: <b>{{ $valor->name.' '.$valor->surname }}</b></p>
             <p class="single">Mail: <b>{{ $valor->email }}</b></p>
             <p class="single">Bandas:
@@ -62,7 +62,7 @@
             @endforelse
             </p>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-12">
             @if(! $isFriend[$valor->id])
                  <a href="{{ url('addfriend/'.$valor->id) }}" class="btn btn-info">Seguir <i class="fa fa-arrow-circle-o-right"></i></a>
             @else
@@ -84,20 +84,20 @@
         @if($oneUser->id != $user->id)
 
     <div class="row rowline">
-        <div class="col-md-2 col-md-offset-2">
+        <div class="col-md-2 col-md-offset-2 col-sm-12">
             @if($oneUser->avatar)
-                <img src="{{ $oneUser->avatar }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
+                <img src="/{{ $oneUser->avatar }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
             @else
-                @if ($oneUser->gender == 'hombre')
-                    <img src="{{ asset('/img/default_male.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
-                @elseif ($oneUser->gender == 'mujer' )
-                    <img src="{{ asset('/img/default_female.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
+                @if ($oneUser->gender == 'Hombre')
+                    <img src="{{ asset('img/default_male.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
+                @elseif ($oneUser->gender == 'Mujer' )
+                    <img src="{{ asset('img/default_female.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
                 @else
-                    <img src="{{ asset('/img/default_other.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
+                    <img src="{{ asset('img/default_other.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
                 @endif
             @endif
         </div>
-        <div class="col-md-5">
+        <div class="col-md-5 col-sm-12">
             <p class="single">Nombre: <b>{{ $oneUser->name.' '.$oneUser->surname }}</b></p>
             <p class="single">Mail: <b>{{ $oneUser->email }}</b></p>
             <p class="single">Bandas:
@@ -116,7 +116,7 @@
             @endforelse
             </p>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-12">
                 @if (! $isFriend[$oneUser->id])
                 <a href="{{ url('addfriend/'.$oneUser->id) }}" class="btn btn-info">Seguir <i class="fa fa-arrow-circle-o-right"></i></a>
                 @else

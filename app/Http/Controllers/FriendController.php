@@ -63,7 +63,6 @@ class FriendController extends Controller
         $indexFriend = 0;
         $indexUser = 0;
 
-
         while($indexUser < count($users)) {
 
             while($indexFriend < count($myFriends) && $users[$indexUser] != $myFriends[$indexFriend]) {
@@ -78,8 +77,6 @@ class FriendController extends Controller
             $indexFriend = 0;
             $indexUser ++;
         }
-
-        //return 'hola';
 
         return view('user.searchfriends', [
             'user' => $userLoggedIn,

@@ -72,13 +72,13 @@ class RegisterController extends Controller
         $time = strtotime($rdate);
         $birthdate = date('Y-m-d',$time);
 
-        if($data['gender'] == 'Hombre') {
-            $this->avatar = "/img/default_male.jpg";
-        } elseif ($data['gender'] == 'Mujer') {
-            $this->avatar = "/img/default_female.jpg";
-        } else{
-            $this->avatar = "/img/default_other.jpg";
-        }
+//        if($data['gender'] == 'Hombre') {
+//            $this->avatar = "/img/default_male.jpg";
+//        } elseif ($data['gender'] == 'Mujer') {
+//            $this->avatar = "/img/default_female.jpg";
+//        } else{
+//            $this->avatar = "/img/default_other.jpg";
+//        }
 
         $user = User::create([
             'name' => $data['name'],
@@ -87,7 +87,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
             'birthday' => $birthdate,
             'gender' => $data['gender'],
-            'avatar' => $this->avatar,
+//            'avatar' => $this->avatar,
         ]);
 
         $user->save();

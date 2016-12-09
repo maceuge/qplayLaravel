@@ -28,9 +28,9 @@
             @if($user->avatar)
                 <img src="{{ $user->avatar }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
             @else
-                @if ($user->gender == 'hombre')
+                @if ($user->gender == 'Hombre')
                     <img src="{{ asset('/img/default_male.jpg') }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
-                @elseif ($user->gender == 'mujer' )
+                @elseif ($user->gender == 'Mujer' )
                     <img src="{{ asset('/img/default_female.jpg') }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
                 @else
                     <img src="{{ asset('/img/default_other.jpg') }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
@@ -159,9 +159,9 @@
                                             @if($friends[$i]->avatar)
                                                 <img src="{{ $friends[$i]->avatar }}" title="{{$friends[$i]->name}} {{$friends[$i]->surname}}" width="65" height="65">
                                             @else
-                                                @if ($friends[$i]->gender == 'hombre')
+                                                @if ($friends[$i]->gender == 'Hombre')
                                                     <img src="{{ asset('/img/default_male.jpg') }}" title="{{$friends[$i]->name}} {{$friends[$i]->surname}}" width="65" height="65">
-                                                @elseif ($friends[$i]->gender == 'mujer' )
+                                                @elseif ($friends[$i]->gender == 'Mujer' )
                                                     <img src="{{ asset('/img/default_female.jpg') }}" title="{{$friends[$i]->name}} {{$friends[$i]->surname}}" width="65" height="65">
                                                 @else
                                                     <img src="{{ asset('/img/default_other.jpg') }}" title="{{$friends[$i]->name}} {{$friends[$i]->surname}}" width="65" height="65">
@@ -206,9 +206,9 @@
                         @if ($post[$i]->user->avatar)
                             <img src="{{ $post[$i]->user->avatar }}" class="img-circle"  alt="User Image">
                         @else
-                            @if ($post[$i]->user->gender == 'hombre')
+                            @if ($post[$i]->user->gender == 'Hombre')
                                 <img src="{{ asset('/img/default_male.jpg') }}"  class="img-circle"  alt="User Image">
-                            @elseif ($post[$i]->user->gender == 'mujer' )
+                            @elseif ($post[$i]->user->gender == 'Mujer' )
                                 <img src="{{ asset('/img/default_female.jpg') }}" class="img-circle"  alt="User Image">
                             @else
                                 <img src="{{ asset('/img/default_other.jpg') }}" class="img-circle"  alt="User Image">
@@ -243,9 +243,9 @@
                         @if($coments->user->avatar)
                             <img src="{{ $coments->user->avatar }}" class="img-circle img-sm" alt="User Image">
                         @else
-                            @if ($coments->user->gender == 'hombre')
+                            @if ($coments->user->gender == 'Hombre')
                                 <img src="{{ asset('/img/default_male.jpg') }}"  class="img-circle img-sm" alt="User Image">
-                            @elseif ($coments->user->gender == 'mujer' )
+                            @elseif ($coments->user->gender == 'Mujer' )
                                 <img src="{{ asset('/img/default_female.jpg') }}" class="img-circle img-sm" alt="User Image">
                             @else
                                 <img src="{{ asset('/img/default_other.jpg') }}" class="img-circle img-sm" alt="User Image">
@@ -270,9 +270,9 @@
                         @if($user->avatar)
                             <img  src="{{ $user->avatar }}" class="img-responsive img-circle img-sm" alt="Alt Text">
                         @else
-                            @if ($user->gender == 'hombre')
+                            @if ($user->gender == 'Hombre')
                                 <img src="{{ asset('/img/default_male.jpg') }}" class="img-responsive img-circle img-sm" alt="Alt Text">
-                            @elseif ($user->gender == 'mujer' )
+                            @elseif ($user->gender == 'Mujer' )
                                 <img src="{{ asset('/img/default_female.jpg') }}" class="img-responsive img-circle img-sm" alt="Alt Text">
                             @else
                                 <img src="{{ asset('/img/default_other.jpg') }}" class="img-responsive img-circle img-sm" alt="Alt Text">
