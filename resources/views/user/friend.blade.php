@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset(/css/usuario.css) }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('/css/usuario.css') }}" type="text/css" />
 @endsection
 
 @section('navbar')
@@ -17,10 +17,16 @@
 <div class="container usercover">
     <div class="row pull-bottom">
          <div class="col-md-2 col-sm-12">
-             @if($friend->avatar == '/img/default_male.jpg' || $friend->avatar == '/img/default_female.jpg' || $friend->avatar == '/img/default_other.jpg')
-                 <img src="{{ $friend->avatar }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+             @if($friend->avatar)
+                 <img src="{{ $friend->avatar }}" class="img-square center-block " alt="Usuario" width="150" height="150">
              @else
-                 <img src="/{{ $friend->avatar }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+                 @if ($friend->gender == 'hombre')
+                     <img src="{{ asset('/img/default_male.jpg') }}" class="img-square center-block " alt="Usuario" width="150" height="150">
+                 @elseif ($friend->gender == 'mujer' )
+                     <img src="{{ asset('/img/default_female.jpg') }}" class="img-square center-block " alt="Usuario" width="150" height="150">
+                 @else
+                     <img src="{{ asset('/img/default_other.jpg') }}" class="img-square center-block " alt="Usuario" width="150" height="150">
+                 @endif
              @endif
          </div>
          <div class="col-md-6 col-sm-12">
@@ -122,10 +128,16 @@
          <div class="box box-widget bordered-info">
              <div class="box-header with-border">
                   <div class="user-block">
-                      @if($friend->avatar == '/img/default_male.jpg' || $friend->avatar == '/img/default_female.jpg' || $friend->avatar == '/img/default_other.jpg')
-                          <img class="img-circle" src="{{ $friend->avatar }}" alt="User Image">
+                      @if ($post->user->avatar)
+                          <img src="{{ $post->user->avatar }}" class="img-circle"  alt="User Image">
                       @else
-                          <img class="img-circle" src="/{{ $friend->avatar }}" alt="User Image">
+                          @if ($post->user->gender == 'hombre')
+                              <img src="{{ asset('/img/default_male.jpg') }}"  class="img-circle"  alt="User Image">
+                          @elseif ($post->user->gender == 'mujer' )
+                              <img src="{{ asset('/img/default_female.jpg') }}" class="img-circle"  alt="User Image">
+                          @else
+                              <img src="{{ asset('/img/default_other.jpg') }}" class="img-circle"  alt="User Image">
+                          @endif
                       @endif
                        <span class="usernamebox"><a href="#">{{ $friend->name.' '.$friend->surname }}.</a></span>
                        <span class="description">Publicado - {{ $post->created_at  }}</span>
@@ -142,16 +154,21 @@
              @foreach($post->coment as $coments)
                  <div class="box-footer box-comments" style="display: block;">
                      <div class="box-comment">
-                         @if($coments->user->avatar == '/img/default_male.jpg' || $coments->user->avatar == '/img/default_female.jpg' || $coments->user->avatar == '/img/default_other.jpg')
-                             <img class="img-circle img-sm" src="{{ $coments->user->avatar }}" alt="User Image">
+                         @if($coments->user->avatar)
+                             <img src="{{ $coments->user->avatar }}" class="img-circle img-sm" alt="User Image">
                          @else
-                             <img class="img-circle img-sm" src="/{{ $coments->user->avatar }}" alt="User Image">
+                             @if ($coments->user->gender == 'hombre')
+                                 <img src="{{ asset('/img/default_male.jpg') }}"  class="img-circle img-sm" alt="User Image">
+                             @elseif ($coments->user->gender == 'mujer' )
+                                 <img src="{{ asset('/img/default_female.jpg') }}" class="img-circle img-sm" alt="User Image">
+                             @else
+                                 <img src="{{ asset('/img/default_other.jpg') }}" class="img-circle img-sm" alt="User Image">
+                             @endif
                          @endif
-
                          <div class="comment-text">
                             <span class="usernamecom">{{ $coments->user->name.' '.$coments->user->surname }}
                                 @if ($coments->user->id == $user->id)
-                                    <span><a class="clcoment" href="/delcoment/{{ $coments->id }}"><i class="fa fa-close fright fa-lg"></i></a></span>
+                                    <span><a class="clcoment" href="{{ url('delcoment/'.$coments->id) }}"><i class="fa fa-close fright fa-lg"></i></a></span>
                                 @endif
                                 <span class="text-muted pull-right">{{ $coments->created_at }}</span>
                             </span>
@@ -162,10 +179,19 @@
              @endforeach
 
              <div class="box-footer" style="display: block;">
-                 <form action="/addcomentfriend/{{$post->id}}/frd/{{ $friend->id }}" method="post">
+                 <form action="{{ url('addcomentfriend/'.$post->id) }}/frd/{{ $friend->id }}" method="post">
                      {{ csrf_field() }}
-                     <img class="img-responsive img-circle img-sm" src="{{ $user->avatar }}" alt="Alt Text">
-                     <div class="img-push">
+                     @if($user->avatar)
+                         <img  src="{{ $user->avatar }}" class="img-responsive img-circle img-sm" alt="Alt Text">
+                     @else
+                         @if ($user->gender == 'hombre')
+                             <img src="{{ asset('/img/default_male.jpg') }}" class="img-responsive img-circle img-sm" alt="Alt Text">
+                         @elseif ($user->gender == 'mujer' )
+                             <img src="{{ asset('/img/default_female.jpg') }}" class="img-responsive img-circle img-sm" alt="Alt Text">
+                         @else
+                             <img src="{{ asset('/img/default_other.jpg') }}" class="img-responsive img-circle img-sm" alt="Alt Text">
+                         @endif
+                     @endif<div class="img-push">
                          <input type="text" name="coment" class="form-control input-sm {{ ($post->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}" placeholder="Presiona Enter para comentar">
                      </div>
                  </form>

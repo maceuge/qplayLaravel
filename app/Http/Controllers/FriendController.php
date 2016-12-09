@@ -41,45 +41,51 @@ class FriendController extends Controller
     }
 
     public function friendsearch (Request $request) {
-        $query = User::where(
-            'name',
-            'LIKE',
-            '%' .$request->input('query'). '%'
-        )->get();
 
-        $user = Auth::user();
-        $buscfriends = User::all()->sortBy('id');
-        $friendlist = [];
-        $isFriend = [];
-        $indexFriends = 0;
+        $resultado = User::where('name','LIKE', '%'.$request->input('query').'%')
+                ->orwhere('surname','LIKE', '%'.$request->input('query').'%')
+                ->get();
 
-        $userfriends = $user->friend;
-        foreach ($userfriends as $friend) {
-            array_push($friendlist, $friend->friend_id);
-        }
-        $friends = User::whereIn('id', $friendlist)->orderBy('id')->get();
+        $userLoggedIn = Auth::user();
+        $users = User::all()->sortBy('id');
+        $friendList = [];
 
-        for($i = 0; $i < count($buscfriends); $i++){
-            if($buscfriends[$i]->id == $friends[$indexFriends]->id){
-                $isFriend[$buscfriends[$i]->id] = true ;
-                if($indexFriends < count($friends) -1 ){
-                    $indexFriends++;
-                }
-            } else {
-                $isFriend[$buscfriends[$i]->id] = false ;
+        if (count($userLoggedIn->friend)>0) {
+            foreach ($userLoggedIn->friend as $friend) {
+                array_push($friendList, $friend->friend_id);
             }
+            $myFriends = User::whereIn('id', $friendList)->orderBy('id')->get();
+        } else {
+            $myFriends = null;
         }
 
-        return view('/user/searchfriends', [
-            'user' => $user,
-            'buscfrends' => $buscfriends,
-            'userfriends' => $friends,
+        $isFriend = [];
+        $indexFriend = 0;
+        $indexUser = 0;
+
+
+        while($indexUser < count($users)) {
+
+            while($indexFriend < count($myFriends) && $users[$indexUser] != $myFriends[$indexFriend]) {
+                $indexFriend ++;
+            }
+
+            if ($indexFriend == count($myFriends)) {
+                $isFriend[$users[$indexUser]->id] = false;
+            } else {
+                $isFriend[$users[$indexUser]->id] = true;
+            }
+            $indexFriend = 0;
+            $indexUser ++;
+        }
+
+        //return 'hola';
+
+        return view('user.searchfriends', [
+            'user' => $userLoggedIn,
+            'users' => $users,
             'isFriend' => $isFriend,
-            'querys' => $query,
+            'resultado' => $resultado
         ]);
-
-
     }
-
-
 }

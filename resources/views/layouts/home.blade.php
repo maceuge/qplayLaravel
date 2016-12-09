@@ -47,7 +47,7 @@
 
         @if (!Auth::guest())
         <div class="collapse navbar-collapse" id="myNavbar">
-            <form class="navbar-form navbar-left" action="/friendsearch" method="post">
+            <form class="navbar-form navbar-left" action="{{ url('friendsearch') }}" method="post">
                 {{ csrf_field() }}
                 <div class="input-group">
                     <input type="text" name="query" class="nav-search" placeholder="Buscar Amigos...">
@@ -81,7 +81,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             @if($user->avatar)
-                                <img src="{{ $user->avatar }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+                                <img src="{{ $user->avatar }}" class="img-circle subuser" alt="user" width="40" height="40">
                             @else
                                 @if ($user->gender == 'hombre')
                                     <img src="{{ asset('/img/default_male.jpg') }}" class="img-circle subuser" alt="user" width="40" height="40">
@@ -96,7 +96,7 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="/searchfriends"><i class="fa fa-users"></i> Buscar Amigos</a></li>
+                            <li><a href="{{ route('searchfriends') }}"><i class="fa fa-users"></i> Buscar Amigos</a></li>
                             <li><a href="/userlog"><i class="fa fa-list"></i> Mi Muro</a></li>
                             <li><a href="#"><i class="fa fa-unlock-alt"></i> Privacidad</a></li>
                             <li><a href="#"><i class="fa fa-gear"></i> Configuración</a></li>

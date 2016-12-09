@@ -53,10 +53,8 @@ class PerfilController extends Controller
         $users = User::all()->sortBy('id');
         $friendList = [];
 
-        $userfriends = $userLoggedIn->friend;
-
-        if ($userfriends) {
-            foreach ($userfriends as $friend) {
+        if (count($userLoggedIn->friend)>0) {
+            foreach ($userLoggedIn->friend as $friend) {
                 array_push($friendList, $friend->friend_id);
             }
             $myFriends = User::whereIn('id', $friendList)->orderBy('id')->get();
@@ -85,9 +83,8 @@ class PerfilController extends Controller
         }
 
         return view('/user/searchfriends', [
-            'userLoggedIn' => $userLoggedIn,
+            'user' => $userLoggedIn,
             'users' => $users,
-            //'userfriends' => $myFriends,
             'isFriend' => $isFriend
         ]);
     }

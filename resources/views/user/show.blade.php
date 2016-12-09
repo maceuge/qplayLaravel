@@ -155,13 +155,13 @@
                                 @for($i = 0; $i < count($friends); $i++)
                                     @if ($friends[$i]->id != $user->id)
                                     <li>
-                                        <a href="/friend/{{ $friends[$i]->id }}">
+                                        <a href="{{ url('friend/'.$friends[$i]->id) }}">
                                             @if($friends[$i]->avatar)
                                                 <img src="{{ $friends[$i]->avatar }}" title="{{$friends[$i]->name}} {{$friends[$i]->surname}}" width="65" height="65">
                                             @else
                                                 @if ($friends[$i]->gender == 'hombre')
                                                     <img src="{{ asset('/img/default_male.jpg') }}" title="{{$friends[$i]->name}} {{$friends[$i]->surname}}" width="65" height="65">
-                                                @elseif ($user->gender == 'mujer' )
+                                                @elseif ($friends[$i]->gender == 'mujer' )
                                                     <img src="{{ asset('/img/default_female.jpg') }}" title="{{$friends[$i]->name}} {{$friends[$i]->surname}}" width="65" height="65">
                                                 @else
                                                     <img src="{{ asset('/img/default_other.jpg') }}" title="{{$friends[$i]->name}} {{$friends[$i]->surname}}" width="65" height="65">

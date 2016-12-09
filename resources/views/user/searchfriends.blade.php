@@ -26,39 +26,47 @@
 </div>
 <!-- FIN DE LA FOTO -->
 <div class="container post">
-<<<<<<< HEAD
 
-@if(isset($querys))
-   @forelse($querys as $query)
-   @if($query->id != $user->id)
+@if(isset($resultado))
+   @forelse($resultado as $valor)
+   @if($valor->id != $user->id)
    <div class="row rowline">
         <div class="col-md-2 col-md-offset-2">
-            <img src="{{ $query->avatar }}" class="img-square center-block thumbnail" width="150" height="150">
-        </div>
+            @if($valor->avatar)
+                <img src="{{ $valor->avatar }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
+            @else
+                @if ($valor->gender == 'hombre')
+                    <img src="{{ asset('/img/default_male.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
+                @elseif ($valor->gender == 'mujer' )
+                    <img src="{{ asset('/img/default_female.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
+                @else
+                    <img src="{{ asset('/img/default_other.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
+                @endif
+            @endif</div>
         <div class="col-md-5">
-            <p class="single">Nombre: <b>{{ $query->name.' '.$query->surname }}</b></p>
-            <p class="single">Mail: <b>{{ $query->email }}</b></p>
+            <p class="single">Nombre: <b>{{ $valor->name.' '.$valor->surname }}</b></p>
+            <p class="single">Mail: <b>{{ $valor->email }}</b></p>
             <p class="single">Bandas:
-            @forelse($query->band as $friendBand)
-                <b>{{ $friendBand->band }} @if ($friendBand != $query->band->last()) - @endif </b>
+            @forelse($valor->band as $friendBand)
+                <b>{{ $friendBand->band }} @if ($friendBand != $valor->band->last()) - @endif </b>
             @empty
                 <b>No tiene bandas favoritas.</b>
             @endforelse
             </p>
 
             <p class="single">Instrumentos:
-            @forelse($query->instrument as $friendInst)
-                <b>{{ $friendInst->instrument }} @if ($friendInst != $query->instrument->last()) -  @endif </b>
+            @forelse($valor->instrument as $friendInst)
+                <b>{{ $friendInst->instrument }} @if ($friendInst != $valor->instrument->last()) -  @endif </b>
             @empty
                 <b>No toca ningun instrumento.</b>
             @endforelse
             </p>
         </div>
         <div class="col-md-3">
-            @if(! $isFriend[$query->id])
-                 <a href="/addfriend/{{ $query->id }}" class="btn btn-info">Seguir <i class="fa fa-arrow-circle-o-right"></i></a>
+            @if(! $isFriend[$valor->id])
+                 <a href="{{ url('addfriend/'.$valor->id) }}" class="btn btn-info">Seguir <i class="fa fa-arrow-circle-o-right"></i></a>
             @else
-                 <a href="/delfriend/{{ $query->id }}" class="btn btn-danger">Dejar de Seguir <i class="fa fa-window-close-o"></i></a>
+                 <a href="{{ url('delfriend/'.$valor->id) }}" class="btn btn-danger">Dejar de Seguir <i class="fa fa-window-close-o"></i></a>
             @endif
         </div>
    </div>
@@ -72,47 +80,47 @@
    @endforelse
 @else
 
-    @forelse($users as $user)
-        @if($user->id != $userLoggedIn->id)
+    @forelse($users as $oneUser)
+        @if($oneUser->id != $user->id)
 
     <div class="row rowline">
         <div class="col-md-2 col-md-offset-2">
-            @if($user->avatar)
-                <img src="{{ $user->avatar }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+            @if($oneUser->avatar)
+                <img src="{{ $oneUser->avatar }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
             @else
-                @if ($user->gender == 'hombre')
-                    <img src="{{ asset('/img/default_male.jpg') }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
-                @elseif ($user->gender == 'mujer' )
-                    <img src="{{ asset('/img/default_female.jpg') }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+                @if ($oneUser->gender == 'hombre')
+                    <img src="{{ asset('/img/default_male.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
+                @elseif ($oneUser->gender == 'mujer' )
+                    <img src="{{ asset('/img/default_female.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
                 @else
-                    <img src="{{ asset('/img/default_other.jpg') }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+                    <img src="{{ asset('/img/default_other.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
                 @endif
             @endif
         </div>
         <div class="col-md-5">
-            <p class="single">Nombre: <b>{{ $user->name.' '.$user->surname }}</b></p>
-            <p class="single">Mail: <b>{{ $user->email }}</b></p>
+            <p class="single">Nombre: <b>{{ $oneUser->name.' '.$oneUser->surname }}</b></p>
+            <p class="single">Mail: <b>{{ $oneUser->email }}</b></p>
             <p class="single">Bandas:
-            @forelse($user->band as $userBand)
-                <b>{{ $userBand->band }} @if ($userBand != $user->band->last()) - @endif </b>
+            @forelse($oneUser->band as $userBand)
+                <b>{{ $userBand->band }} @if ($userBand != $oneUser->band->last()) - @endif </b>
             @empty
                 <b>No tiene bandas favoritas.</b>
             @endforelse
             </p>
 
             <p class="single">Instrumentos:
-            @forelse($user->instrument as $userInst)
-                <b>{{ $userInst->instrument }} @if ($userInst != $user->instrument->last()) -  @endif </b>
+            @forelse($oneUser->instrument as $userInst)
+                <b>{{ $userInst->instrument }} @if ($userInst != $oneUser->instrument->last()) -  @endif </b>
             @empty
                 <b>No toca ningun instrumento.</b>
             @endforelse
             </p>
         </div>
         <div class="col-md-3">
-                @if (! $isFriend[$user->id])
-                <a href="/addfriend/{{ $user->id }}" class="btn btn-info">Seguir <i class="fa fa-arrow-circle-o-right"></i></a>
+                @if (! $isFriend[$oneUser->id])
+                <a href="{{ url('addfriend/'.$oneUser->id) }}" class="btn btn-info">Seguir <i class="fa fa-arrow-circle-o-right"></i></a>
                 @else
-                <a href="/delfriend/{{ $user->id }}" class="btn btn-danger">Dejar de Seguir <i class="fa fa-window-close-o"></i></a>
+                <a href="{{ url('delfriend/'.$oneUser->id) }}" class="btn btn-danger">Dejar de Seguir <i class="fa fa-window-close-o"></i></a>
                 @endif
 
         </div>
