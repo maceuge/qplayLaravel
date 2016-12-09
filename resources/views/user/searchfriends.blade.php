@@ -36,9 +36,9 @@
                         @if($valor->avatar)
                             <img src="{{ $valor->avatar }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
                         @else
-                            @if ($valor->gender == 'hombre')
+                            @if ($valor->gender == 'Hombre')
                                 <img src="{{ asset('/img/default_male.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
-                            @elseif ($valor->gender == 'mujer' )
+                            @elseif ($valor->gender == 'Mujer' )
                                 <img src="{{ asset('/img/default_female.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
                             @else
                                 <img src="{{ asset('/img/default_other.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
@@ -63,7 +63,7 @@
                         @endforelse
                         </p>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3" data-id="{{ $valor->id }}">
                         @if(! $isFriend[$valor->id])
                             <a href="#" class="btn btn-info btn-follow show-btn" id="btn-follow">Seguir <i class="fa fa-arrow-circle-o-right"></i></a>
                             <a href="#" class="btn btn-danger btn-dropFollow hide-btn" id="btn-dropFollow">Dejar de Seguir <i class="fa fa-window-close-o"></i></a>
@@ -89,9 +89,9 @@
                         @if($oneUser->avatar)
                             <img src="{{ $oneUser->avatar }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
                         @else
-                            @if ($oneUser->gender == 'hombre')
+                            @if ($oneUser->gender == 'Hombre')
                                 <img src="{{ asset('/img/default_male.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
-                            @elseif ($oneUser->gender == 'mujer' )
+                            @elseif ($oneUser->gender == 'Mujer' )
                                 <img src="{{ asset('/img/default_female.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
                             @else
                                 <img src="{{ asset('/img/default_other.jpg') }}" class="img-square center-block thumbnail" alt="Usuario" width="150" height="150">
@@ -153,94 +153,5 @@
 
 
 @section('scripts')
-            <script>
-                $(function(){
-
-                    // Get the snackbar DIV
-                    var x = document.getElementById("snackbar")
-
-
-            //console.log('documento listo!!!');
-
-            $('#users-list').click(function (e) {
-
-                e.preventDefault();
-
-                var row = e.target.parentNode;
-
-                var id = row.dataset.id;
-
-                var btnFollow = row.firstElementChild;
-
-                var btnDelete = row.lastElementChild;
-
-                if ( e.target.className == 'btn btn-danger btn-dropFollow show-btn') {
-
-                    var form = $('#form-delete-friend');
-
-                    var url = form.attr('action').replace(':Friend_id', id);
-
-                    var data = form.serialize();
-
-                    $.post(url, data, function (result) {
-                        //console.log(result);
-
-                        btnDelete.classList.remove('show-btn');
-                        btnDelete.classList.add('hide-btn');
-                        btnFollow.classList.remove('hide-btn');
-                        btnFollow.classList.add('show-btn');
-
-                        x.innerText = result;
-                        // Add the "show" class to DIV
-                        x.className = "show";
-                        // After 3 seconds, remove the show class from DIV
-                        setTimeout(function() {
-                            x.className = x.className.replace("show", "");
-                        }, 3000);
-
-                    }).fail(function () {
-                        x.innerText = 'Se produjo un error!';
-                        // Add the "show" class to DIV
-                        x.className = "show";
-                        // After 3 seconds, remove the show class from DIV
-                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-
-                    });
-
-                } else if ( e.target.className == 'btn btn-info btn-follow show-btn') {
-
-
-                    var form = $('#form-add-friend');
-
-                    var url = form.attr('action').replace(':Friend_id', id);
-
-                    var data = form.serialize();
-
-                    $.post(url, data, function (result) {
-                        //console.log(result);
-
-                        btnFollow.classList.remove('show-btn');
-                        btnFollow.classList.add('hide-btn');
-                        btnDelete.classList.remove('hide-btn');
-                        btnDelete.classList.add('show-btn');
-
-                        x.innerText = result;
-                        // Add the "show" class to DIV
-                        x.className = "show";
-                        // After 3 seconds, remove the show class from DIV
-                        setTimeout(function() {
-                            x.className = x.className.replace("show", "");
-                        }, 3000);
-
-                    }).fail(function () {
-                        x.innerText = 'Se produjo un error!';
-                        // Add the "show" class to DIV
-                        x.className = "show";
-                        // After 3 seconds, remove the show class from DIV
-                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-                    });
-                }
-            });
-        });
-    </script>
+    <script type="text/javascript" src="{{ asset('/js/user_follow_dropfollow.js') }}"></script>
 @endsection
