@@ -38,33 +38,43 @@ body {
 /* estilo de la barra de busqueda del navbar */
 
 .nav-search {
-  border-bottom: 1px;
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px;
-  border-style: solid;
-  border-color: #444444;
+  border: 1px solid #444444;
   background-color: #222222;
-  width: 100px;
-  padding: 12.5px;
+  margin-top: 12px;
+  width: 150px;
+  height: 40px;
+  padding-left: 9px;
   border-radius: 0px;
   outline: none;
-  font-size: 15px;
+  font-size: 14px;
   transition: all 0.5s ease-in-out;
 }
 
-/*.fa-search {
-   color:#b1b1b1;
-   padding-left: 10px;
-   padding-top: 7px;
-   padding-bottom: 7px;
-}*/
 
 .nav-search:focus {
   width: 450px;
-  border-color: #00bfff;
-  background-color: #d7d7d7;
+  border-color: #94d500;
+  background-color: #ebebeb;
   color: #1c1c1c;
+}
+
+.btn-search {
+    margin-top: 12px;
+    height: 40px;
+    border: 1px solid #444444;
+    background-color: #222222;
+    color: #cccccc;
+    transition: all 0.5s ease-in-out;
+}
+
+.btn-search:hover {
+    border-color: #94d500;
+    color: #94d500;
+}
+
+.btn-search:focus {
+    border-color: #94d500;
+    color: #94d500;
 }
 
 /* animacion del boton que aparece cuando el navbar se colapsa a bajas resoluciones */

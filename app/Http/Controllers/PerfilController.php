@@ -77,8 +77,6 @@ class PerfilController extends Controller
             }
         }
 
-
-
         return view('/user/searchfriends', [
             'user' => $user,
             'buscfrends' => $buscfriends,

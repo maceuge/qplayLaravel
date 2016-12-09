@@ -75,23 +75,34 @@
                         <input type="password" name="password_confirmation" class="form-control" placeholder="Repita su contrase&ntilde;a" maxlength="30">
                     </div>
 
-                    <div class="form-group">
-                        <label class="radio-inline">
-                            <input type="radio" name="gender" value="Hombre" checked />Hombre
-                        </label>
+                    {{-- Radio gender select --}}
+                    <div class="row radiopad">
+                        <div class="form-group">
+                        <p class="titulos-form">Genero </p>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="radio">
+                                    <input type="radio" name="gender" id="hombre" value="Hombre" checked>
+                                    <label for="hombre">Hombre</label>
 
-                        <label class="radio-inline">
-                            <input type="radio" name="gender" value="Mujer" />Mujer
-                        </label>
+                                    <input type="radio" name="gender" id="mujer" value="Mujer">
+                                    <label for="mujer">Mujer</label>
 
-                        <label class="radio-inline">
-                            <input type="radio" name="gender" value="Otro" />Otro
-                        </label>
-
+                                    <input type="radio" name="gender" id="alien" value="Otro">
+                                    <label for="alien">Otro</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    {{--aqui empieza la joda--}}
+                    <div class="row moreoption">
+                        <p class="titulos-form">Datos Opcionales <i class="fa fa-chevron-circle-down fa-lg fright"></i></p>
+                        <div class="col-md-12 col-xs-12">
+                            <div class="lineseparator"></div>
+                        </div>
+                    </div>
 
+                    {{--Select opcional--}}
+                <div class="optional">
                     <div class="row">
                         <div class="erro"><p class="error" id="error-fecha"></p></div>
                         <div class="form-group">
@@ -197,6 +208,7 @@
                             </div>
                         </div>
                     </div>
+                </div> {{--aqi termina div optionals--}}
 
                     <div class="row">
                         <div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3">
@@ -213,4 +225,5 @@
 
 @section('plugin')
     <script type="text/javascript" src="/js/validacion_register.js"></script>
+    <script type="text/javascript" src="/js/optionalreg.js"></script>
 @endsection

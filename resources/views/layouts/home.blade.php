@@ -45,7 +45,18 @@
             @yield('slogan')
         </div>
 
+        @if (!Auth::guest())
         <div class="collapse navbar-collapse" id="myNavbar">
+            <form class="navbar-form navbar-left" action="/friendsearch" method="post">
+                {{ csrf_field() }}
+                <div class="input-group">
+                    <input type="text" name="query" class="nav-search" placeholder="Buscar Amigos...">
+                    <span class="input-group-btn">
+                    <button class="btn btn-search" type="submit"> <i class="fa fa-search"></i></button>
+                  </span>
+                </div>
+            </form>
+        @endif
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())

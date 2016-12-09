@@ -20,12 +20,12 @@ class FriendController extends Controller
         ]);
 
         $friendslist->save();
-        return redirect('/searchfriends');
+        return redirect('/userlog');
     }
 
     public function delfriend ($id) {
         $friend = Friend::where('friend_id', $id)->delete();
-        return redirect('/searchfriends');
+        return redirect('/userlog');
     }
 
     public function friendperfil ($id) {
@@ -40,6 +40,46 @@ class FriendController extends Controller
         ]);
     }
 
+    public function friendsearch (Request $request) {
+        $query = User::where(
+            'name',
+            'LIKE',
+            '%' .$request->input('query'). '%'
+        )->get();
+
+        $user = Auth::user();
+        $buscfriends = User::all()->sortBy('id');
+        $friendlist = [];
+        $isFriend = [];
+        $indexFriends = 0;
+
+        $userfriends = $user->friend;
+        foreach ($userfriends as $friend) {
+            array_push($friendlist, $friend->friend_id);
+        }
+        $friends = User::whereIn('id', $friendlist)->orderBy('id')->get();
+
+        for($i = 0; $i < count($buscfriends); $i++){
+            if($buscfriends[$i]->id == $friends[$indexFriends]->id){
+                $isFriend[$buscfriends[$i]->id] = true ;
+                if($indexFriends < count($friends) -1 ){
+                    $indexFriends++;
+                }
+            } else {
+                $isFriend[$buscfriends[$i]->id] = false ;
+            }
+        }
+
+        return view('/user/searchfriends', [
+            'user' => $user,
+            'buscfrends' => $buscfriends,
+            'userfriends' => $friends,
+            'isFriend' => $isFriend,
+            'querys' => $query,
+        ]);
+
+
+    }
 
 
 }

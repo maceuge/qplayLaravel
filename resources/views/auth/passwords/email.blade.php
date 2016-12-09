@@ -15,7 +15,6 @@
 <!-- Main Content -->
 @section('content')
 
-{{--<div class="jumbotronlog">--}}
     <div class="container-fluid login">
          <div class="row">
               <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
@@ -26,7 +25,7 @@
                       </div>
                    @endif
 
-                   <form class="form" method="post" action="{{ url('/password/email') }}">
+                   <form class="form" role="form" method="POST" action="{{ url('/password/email') }}">
                        {{ csrf_field() }}
                        @if ($errors->has('email'))
                            <span class="help-block">
@@ -37,11 +36,10 @@
                             <input type="email" class="form-control" id="" name="email" value="{{ old('email') }}" placeholder="Email">
                        </div>
 
-                           <button type="submit" class="btn btn-login center-block">Enviar</button>
+                           <button type="submit" class="btn btn-login center-block">Renovar Contraseña...</button>
                    </form>
               </div>
          </div>
     </div>
-{{--</div>--}}
 
 @endsection

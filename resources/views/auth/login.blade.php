@@ -29,7 +29,7 @@
                     @endif
                     <div class="error"><p class="errcript"></p></div>
                     <div class="form-group {{ $errors->has('email') ? ' onerrorph' : '' }} ">
-                        <input class="form-control" type="email" id="mail" name="email" value="{{ old('email') }}" placeholder="Email" maxlength="55" autofocus>
+                        <input class="form-control" type="text" id="mail" name="email" value="{{ old('email') }}" placeholder="Email" maxlength="55" autofocus>
                     </div>
 
                     @if ($errors->has('password'))
