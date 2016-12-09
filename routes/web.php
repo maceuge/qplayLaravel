@@ -54,9 +54,11 @@ Route::get('user/searchfriends', ['as' => 'searchfriends', 'uses' => 'PerfilCont
 Route::post('/friendsearch', 'FriendController@friendsearch');
 
 // Agregar Amigos
-Route::get('/addfriend/{id}', 'FriendController@addfriend');
+//Route::get('/addfriend/{id}', 'FriendController@addfriend');
+Route::post('addfriend/{id}', ['as' => 'friend.add', 'uses' => 'FriendController@addfriend']);
 // Eliminar Amigo
-Route::get('/delfriend/{id}', 'FriendController@delfriend');
+//Route::get('/delfriend/{id}', 'FriendController@delfriend');
+Route::delete('delfriend/{id}', ['as' => 'friend.delete', 'uses' => 'FriendController@delfriend']);
 // Perfil de Amigo
 Route::get('friend/{id}', 'FriendController@friendperfil');
 
