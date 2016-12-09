@@ -1,8 +1,8 @@
 @extends('layouts.home')
 
 @section('css')
-    <link rel="stylesheet" href="/css/usuario.css" type="text/css" />
-    <link rel="stylesheet" href="/css/bscuser.css" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('/css/usuario.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('/css/bscuser.css') }}" type="text/css" />
 @endsection
 
 @section('navbar')
@@ -26,38 +26,47 @@
 </div>
 <!-- FIN DE LA FOTO -->
 <div class="container post">
-    @forelse($buscfrends as $friend)
-        @if($friend->id != $user->id)
+    @forelse($users as $user)
+        @if($user->id != $userLoggedIn->id)
 
     <div class="row rowline">
         <div class="col-md-2 col-md-offset-2">
-            <img src="{{ $friend->avatar }}" class="img-square center-block thumbnail" width="150" height="150">
+            @if($user->avatar)
+                <img src="{{ $user->avatar }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+            @else
+                @if ($user->gender == 'hombre')
+                    <img src="{{ asset('/img/default_male.jpg') }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+                @elseif ($user->gender == 'mujer' )
+                    <img src="{{ asset('/img/default_female.jpg') }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+                @else
+                    <img src="{{ asset('/img/default_other.jpg') }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+                @endif
+            @endif
         </div>
         <div class="col-md-5">
-            <p class="single">Nombre: <b>{{ $friend->name.' '.$friend->surname }}</b></p>
-            <p class="single">Mail: <b>{{ $friend->email }}</b></p>
+            <p class="single">Nombre: <b>{{ $user->name.' '.$user->surname }}</b></p>
+            <p class="single">Mail: <b>{{ $user->email }}</b></p>
             <p class="single">Bandas:
-            @forelse($friend->band as $friendBand)
-                <b>{{ $friendBand->band }} @if ($friendBand != $friend->band->last()) - @endif </b>
+            @forelse($user->band as $userBand)
+                <b>{{ $userBand->band }} @if ($userBand != $user->band->last()) - @endif </b>
             @empty
                 <b>No tiene bandas favoritas.</b>
             @endforelse
             </p>
 
             <p class="single">Instrumentos:
-            @forelse($friend->instrument as $friendInst)
-                <b>{{ $friendInst->instrument }} @if ($friendInst != $friend->instrument->last()) -  @endif </b>
+            @forelse($user->instrument as $userInst)
+                <b>{{ $userInst->instrument }} @if ($userInst != $user->instrument->last()) -  @endif </b>
             @empty
                 <b>No toca ningun instrumento.</b>
             @endforelse
             </p>
         </div>
         <div class="col-md-3">
-
-                @if(! $isFriend[$friend->id])
-                <a href="/addfriend/{{ $friend->id }}" class="btn btn-info">Seguir <i class="fa fa-arrow-circle-o-right"></i></a>
+                @if (! $isFriend[$user->id])
+                <a href="/addfriend/{{ $user->id }}" class="btn btn-info">Seguir <i class="fa fa-arrow-circle-o-right"></i></a>
                 @else
-                <a href="/delfriend/{{ $friend->id }}" class="btn btn-danger">Dejar de Seguir <i class="fa fa-window-close-o"></i></a>
+                <a href="/delfriend/{{ $user->id }}" class="btn btn-danger">Dejar de Seguir <i class="fa fa-window-close-o"></i></a>
                 @endif
 
         </div>
