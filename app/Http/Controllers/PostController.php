@@ -24,10 +24,17 @@ class PostController extends Controller
         return redirect('/userlog');
     }
 
-    public function deletePost ($id) {
-        $post = Post::find($id);
+//    public function deletePost ($id) {
+//        $post = Post::find($id);
+//        $post->delete();
+//        return redirect('/userlog');
+//    }
+
+    public function deletePost (Request $request) {
+        $post = Post::find($request['postId']);
         $post->delete();
-        return redirect('/userlog');
+
+        return response()->json(['mensaje' => $request['postId']], 200);
     }
 
     public function delcoment ($id) {
@@ -36,10 +43,10 @@ class PostController extends Controller
         return redirect('/userlog');
     }
 
-    public function updateWithEditedPost(Request $request, $id){
-        Post::where("id", $id)->update(array("post" => $request['post']));
-        return redirect('/userlog');
-    }
+//    public function updateWithEditedPost(Request $request, $id){
+//        Post::where("id", $id)->update(array("post" => $request['post']));
+//        return redirect('/userlog');
+//    }
 
     public function addcoment (Request $request, $post_id) {
         $user = Auth::user();
@@ -65,6 +72,15 @@ class PostController extends Controller
         return redirect()->action(
             'FriendController@friendperfil', ['id' => $frd_id]
         );
+    }
+
+    public function updatepost (Request $request) {
+        $post = Post::find($request['postId']);
+        $post->post = $request['body'];
+        $post->update();
+
+        return response()->json(['new_body' => $post->post], 200);
+//        return response()->json(['mensaje' => 'post editado'], 200);
     }
 
 }

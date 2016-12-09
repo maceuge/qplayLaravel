@@ -185,7 +185,7 @@
             <div class="box profile-info n-border-top">
                 <form action="/posting" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
-                    <textarea class="form-control input-lg p-text-area" name="post" rows="2" placeholder="Que cuentas hoy?" maxlength="254"></textarea>
+                    <textarea class="form-control input-lg p-text-area" name="post" rows="2" placeholder="Que cuentas hoy?"></textarea>
                     <div class="box-footer box-form">
                         <button type="submit" class="btn btn-success pull-right"> Comentar</button>
                         <ul class="nav nav-pills">
@@ -198,11 +198,12 @@
                 </form>
             </div>
 
+            {{-- Contenedor de todos los post --}}
     @if(!empty($post))
         @for($i = 0;$i < count($post);$i++)
-            <div class="box box-widget {{ ($post[$i]->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}">
+            <div class="box box-widget {{ ($post[$i]->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}" id="post-box">
                 <div class="box-header with-border {{ ($post[$i]->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}">
-                    <div class="user-block">
+                    <div class="user-block" data-idpost="{{$post[$i]->id}}">
                         @if ($post[$i]->user->avatar)
                             <img src="{{ $post[$i]->user->avatar }}" class="img-circle"  alt="User Image">
                         @else
@@ -218,16 +219,17 @@
 
                         <span class="usernamebox">{{ $post[$i]->user->name.' '.$post[$i]->user->surname }}</span>
                         @if ($post[$i]->user->id == $user->id)
-                        <a class="close clpost" href="/delete/{{ $post[$i]->id }}"><i class="fa fa-close fright"></i></a>
+                        <a class="close clpost" id="closepost" href=""><i class="fa fa-close fright"></i></a>
                         @endif
                         <span class="description">Publicado - {{ $post[$i]->created_at }}</span>
                     </div>
                 </div>
 
-                <div class="box-body" style="display: block;">
+                <div class="box-body" style="display: block;" data-postid="{{$post[$i]->id}}">
                     <p class="posted" id="contenido{{$post[$i]->id}}">{{ $post[$i]->post }}</p>
                     @if ($post[$i]->user->id == $user->id)
-                    <button id="edit{{$post[$i]->id}}" class="btn btn-warning btn-xs botonEditar"><i class="fa fa-edit"></i> Editar</button>
+                    {{--<button id="edit{{$post[$i]->id}}" class="btn btn-warning btn-xs botonEditar"><i class="fa fa-edit"></i> Editar</button>--}}
+                    <a href="" class="btn btn-warning btn-xs" id="edit"><i class="fa fa-edit"></i> Editar</a>
                     <a href="" class="btn btn-info btn-xs"><i class="fa fa-thumbs-up"></i> Me Gusta</a>
                     <a href="" class="btn btn-danger btn-xs"><i class="fa fa-thumbs-down"></i> No me Gusta</a>
                     @else
@@ -292,6 +294,29 @@
         </div><!-- fin de la columna del medio -->
     </div>  {{--fin del row del post--}}
 </div> {{--fin del contenedor del post--}}
+ {{-- Modal Box para editar post --}}
+        <div class="modal fade" tabindex="-1" role="dialog" id="edit-modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #222222;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" style="color: #94d500;">Editar Post</h4>
+                    </div>
+                    <div class="modal-body">
+                        <textarea class="form-control" name="post-body" id="post-body" rows="4"></textarea>
+                    </div>
+                    <div class="modal-footer" style="background-color: #222222;">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success" id="modal-save">Guardar Cambios</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <script>
+            var token = '{{ Session::token() }}';
+            var url = '{{ route('edition') }}';
+            var urldel = '{{ route('delete') }}';
+        </script>
 
 @endsection
 
@@ -304,5 +329,6 @@
             </script>
    <script type="text/javascript" src="{{ asset('/js/closepost.js') }}"></script>
    <script type="text/javascript" src="{{ asset('/js/bootstrap_file-input.js') }}"></script>
-   <script type="text/javascript" src="{{ asset('/js/edit.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('/js/edit_post.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('/js/delete_post.js') }}"></script>
 @endsection

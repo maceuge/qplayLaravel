@@ -36,9 +36,15 @@ Route::group(['middleware' => ['auth']], function () {
 Route::get('/userlog', 'PerfilController@wallview');
 // Ruta para hacer el post
 Route::post('/posting', 'PostController@posting');
-// Rutas para editar y borrar
-Route::get('/delete/{id}', 'PostController@deletePost');
-Route::post('/edition/{id}', 'PostController@updateWithEditedPost');
+// Ruta para borrar por ajax
+Route::delete('/delete', 'PostController@deletePost')->name('delete');
+// Ruta para borrar Laravel
+//Route::get('/delete/{id}', 'PostController@deletePost');
+// Ruta para editar post por ajax
+Route::post('/edition', 'PostController@updatepost')->name('edition');
+// Ruta para editar post por laravel (ejemplo)
+//Route::post('/edition/{id}', 'PostController@updateWithEditedPost');
+
 Route::get('/delcoment/{id}', 'PostController@delcoment');
 // Subir Avatar
 Route::post('/avatarUpload', 'PerfilController@avatarUpload');
@@ -62,3 +68,7 @@ Route::post('/addcomentfriend/{post_id}/frd/{frd_id}','PostController@addcomentf
 }); // fin del middleware auth
 
 
+// ruta temporanea del tipo prueba de edicion
+//Route::post('/edition', function (\Illuminate\Http\Request $request) {
+//    return response()->json(['mensaje' => $request['postId']]);
+//})->name('edition');
