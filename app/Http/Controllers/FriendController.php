@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class FriendController extends Controller
 {
-    public function addfriend ($id) {
+    public function addfriend (Request $request, $id) {
         $friend = User::find($id);
         $user = Auth::user();
 
@@ -20,12 +20,29 @@ class FriendController extends Controller
         ]);
 
         $friendslist->save();
-        return redirect('/userlog');
+
+        $message = 'Empece a seguir a '.$friend->name.' '.$friend->surname;
+
+        if ($request->ajax()) {
+            return $message;
+        }
     }
 
-    public function delfriend ($id) {
-        $friend = Friend::where('friend_id', $id)->delete();
-        return redirect('/userlog');
+    public function delfriend (Request $request, $id) {
+        $userToDelete = User::find($id);
+
+        //dd($userToDelete);
+        Friend::where('friend_id', $id)
+                ->where('user_id', \Auth::user()->id)
+                ->delete();
+
+        $message = 'Deje de seguir a '.$userToDelete->name.' '.$userToDelete->surname;
+
+
+        if ($request->ajax()) {
+            return $message;
+        }
+
     }
 
     public function friendperfil ($id) {
@@ -78,8 +95,6 @@ class FriendController extends Controller
             $indexFriend = 0;
             $indexUser ++;
         }
-
-        //return 'hola';
 
         return view('user.searchfriends', [
             'user' => $userLoggedIn,
