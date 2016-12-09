@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('css')
-    <link rel="stylesheet" href="css/faq.css" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/faq.css') }}" type="text/css" />
 @endsection
 
 @section('navbar')
@@ -56,5 +56,5 @@
 @endsection
 
 @section('plugin')
-    <script type="text/javascript" src="js/faq.js"></script>
+    <script type="text/javascript" src="{{ asset('js/faq.js') }}"></script>
 @endsection

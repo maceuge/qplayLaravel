@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Abel|Cabin|Comfortaa|Exo|Farsan|Kaushan+Script|Poiret+One|Righteous|Russo+One|Antic|Maven+Pro|Poppins|Ubuntu" rel="stylesheet">
-    <link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
-    <link rel="stylesheet" href="/css/homex.css" type="text/css" />
-    <link rel="stylesheet" href="/css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('/css/bootstrap.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('/css/homex.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('/css/font-awesome.css') }}" type="text/css" />
     @yield('css')
 
     <!-- CSRF Token -->
@@ -80,11 +80,18 @@
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            @if($user->avatar == '/img/default_male.jpg' || $user->avatar == '/img/default_female.jpg' || $user->avatar == '/img/default_other.jpg')
-                                <img class="img-circle subuser" src="{{ $user->avatar.' ' }}" alt="user" width="40" height="40">&nbsp;&nbsp;
+                            @if($user->avatar)
+                                <img src="{{ $user->avatar }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
                             @else
-                                <img class="img-circle subuser" src="/{{ $user->avatar.' ' }}" alt="user" width="40" height="40">&nbsp;&nbsp;
+                                @if ($user->gender == 'hombre')
+                                    <img src="{{ asset('/img/default_male.jpg') }}" class="img-circle subuser" alt="user" width="40" height="40">
+                                @elseif ($user->gender == 'mujer' )
+                                    <img src="{{ asset('/img/default_female.jpg') }}" class="img-circle subuser" alt="user" width="40" height="40">
+                                @else
+                                    <img src="{{ asset('/img/default_other.jpg') }}" class="img-circle subuser" alt="user" width="40" height="40">
+                                @endif
                             @endif
+
                             {{ Auth::user()->name.' '.Auth::user()->surname }} <span class="caret"></span>
                         </a>
 
@@ -187,9 +194,9 @@
 
 <!-- COMIENZO DE JAVASCRIPT PLUGINS -->
 {{--GENEREC PLUGIN--}}
-<script type="text/javascript" src="/js/jquery-2.2.3.js"></script>
-<script type="text/javascript" src="/js/bootstrap.js"></script>
-<script type="text/javascript" src="/js/botcolaps.js"></script>
+<script type="text/javascript" src="{{ asset('/js/jquery-2.2.3.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/botcolaps.js') }}"></script>
 {{--ADDITIONAL PLUGIN--}}
 @yield('plugin')
 {{--<script type="text/javascript" src="/js/app.js"></script>--}}

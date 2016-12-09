@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('css')
-    <link rel="stylesheet" href="/css/login.css" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('/css/login.css') }}" type="text/css" />
 @endsection
 
 @section('navbar')

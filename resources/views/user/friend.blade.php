@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('css')
-    <link rel="stylesheet" href="/css/usuario.css" type="text/css" />
+    <link rel="stylesheet" href="{{ asset(/css/usuario.css) }}" type="text/css" />
 @endsection
 
 @section('navbar')
@@ -181,6 +181,6 @@
 @endsection
 
 @section('plugin')
-   <script type="text/javascript" src="/js/navanim.js"></script>
-   <script type="text/javascript" src="/js/closepost.js"></script>
+   <script type="text/javascript" src="{{ asset('/js/navanim.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('/js/closepost.js') }}"></script>
 @endsection

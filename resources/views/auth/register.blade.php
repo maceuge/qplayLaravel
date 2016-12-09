@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('css')
-    <link rel="stylesheet" href="/css/register.css" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('/css/register.css') }}" type="text/css" />
 @endsection
 
 @section('navbar')
@@ -224,6 +224,6 @@
 @endsection
 
 @section('plugin')
-    <script type="text/javascript" src="/js/validacion_register.js"></script>
+    <script type="text/javascript" src="{{ asset('/js/validacion_register.js') }}"></script>
     <script type="text/javascript" src="/js/optionalreg.js"></script>
 @endsection

@@ -27,23 +27,23 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function band () {
+    public function band() {
         return $this->hasMany(Band::class);
     }
 
-    public function instrument () {
+    public function instrument() {
         return $this->hasMany(Instrument::class);
     }
 
-    public function post () {
+    public function post() {
         return $this->hasMany(Post::class);
     }
 
-    public function friend () {
+    public function friend() {
         return $this->hasMany(Friend::class);
     }
 
-    public function coment () {
+    public function coment() {
         return $this->hasMany(Coment::class);
     }
 

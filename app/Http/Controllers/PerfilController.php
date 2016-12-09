@@ -49,39 +49,46 @@ class PerfilController extends Controller
     }
 
     public function searchfriends () {
-        $user = Auth::user();
-        $buscfriends = User::all()->sortBy('id');
-        $friendlist = [];
+        $userLoggedIn = Auth::user();
+        $users = User::all()->sortBy('id');
+        $friendList = [];
 
-        $userfriends = $user->friend;
-        foreach ($userfriends as $friend) {
-            array_push($friendlist, $friend->friend_id);
-        }
-        $friends = User::whereIn('id', $friendlist)->orderBy('id')->get();
+        $userfriends = $userLoggedIn->friend;
 
-        //buscFriends son todos los usuarios del universo
-        //friends son tus amigos.
-        $isFriend = [];
-        $indexFriends = 0;
-
-        for($i = 0; $i < count($buscfriends); $i++){
-
-            if($buscfriends[$i]->id == $friends[$indexFriends]->id){
-                $isFriend[$buscfriends[$i]->id] = true ;
-
-                if($indexFriends < count($friends) -1 ){
-                    $indexFriends++;
-                }
-            } else {
-                $isFriend[$buscfriends[$i]->id] = false ;
+        if ($userfriends) {
+            foreach ($userfriends as $friend) {
+                array_push($friendList, $friend->friend_id);
             }
+            $myFriends = User::whereIn('id', $friendList)->orderBy('id')->get();
+        } else {
+            $myFriends = null;
+        }
+
+        $isFriend = [];
+        $indexFriend = 0;
+        $indexUser = 0;
+
+
+        while($indexUser < count($users)) {
+
+            while($indexFriend < count($myFriends) && $users[$indexUser] != $myFriends[$indexFriend]) {
+                $indexFriend ++;
+            }
+
+            if ($indexFriend == count($myFriends)) {
+                $isFriend[$users[$indexUser]->id] = false;
+            } else {
+                $isFriend[$users[$indexUser]->id] = true;
+            }
+            $indexFriend = 0;
+            $indexUser ++;
         }
 
         return view('/user/searchfriends', [
-            'user' => $user,
-            'buscfrends' => $buscfriends,
-            'userfriends' => $friends,
-            'isFriend' => $isFriend,
+            'userLoggedIn' => $userLoggedIn,
+            'users' => $users,
+            //'userfriends' => $myFriends,
+            'isFriend' => $isFriend
         ]);
     }
 

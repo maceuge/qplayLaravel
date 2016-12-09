@@ -43,7 +43,7 @@ Route::get('/delcoment/{id}', 'PostController@delcoment');
 // Subir Avatar
 Route::post('/avatarUpload', 'PerfilController@avatarUpload');
 // Buscar Amigos
-Route::get('/searchfriends', 'PerfilController@searchfriends');
+Route::get('user/searchfriends', ['as' => 'searchfriends', 'uses' => 'PerfilController@searchfriends']);
 // Buscar amigos en el buscador
 Route::post('/friendsearch', 'FriendController@friendsearch');
 

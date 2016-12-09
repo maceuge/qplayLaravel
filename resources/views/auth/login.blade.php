@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('css')
-    <link rel="stylesheet" href="/css/login.css" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('/css/login.css') }}" type="text/css" />
 @endsection
 
 @section('navbar')
@@ -58,5 +58,5 @@
 @endsection
 
 @section('plugin')
-    <script type="text/javascript" src="/js/logval.js"></script>
+    <script type="text/javascript" src="{{ asset('/js/logval.js') }}"></script>
 @endsection

@@ -1,8 +1,8 @@
 @extends('layouts.home')
 
 @section('css')
-    <link rel="stylesheet" href="/css/usuario.css" type="text/css" />
-    <link rel="stylesheet" href="/css/file-input.css" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('/css/usuario.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('/css/file-input.css') }}" type="text/css" />
 @endsection
 
 @section('navbar')
@@ -25,10 +25,16 @@
 <div class="container usercover">
     <div class="row pull-bottom">
         <div class="col-md-2 col-sm-12">
-            @if($user->avatar == '/img/default_male.jpg' || $user->avatar == '/img/default_female.jpg' || $user->avatar == '/img/default_other.jpg')
-            <img src="{{ $user->avatar }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+            @if($user->avatar)
+                <img src="{{ $user->avatar }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
             @else
-                <img src="/{{ $user->avatar }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+                @if ($user->gender == 'hombre')
+                    <img src="{{ asset('/img/default_male.jpg') }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+                @elseif ($user->gender == 'mujer' )
+                    <img src="{{ asset('/img/default_female.jpg') }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+                @else
+                    <img src="{{ asset('/img/default_other.jpg') }}" class="img-square user center-block" alt="Usuario" width="150" height="150">
+                @endif
             @endif
         </div>
         <div class="col-md-6 col-sm-12">
@@ -142,15 +148,25 @@
                         <div class="col-md-12">
                             <ul class="img-grid" style="margin: 0 auto;">
                                 <li>
-                                    <a href="/searchfriends">
-                                        <img src="/img/add.jpg" alt="Add Friend" width="65" height="65">
+                                    <a href="{{ route('searchfriends') }}">
+                                        <img src="{{ asset('/img/add.jpg') }}" alt="Add Friend" width="65" height="65">
                                     </a>
                                 </li>
                                 @for($i = 0; $i < count($friends); $i++)
                                     @if ($friends[$i]->id != $user->id)
                                     <li>
                                         <a href="/friend/{{ $friends[$i]->id }}">
-                                            <img src="{{ $friends[$i]->avatar }}" title="{{$friends[$i]->name}} {{$friends[$i]->surname}}" width="65" height="65">
+                                            @if($friends[$i]->avatar)
+                                                <img src="{{ $friends[$i]->avatar }}" title="{{$friends[$i]->name}} {{$friends[$i]->surname}}" width="65" height="65">
+                                            @else
+                                                @if ($friends[$i]->gender == 'hombre')
+                                                    <img src="{{ asset('/img/default_male.jpg') }}" title="{{$friends[$i]->name}} {{$friends[$i]->surname}}" width="65" height="65">
+                                                @elseif ($user->gender == 'mujer' )
+                                                    <img src="{{ asset('/img/default_female.jpg') }}" title="{{$friends[$i]->name}} {{$friends[$i]->surname}}" width="65" height="65">
+                                                @else
+                                                    <img src="{{ asset('/img/default_other.jpg') }}" title="{{$friends[$i]->name}} {{$friends[$i]->surname}}" width="65" height="65">
+                                                @endif
+                                            @endif
                                         </a>
                                     </li>
                                     @endif
@@ -187,7 +203,19 @@
             <div class="box box-widget {{ ($post[$i]->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}">
                 <div class="box-header with-border {{ ($post[$i]->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}">
                     <div class="user-block">
-                        <img class="img-circle" src="{{ $post[$i]->user->avatar }}" alt="User Image">
+                        @if ($post[$i]->user->avatar)
+                            <img src="{{ $post[$i]->user->avatar }}" class="img-circle"  alt="User Image">
+                        @else
+                            @if ($post[$i]->user->gender == 'hombre')
+                                <img src="{{ asset('/img/default_male.jpg') }}"  class="img-circle"  alt="User Image">
+                            @elseif ($post[$i]->user->gender == 'mujer' )
+                                <img src="{{ asset('/img/default_female.jpg') }}" class="img-circle"  alt="User Image">
+                            @else
+                                <img src="{{ asset('/img/default_other.jpg') }}" class="img-circle"  alt="User Image">
+                            @endif
+                        @endif
+
+
                         <span class="usernamebox">{{ $post[$i]->user->name.' '.$post[$i]->user->surname }}</span>
                         @if ($post[$i]->user->id == $user->id)
                         <a class="close clpost" href="/delete/{{ $post[$i]->id }}"><i class="fa fa-close fright"></i></a>
@@ -212,7 +240,17 @@
                 @foreach($post[$i]->coment as $coments)
                 <div class="box-footer box-comments" style="display: block;">
                     <div class="box-comment">
-                        <img class="img-circle img-sm" src="{{ $coments->user->avatar }}" alt="User Image">
+                        @if($coments->user->avatar)
+                            <img src="{{ $coments->user->avatar }}" class="img-circle img-sm" alt="User Image">
+                        @else
+                            @if ($coments->user->gender == 'hombre')
+                                <img src="{{ asset('/img/default_male.jpg') }}"  class="img-circle img-sm" alt="User Image">
+                            @elseif ($coments->user->gender == 'mujer' )
+                                <img src="{{ asset('/img/default_female.jpg') }}" class="img-circle img-sm" alt="User Image">
+                            @else
+                                <img src="{{ asset('/img/default_other.jpg') }}" class="img-circle img-sm" alt="User Image">
+                            @endif
+                        @endif
                         <div class="comment-text">
                             <span class="usernamecom">{{ $coments->user->name.' '.$coments->user->surname }}
                                 @if ($coments->user->id == $user->id)
@@ -229,7 +267,17 @@
                 <div class="box-footer" style="display: block;">
                     <form action="/addcoment/{{$post[$i]->id}}" method="post">
                         {{ csrf_field() }}
-                        <img class="img-responsive img-circle img-sm" src="{{ $user->avatar }}" alt="Alt Text">
+                        @if($user->avatar)
+                            <img  src="{{ $user->avatar }}" class="img-responsive img-circle img-sm" alt="Alt Text">
+                        @else
+                            @if ($user->gender == 'hombre')
+                                <img src="{{ asset('/img/default_male.jpg') }}" class="img-responsive img-circle img-sm" alt="Alt Text">
+                            @elseif ($user->gender == 'mujer' )
+                                <img src="{{ asset('/img/default_female.jpg') }}" class="img-responsive img-circle img-sm" alt="Alt Text">
+                            @else
+                                <img src="{{ asset('/img/default_other.jpg') }}" class="img-responsive img-circle img-sm" alt="Alt Text">
+                            @endif
+                        @endif
                         <div class="img-push">
                             <input type="text" name="coment" class="form-control input-sm {{ ($post[$i]->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}" placeholder="Presiona Enter para comentar">
                         </div>
@@ -248,13 +296,13 @@
 @endsection
 
 @section('plugin')
-   <script type="text/javascript" src="/js/navanim.js"></script>
+   <script type="text/javascript" src="{{ asset('/js/navanim.js') }}"></script>
             <script>
                 $(document).ready(function(){
                     $('input[type=file]').bootstrapFileInput();
                 });
             </script>
-   <script type="text/javascript" src="/js/closepost.js"></script>
-   <script type="text/javascript" src="/js/bootstrap_file-input.js"></script>
-   <script type="text/javascript" src="/js/edit.js"></script>
+   <script type="text/javascript" src="{{ asset('/js/closepost.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('/js/bootstrap_file-input.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('/js/edit.js') }}"></script>
 @endsection
