@@ -18,8 +18,10 @@ $(document).ready(function () {
         })
         .done(function (msg) {
             console.log(msg['mensaje']);
-            $(box).fadeOut('slow');
+            //$(box).fadeOut('slow');
+            $(box).fadeTo(100, 1000).slideUp(1000, function(){
+                $(box).slideUp(1000);
+            });
         });
     });
-
 });

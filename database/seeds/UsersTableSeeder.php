@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
             'name'      => 'Ivan',
             'surname'   => 'Lopez',
             'email'     => 'ivan@lopez.com',
-            'gender'    => 'hombre'
+            'gender'    => 'Hombre'
         ]);
         factory(App\User::class, 50)
             ->create()

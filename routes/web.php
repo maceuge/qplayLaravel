@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
 // Pagina de Usuario Logueado
 Route::get('/userlog', 'PerfilController@wallview');
 // Ruta para hacer el post
-Route::post('/posting', 'PostController@posting');
+Route::post('/posting', 'PostController@posting')->name('posting');;
 // Ruta para borrar por ajax
 Route::delete('/delete', 'PostController@deletePost')->name('delete');
 // Ruta para borrar Laravel
@@ -54,10 +54,10 @@ Route::get('user/searchfriends', ['as' => 'searchfriends', 'uses' => 'PerfilCont
 Route::post('/friendsearch', 'FriendController@friendsearch');
 
 // Agregar Amigos
-Route::get('/addfriend/{id}', 'FriendController@addfriend');
+Route::post('addfriend/{id}', ['as' => 'friend.add', 'uses' => 'FriendController@addfriend']);
 // Eliminar Amigo
-Route::get('/delfriend/{id}', 'FriendController@delfriend');
-// Perfil de Amigo
+Route::delete('delfriend/{id}', ['as' => 'friend.delete', 'uses' => 'FriendController@delfriend']);
+// Perfil del Amigo
 Route::get('friend/{id}', 'FriendController@friendperfil');
 
 // Agregar Comentarios

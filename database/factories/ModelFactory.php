@@ -21,7 +21,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
         'surname' => $faker->lastName,
         'birthday' => $faker->date($format = 'Y-m-d', $max = 'now'),
-        'gender' => $faker->randomElement(['hombre', 'mujer', 'otro'])
+        'gender' => $faker->randomElement(['Hombre', 'Mujer', 'Otro'])
     ];
 });
 

@@ -176,14 +176,12 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
 
         <div class="col-md-8 col-sm-12">
             {{-- Barra principal del POST--}}
             <div class="box profile-info n-border-top">
-                <form action="/posting" method="post" enctype="multipart/form-data">
+                <form action="{{ route('posting') }}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <textarea class="form-control input-lg p-text-area" name="post" rows="2" placeholder="Que cuentas hoy?"></textarea>
                     <div class="box-footer box-form">
