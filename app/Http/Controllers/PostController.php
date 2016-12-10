@@ -14,21 +14,42 @@ class PostController extends Controller
 {
 
     public function posting (Request $request) {
+
         $user = Auth::user();
         $post = Post::create([
             'user_id' => $user->id,
-            'post' => $request['post'],
+            'post' => $request['body'],
         ]);
 
         $post->save();
-        return redirect('/userlog');
-    }
+        //return redirect('/userlog');
 
-//    public function deletePost ($id) {
-//        $post = Post::find($id);
-//        $post->delete();
-//        return redirect('/userlog');
-//    }
+
+        if ($user->avatar) {
+            $avatar = '/'.$user->avatar;
+        } else {
+            if ($user->gender == 'Hombre') {
+                $avatar = '/default_male.jpg';
+            } elseif ($user->gender == 'Mujer') {
+                $avatar = '/default_female.jpg';
+            } else {
+                $avatar = '/default_other.jpg';
+            }
+        }
+
+        $date = date_create($post->created_at);
+        $fecha_post = date_format($date, 'Y-m-d H:i:s');
+
+
+        return response()->json(['post_body'      => $request['body'],
+                                'postId'        => $post->id,
+                                'fecha_post'    => $fecha_post,
+                                'user_avatar'   => $avatar,
+                                'user_name'     => $user->name,
+                                'user_surname'  => $user->surname
+
+                                ]);
+    }
 
     public function deletePost (Request $request) {
         $post = Post::find($request['postId']);

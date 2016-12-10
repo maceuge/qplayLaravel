@@ -183,9 +183,9 @@
             <div class="box profile-info n-border-top">
                 <form action="{{ route('posting') }}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
-                    <textarea class="form-control input-lg p-text-area" name="post" rows="2" placeholder="Que cuentas hoy?"></textarea>
+                    <textarea id="post-body" class="form-control input-lg p-text-area" name="post" rows="2" placeholder="Que cuentas hoy?"></textarea>
                     <div class="box-footer box-form">
-                        <button type="submit" class="btn btn-success pull-right"> Comentar</button>
+                        <button type="submit" class="btn btn-success pull-right" id="btn-crear-post"> Comentar</button>
                         <ul class="nav nav-pills">
                             {{--<li><a href="#"><i class="fa fa-map-marker"></i></a></li>--}}
                             <li><a href="#"><i class="fa fa-camera"></i></a></li>
@@ -196,6 +196,9 @@
                 </form>
             </div>
 
+            <div id="new-post">
+
+            </div>
             {{-- Contenedor de todos los post --}}
     @if(!empty($post))
         @for($i = 0;$i < count($post);$i++)
@@ -314,6 +317,9 @@
             var token = '{{ Session::token() }}';
             var url = '{{ route('edition') }}';
             var urldel = '{{ route('delete') }}';
+            var urlCreatePost = '{{ route('posting') }}';
+            var urlTemplatePost = '{{ asset('/template/post-template.html') }}';
+            var urlImg = '{{ asset('/img') }}';
         </script>
 
 @endsection
@@ -324,9 +330,16 @@
                 $(document).ready(function(){
                     $('input[type=file]').bootstrapFileInput();
                 });
+
+
+
+
             </script>
-   <script type="text/javascript" src="{{ asset('/js/closepost.js') }}"></script>
-   <script type="text/javascript" src="{{ asset('/js/bootstrap_file-input.js') }}"></script>
-   <script type="text/javascript" src="{{ asset('/js/edit_post.js') }}"></script>
-   <script type="text/javascript" src="{{ asset('/js/delete_post.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/closepost.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/bootstrap_file-input.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/edit_post.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/delete_post.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/create_post.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/jquery.loadTemplate.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/template_post.js') }}"></script>
 @endsection
