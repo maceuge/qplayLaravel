@@ -264,8 +264,8 @@
                 </div>
                 @endforeach
 
-                <div class="box-footer" style="display: block;">
-                    <form action="/addcoment/{{$post[$i]->id}}" method="post">
+                <div class="box-footer" style="display: block;" data-idpost="{{$post[$i]->id}}">
+                    <form action="{{ route('comment.add', $post[$i]->id) }}" method="post" id="form-add-comment">
                         {{ csrf_field() }}
                         @if($user->avatar)
                             <img  src="{{ $user->avatar }}" class="img-responsive img-circle img-sm" alt="Alt Text">
@@ -279,7 +279,7 @@
                             @endif
                         @endif
                         <div class="img-push">
-                            <input type="text" name="coment" class="form-control input-sm {{ ($post[$i]->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}" placeholder="Presiona Enter para comentar">
+                            <input id="add-comment" type="text" name="coment" class="form-control input-sm {{ ($post[$i]->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}" placeholder="Presiona Enter para comentar">
                         </div>
                     </form>
                 </div>
@@ -291,6 +291,9 @@
 
         </div><!-- fin de la columna del medio -->
     </div>  {{--fin del row del post--}}
+    {!! Form::open(['route' =>['comment.add', ':postId' ], 'method' => 'POST', 'id' => 'form-add-comment']) !!}
+
+    {!! Form::close() !!}
 </div> {{--fin del contenedor del post--}}
  {{-- Modal Box para editar post --}}
         <div class="modal fade" tabindex="-1" role="dialog" id="edit-modal">
@@ -314,19 +317,22 @@
             var token = '{{ Session::token() }}';
             var url = '{{ route('edition') }}';
             var urldel = '{{ route('delete') }}';
+            var urlAddComment = '{{ route('comment.add',':postId') }}';
+            var assetImg = '{{ asset('/img') }}';
         </script>
 
 @endsection
 
 @section('plugin')
-   <script type="text/javascript" src="{{ asset('/js/navanim.js') }}"></script>
-            <script>
-                $(document).ready(function(){
-                    $('input[type=file]').bootstrapFileInput();
-                });
-            </script>
-   <script type="text/javascript" src="{{ asset('/js/closepost.js') }}"></script>
-   <script type="text/javascript" src="{{ asset('/js/bootstrap_file-input.js') }}"></script>
-   <script type="text/javascript" src="{{ asset('/js/edit_post.js') }}"></script>
-   <script type="text/javascript" src="{{ asset('/js/delete_post.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/navanim.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $('input[type=file]').bootstrapFileInput();
+        });
+    </script>
+    <script type="text/javascript" src="{{ asset('/js/closepost.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/bootstrap_file-input.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/edit_post.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/delete_post.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/add_comment.js') }}"></script>
 @endsection
