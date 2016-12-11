@@ -21,7 +21,7 @@ class FriendController extends Controller
 
         $friendslist->save();
 
-        $message = 'Empece a seguir a '.$friend->name.' '.$friend->surname;
+        $message = 'Empezaste a seguir a '.$friend->name.' '.$friend->surname;
 
         if ($request->ajax()) {
             return $message;
@@ -36,7 +36,7 @@ class FriendController extends Controller
                 ->where('user_id', \Auth::user()->id)
                 ->delete();
 
-        $message = 'Deje de seguir a '.$userToDelete->name.' '.$userToDelete->surname;
+        $message = 'Dejaste de seguir a '.$userToDelete->name.' '.$userToDelete->surname;
 
 
         if ($request->ajax()) {

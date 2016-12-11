@@ -47,8 +47,9 @@ Route::post('/edition', 'PostController@updatepost')->name('edition');
 
 // Ruta para Like
 Route::post('/islike','PostController@isLikePost')->name('islike');
+// Ruta para eliminar el comentario
+Route::delete('/delcoment/{id}', [ 'as' => 'delcoment', 'uses' => 'PostController@delcoment']);
 
-Route::get('/delcoment/{id}', 'PostController@delcoment');
 // Subir Avatar
 Route::post('/avatarUpload', 'PerfilController@avatarUpload');
 // Buscar Amigos
@@ -64,7 +65,7 @@ Route::delete('delfriend/{id}', ['as' => 'friend.delete', 'uses' => 'FriendContr
 Route::get('friend/{id}', 'FriendController@friendperfil');
 
 // Agregar Comentarios
-Route::post('/addcoment/{post_id}','PostController@addcoment');
+Route::post('addcoment/{post_id}', ['as' => 'comment.add', 'uses' => 'PostController@addcoment']);
 // Agregar Comentarios en la vista del perfil de amigo
 Route::post('/addcomentfriend/{post_id}/frd/{frd_id}','PostController@addcomentfriend');
 
