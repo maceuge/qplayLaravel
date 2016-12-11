@@ -45,6 +45,9 @@ Route::post('/edition', 'PostController@updatepost')->name('edition');
 // Ruta para editar post por laravel (ejemplo)
 //Route::post('/edition/{id}', 'PostController@updateWithEditedPost');
 
+// Ruta para Like
+Route::post('/islike','PostController@isLikePost')->name('islike');
+
 Route::get('/delcoment/{id}', 'PostController@delcoment');
 // Subir Avatar
 Route::post('/avatarUpload', 'PerfilController@avatarUpload');

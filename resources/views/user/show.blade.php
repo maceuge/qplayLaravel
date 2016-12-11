@@ -228,11 +228,27 @@
                     @if ($post[$i]->user->id == $user->id)
                     {{--<button id="edit{{$post[$i]->id}}" class="btn btn-warning btn-xs botonEditar"><i class="fa fa-edit"></i> Editar</button>--}}
                     <a href="" class="btn btn-warning btn-xs" id="edit"><i class="fa fa-edit"></i> Editar</a>
-                    <a href="" class="btn btn-info btn-xs"><i class="fa fa-thumbs-up"></i> Me Gusta</a>
-                    <a href="" class="btn btn-danger btn-xs"><i class="fa fa-thumbs-down"></i> No me Gusta</a>
+                    <span>
+                    <a href="" class="btn btn-info btn-xs like">
+                        <i class="fa fa-thumbs-up"></i> Me Gusta
+                        <span class="badge liked">{{ count($post[$i]->like->where('islike', '==', 1)) }}</span>
+                    </a>
+                    <a href="" class="btn btn-danger btn-xs like">
+                        <i class="fa fa-thumbs-down"></i> No me Gusta
+                        <span class="badge disliked">{{ count($post[$i]->like->where('islike', '==', 0)) }}</span>
+                    </a>
+                    </span>
                     @else
-                    <a href="" class="btn btn-info btn-xs"><i class="fa fa-thumbs-up"></i> Me Gusta</a>
-                    <a href="" class="btn btn-danger btn-xs"><i class="fa fa-thumbs-down"></i> No me Gusta</a>
+                    <span>
+                    <a href="" class="btn btn-info btn-xs like">
+                        <i class="fa fa-thumbs-up"></i> Me Gusta
+                        <span class="badge liked">{{ count($post[$i]->like->where('islike', '==', 1)) }}</span>
+                    </a>
+                    <a href="" class="btn btn-danger btn-xs like">
+                        <i class="fa fa-thumbs-down"></i> No me Gusta
+                        <span class="badge disliked">{{ count($post[$i]->like->where('islike', '==', 0)) }}</span>
+                    </a>
+                    </span>
                     @endif
                     <span class="pull-right text-muted"><span class="badge">{{ count($post[$i]->coment) }}</span> Comentarios</span>
                 </div>
@@ -312,8 +328,9 @@
         </div><!-- /.modal -->
         <script>
             var token = '{{ Session::token() }}';
-            var url = '{{ route('edition') }}';
-            var urldel = '{{ route('delete') }}';
+            var urledit = '{{ route('edition') }}';
+            var urldelete = '{{ route('delete') }}';
+            var urllike = '{{ route('islike') }}';
         </script>
 
 @endsection
@@ -329,4 +346,5 @@
    <script type="text/javascript" src="{{ asset('/js/bootstrap_file-input.js') }}"></script>
    <script type="text/javascript" src="{{ asset('/js/edit_post.js') }}"></script>
    <script type="text/javascript" src="{{ asset('/js/delete_post.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('/js/like_post.js') }}"></script>
 @endsection

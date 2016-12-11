@@ -225,5 +225,5 @@
 
 @section('plugin')
     <script type="text/javascript" src="{{ asset('/js/validacion_register.js') }}"></script>
-    <script type="text/javascript" src="/js/optionalreg.js"></script>
+    <script type="text/javascript" src="{{ asset('/js/optionalreg.js') }}"></script>
 @endsection

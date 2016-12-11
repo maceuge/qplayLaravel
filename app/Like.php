@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Like extends Model
 {
     protected $guarded = [];
 
@@ -12,11 +12,7 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function coment () {
-       return $this->hasMany(Coment::class);
-    }
-
-    public function like () {
-        return $this->hasMany(Like::class);
+    public function post () {
+        return $this->belongsTo(Post::class, 'post_id');
     }
 }

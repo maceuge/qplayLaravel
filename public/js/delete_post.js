@@ -13,7 +13,7 @@ $(document).ready(function () {
 
         $.ajax({
             method: 'DELETE',
-            url: urldel,
+            url: urldelete,
             data: {postId: postId, _token: token}
         })
         .done(function (msg) {
