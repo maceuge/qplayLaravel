@@ -87,7 +87,8 @@ $(function(){
         
         newPost += '</div>';
 
-        $('#new-post').prepend(newPost);
+        $(newPost).prependTo('#new-post').hide().slideDown('slow');
+
     }
 
     function eraseText() {
