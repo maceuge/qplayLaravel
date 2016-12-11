@@ -2,8 +2,6 @@
  * Created by ivan on 10/12/16.
  */
 $(function(){
-    console.log('add comment!!!');
-
 
     $('.post').click(function (e) {
         //console.log(e.target, e.target.attributes[0].value);
@@ -14,11 +12,11 @@ $(function(){
 
         var boxComment = e.target.parentNode.parentNode.parentNode.parentNode;
 
-        var newComment = boxComment.querySelector('#new-comment');
-
-        var countComment = boxComment.querySelector('.box-body').querySelector('.badge');
-
         if (idComment === 'add-comment') {
+
+            var newComment = boxComment.querySelector('#new-comment');
+
+            var countComment = boxComment.querySelector('.box-body').querySelector('.badge');
 
             var postId = e.target.parentNode.parentNode.parentNode.dataset['idpost'];
 

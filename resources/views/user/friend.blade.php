@@ -178,8 +178,12 @@
                  </div>
              @endforeach
 
+             <div id="new-comment">
+                 <!-- new Ajax comment here -->
+             </div>
+
              <div class="box-footer" style="display: block;">
-                 <form action="{{ url('addcomentfriend/'.$post->id) }}/frd/{{ $friend->id }}" method="post">
+                 <form action="{{ route('comment.add', $post->id) }}" method="post" id="form-add-comment">
                      {{ csrf_field() }}
                      @if($user->avatar)
                          <img  src="/{{ $user->avatar }}" class="img-responsive img-circle img-sm" alt="Alt Text">
@@ -192,7 +196,7 @@
                              <img src="{{ asset('img/default_other.jpg') }}" class="img-responsive img-circle img-sm" alt="Alt Text">
                          @endif
                      @endif<div class="img-push">
-                         <input type="text" name="coment" class="form-control input-sm {{ ($post->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}" placeholder="Presiona Enter para comentar">
+                         <input id="add-comment" type="text" name="coment" class="form-control input-sm {{ ($post->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}" placeholder="Presiona Enter para comentar">
                      </div>
                  </form>
              </div>
@@ -204,9 +208,16 @@
         </div><!-- fin de la columna del medio -->
     </div>  {{--fin del row del post--}}
 </div> {{--fin del contenedor del post--}}
+<script>
+    var token = '{{ Session::token() }}';
+    var assetImg = '{{ asset('/img') }}';
+    var urlDelComment = '{{ route('delcoment',':commentId') }}';
+</script>
 @endsection
 
 @section('plugin')
-   <script type="text/javascript" src="{{ asset('/js/navanim.js') }}"></script>
-   <script type="text/javascript" src="{{ asset('/js/closepost.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/navanim.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/closepost.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/delete_post.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/add_comment.js') }}"></script>
 @endsection

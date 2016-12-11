@@ -265,7 +265,7 @@
                 @endforeach
 
                 <div id="new-comment">
-                    <!-- new comment here -->
+                    <!-- new Ajax comment here -->
                 </div>
 
                 <div class="box-footer" style="display: block;" data-idpost="{{$post[$i]->id}}">
@@ -319,7 +319,6 @@
             var token = '{{ Session::token() }}';
             var url = '{{ route('edition') }}';
             var urldel = '{{ route('delete') }}';
-            var urlAddComment = '{{ route('comment.add',':postId') }}';
             var assetImg = '{{ asset('/img') }}';
             var urlDelComment = '{{ route('delcoment',':commentId') }}';
         </script>
