@@ -264,6 +264,10 @@
                 </div>
                 @endforeach
 
+                <div id="new-comment">
+                    <!-- new comment here -->
+                </div>
+
                 <div class="box-footer" style="display: block;" data-idpost="{{$post[$i]->id}}">
                     <form action="{{ route('comment.add', $post[$i]->id) }}" method="post" id="form-add-comment">
                         {{ csrf_field() }}
@@ -291,9 +295,7 @@
 
         </div><!-- fin de la columna del medio -->
     </div>  {{--fin del row del post--}}
-    {!! Form::open(['route' =>['comment.add', ':postId' ], 'method' => 'POST', 'id' => 'form-add-comment']) !!}
 
-    {!! Form::close() !!}
 </div> {{--fin del contenedor del post--}}
  {{-- Modal Box para editar post --}}
         <div class="modal fade" tabindex="-1" role="dialog" id="edit-modal">
@@ -319,6 +321,7 @@
             var urldel = '{{ route('delete') }}';
             var urlAddComment = '{{ route('comment.add',':postId') }}';
             var assetImg = '{{ asset('/img') }}';
+            var urlDelComment = '{{ route('delcoment',':commentId') }}';
         </script>
 
 @endsection

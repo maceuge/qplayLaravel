@@ -48,13 +48,30 @@ class PostController extends Controller
 
         $coment->save();
 
-        //return redirect('/userlog');
+        if ($user->avatar) {
+            $avatar = '/'.$user->avatar;
+        } else {
+            if ($user->gender == 'Hombre') {
+                $avatar = '/default_male.jpg';
+            } elseif ($user->gender == 'Mujer') {
+                $avatar = '/default_female.jpg';
+            } else {
+                $avatar = '/default_other.jpg';
+            }
+        }
+
+        $date = date_create($coment->created_at);
+        $fecha_comment = date_format($date, 'Y-m-d H:i:s');
 
         return response()
                 ->json([
-                    'comment'   => $request['comment'],
-                    'postId'    =>  $post_id,
-
+                    'comment'       => $request['comment'],
+                    'postId'        => $post_id,
+                    'fecha_comment' => $fecha_comment,
+                    'user_avatar'   => $avatar,
+                    'user_name'     => $user->name,
+                    'user_surname'  => $user->surname,
+                    'commentId'     => $coment->id
                 ]);
     }
 
