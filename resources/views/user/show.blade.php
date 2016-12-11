@@ -220,7 +220,7 @@
 
                         <span class="usernamebox">{{ $post[$i]->user->name.' '.$post[$i]->user->surname }}</span>
                         @if ($post[$i]->user->id == $user->id)
-                        <a class="close clpost" id="closepost" href=""><i class="fa fa-close fright"></i></a>
+                        <a class="close clpost" id="closepost" href="#"><i class="fa fa-close fright"></i></a>
                         @endif
                         <span class="description">Publicado - {{ $post[$i]->created_at }}</span>
                     </div>
@@ -318,7 +318,6 @@
             var url = '{{ route('edition') }}';
             var urldel = '{{ route('delete') }}';
             var urlCreatePost = '{{ route('posting') }}';
-            var urlTemplatePost = '{{ asset('/template/post-template.html') }}';
             var urlImg = '{{ asset('/img') }}';
         </script>
 
@@ -341,5 +340,4 @@
     <script type="text/javascript" src="{{ asset('/js/delete_post.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/create_post.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/jquery.loadTemplate.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/js/template_post.js') }}"></script>
 @endsection

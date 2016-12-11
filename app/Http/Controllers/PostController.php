@@ -21,7 +21,8 @@ class PostController extends Controller
             'post' => $request['body'],
         ]);
 
-        $post->save();
+        //$post->save();
+
         //return redirect('/userlog');
 
 
@@ -53,7 +54,7 @@ class PostController extends Controller
 
     public function deletePost (Request $request) {
         $post = Post::find($request['postId']);
-        $post->delete();
+        //$post->delete();
 
         return response()->json(['mensaje' => $request['postId']], 200);
     }
