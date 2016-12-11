@@ -20,6 +20,11 @@ $(function(){
             console.log(result['post_body']);
 
             eraseText();
+
+            var urlAddCommentReplace = urlAddComment.replace(':postId', result['postId']);
+
+            result.urlAddComment = urlAddCommentReplace;
+
             var templateData = result;
             renderTemplate(templateData);
         });
@@ -47,8 +52,8 @@ $(function(){
         newPost += '<div class="box-body" style="display: block;" data-postid="' + data['postId'] + '">';
         newPost += '<p class="posted" id="contenido'+ data['postId'] +'">' + data['post_body'] + '</p>';
 
-        newPost += '<a href="" class="btn btn-warning btn-xs" id="edit"><i class="fa fa-edit"></i> Editar</a>';
-        newPost += '<a href="" class="btn btn-info btn-xs"><i class="fa fa-thumbs-up"></i> Me Gusta</a>';
+        newPost += '<a href="" class="btn btn-warning btn-xs" id="edit"><i class="fa fa-edit"></i> Editar</a> ';
+        newPost += '<a href="" class="btn btn-info btn-xs"><i class="fa fa-thumbs-up"></i> Me Gusta</a> ';
         newPost += '<a href="" class="btn btn-danger btn-xs"><i class="fa fa-thumbs-down"></i> No me Gusta</a>';
         newPost += '<span class="pull-right text-muted"><span class="badge">0</span> Comentarios</span>';
 
@@ -56,22 +61,21 @@ $(function(){
         /* end box-body */
 
         /* begin box-footer */
-
         newPost += '<div class="box-footer" style="display: block;">';
 
-        newPost += '</div>';
-        newPost += '</div>';
-        newPost += '</div>';
-        newPost += '</div>';
+        newPost += '<form action="' + data['urlAddComment'] + '" method="post" id="form-add-comment">';
+        newPost += '<img  src="' + urlImg + data['user_avatar'] + '" class="img-responsive img-circle img-sm" alt="Alt Text">';
+        newPost += '<div class="img-push">';
+        newPost += '<input type="text" name="coment" class="form-control input-sm bordered-palegreen" placeholder="Presiona Enter para comentar">';
 
-
-
+        newPost += '</div>';
+        newPost += '</form>';
         newPost += '</div>';
         /* end box-footer */
         
         newPost += '</div>';
 
-        $('#new-post').append(newPost);
+        $('#new-post').prepend(newPost);
     }
 
     function eraseText() {

@@ -319,6 +319,7 @@
             var urldel = '{{ route('delete') }}';
             var urlCreatePost = '{{ route('posting') }}';
             var urlImg = '{{ asset('/img') }}';
+            var urlAddComment = '{{ route('comment.add',':postId') }}';
         </script>
 
 @endsection

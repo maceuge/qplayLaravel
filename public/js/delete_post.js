@@ -23,8 +23,8 @@ $(document).ready(function () {
                 method: 'DELETE',
                 url: urldel,
                 data: {postId: postId, _token: token}
-            }).done(function (msg) {
-                    console.log(msg['mensaje']);
+            }).done(function (result) {
+                    console.log(result['mensaje']);
                     //$(box).fadeOut('slow');
                     $(box).fadeTo(100, 1000).slideUp(1000, function(){
                         $(box).slideUp(1000);
@@ -34,21 +34,5 @@ $(document).ready(function () {
             console.log(postId, box);
 
         }
-
-
-        /*
-        $.ajax({
-            method: 'DELETE',
-            url: urldel,
-            data: {postId: postId, _token: token}
-        })
-        .done(function (msg) {
-            console.log(msg['mensaje']);
-            //$(box).fadeOut('slow');
-            $(box).fadeTo(100, 1000).slideUp(1000, function(){
-                $(box).slideUp(1000);
-            });
-        });
-        */
     });
 });

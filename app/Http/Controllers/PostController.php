@@ -48,13 +48,12 @@ class PostController extends Controller
                                 'user_avatar'   => $avatar,
                                 'user_name'     => $user->name,
                                 'user_surname'  => $user->surname
-
-                                ]);
+                                ],200);
     }
 
     public function deletePost (Request $request) {
         $post = Post::find($request['postId']);
-        //$post->delete();
+        $post->delete();
 
         return response()->json(['mensaje' => $request['postId']], 200);
     }
