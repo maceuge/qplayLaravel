@@ -24,12 +24,6 @@ class PostController extends Controller
         return redirect('/userlog');
     }
 
-//    public function deletePost ($id) {
-//        $post = Post::find($id);
-//        $post->delete();
-//        return redirect('/userlog');
-//    }
-
     public function deletePost (Request $request) {
         $post = Post::find($request['postId']);
         $post->delete();
@@ -38,28 +32,51 @@ class PostController extends Controller
     }
 
     public function delcoment ($id) {
+
         $coment = Coment::find($id);
         $coment->delete();
-        return redirect('/userlog');
+
+        return response()->json(['mensaje' => $coment->id], 200);
     }
 
-//    public function updateWithEditedPost(Request $request, $id){
-//        Post::where("id", $id)->update(array("post" => $request['post']));
-//        return redirect('/userlog');
-//    }
-
     public function addcoment (Request $request, $post_id) {
+
         $user = Auth::user();
         $coment = Coment::create([
             'post_id' => $post_id,
             'user_id' => $user->id,
-            'coment' => $request['coment'],
+            'coment' => $request['comment'],
         ]);
 
         $coment->save();
-        return redirect('/userlog');
-    }
 
+        if ($user->avatar) {
+            $avatar = '/'.$user->avatar;
+        } else {
+            if ($user->gender == 'Hombre') {
+                $avatar = '/default_male.jpg';
+            } elseif ($user->gender == 'Mujer') {
+                $avatar = '/default_female.jpg';
+            } else {
+                $avatar = '/default_other.jpg';
+            }
+        }
+
+        $date = date_create($coment->created_at);
+        $fecha_comment = date_format($date, 'Y-m-d H:i:s');
+
+        return response()
+                ->json([
+                    'comment'       => $request['comment'],
+                    'postId'        => $post_id,
+                    'fecha_comment' => $fecha_comment,
+                    'user_avatar'   => $avatar,
+                    'user_name'     => $user->name,
+                    'user_surname'  => $user->surname,
+                    'commentId'     => $coment->id
+                ], 200);
+    }
+    // Esto se puede borrar
     public function addcomentfriend (Request $request, $post_id, $frd_id) {
         $user = Auth::user();
         $coment = Coment::create([
@@ -80,7 +97,6 @@ class PostController extends Controller
         $post->update();
 
         return response()->json(['new_body' => $post->post], 200);
-//        return response()->json(['mensaje' => 'post editado'], 200);
     }
 
 }

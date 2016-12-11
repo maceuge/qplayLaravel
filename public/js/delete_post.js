@@ -5,7 +5,7 @@
 var postId = 0;
 
 $(document).ready(function () {
-    // Codigo para eliminar el post
+    // Delete post
     $('.user-block').find('#closepost').on('click', function (evt) {
         evt.preventDefault();
         postId = evt.target.parentNode.parentNode.dataset['idpost'];
