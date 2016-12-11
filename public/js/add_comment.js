@@ -9,9 +9,9 @@ $(function(){
 
         var commentInput = e.target;
 
-        var boxComment = e.target.parentNode.parentNode.parentNode.parentNode;
-
         if (idComment === 'add-comment') {
+
+            var boxComment = e.target.parentNode.parentNode.parentNode.parentNode;
 
             var newComment = boxComment.querySelector('#new-comment');
 
@@ -42,7 +42,19 @@ $(function(){
                         countComment.textContent = parseInt(countComment.textContent) + 1;
                         $(newComment).append(showComment(data));
                         commentInput.value = '';
+
+                        $(".clcoment").hide();
+
+                        $(".comment-text").on("mouseover", function () {
+                            $(this).find(".clcoment").show();
+                        });
+                        $(".comment-text").on("mouseleave", function () {
+                            $(this).find(".clcoment").hide();
+                        });
                     });
+
+
+
                 }
             });
         }

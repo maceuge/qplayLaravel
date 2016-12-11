@@ -6,16 +6,16 @@ $(function(){
 
     $('.post').click(function (e) {
 
-        e.preventDefault();
-        e.stopImmediatePropagation();
-
         var commentDelete = e.target.parentNode;
 
         var commentAttrId = commentDelete.getAttribute('id');
 
-        var box = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
-
         if (commentAttrId === 'close-comment') {
+
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            var box = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
 
             var commentId = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.dataset['commentid'];
 
