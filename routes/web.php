@@ -45,7 +45,7 @@ Route::post('/edition', 'PostController@updatepost')->name('edition');
 // Ruta para editar post por laravel (ejemplo)
 //Route::post('/edition/{id}', 'PostController@updateWithEditedPost');
 
-Route::get('/delcoment/{id}', 'PostController@delcoment')->name('delcoment');
+Route::delete('/delcoment/{id}', [ 'as' => 'delcoment', 'uses' => 'PostController@delcoment']);
 // Subir Avatar
 Route::post('/avatarUpload', 'PerfilController@avatarUpload');
 // Buscar Amigos

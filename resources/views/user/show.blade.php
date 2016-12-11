@@ -217,7 +217,7 @@
 
                         <span class="usernamebox">{{ $post[$i]->user->name.' '.$post[$i]->user->surname }}</span>
                         @if ($post[$i]->user->id == $user->id)
-                        <a class="close clpost" id="closepost" href=""><i class="fa fa-close fright"></i></a>
+                            <a class="close clpost" id="closepost" href=""><i class="fa fa-close fright"></i></a>
                         @endif
                         <span class="description">Publicado - {{ $post[$i]->created_at }}</span>
                     </div>
@@ -239,7 +239,7 @@
 
                 @foreach($post[$i]->coment as $coments)
                 <div class="box-footer box-comments" style="display: block;">
-                    <div class="box-comment">
+                    <div class="box-comment" data-commentId="{{ $coments->id }}">
                         @if($coments->user->avatar)
                             <img src="{{ $coments->user->avatar }}" class="img-circle img-sm" alt="User Image">
                         @else
@@ -254,7 +254,7 @@
                         <div class="comment-text">
                             <span class="usernamecom">{{ $coments->user->name.' '.$coments->user->surname }}
                                 @if ($coments->user->id == $user->id)
-                                <span><a class="clcoment" href="/delcoment/{{ $coments->id }}"><i class="fa fa-close fright fa-lg"></i></a></span>
+                                    <span><a class="clcoment" id="close-comment" href="{{ route('delcoment', $coments->id) }}"><i class="fa fa-close fright fa-lg"></i></a></span>
                                 @endif
                                 <span class="text-muted pull-right">{{ $coments->created_at }}</span>
                             </span>
@@ -337,4 +337,5 @@
     <script type="text/javascript" src="{{ asset('/js/edit_post.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/delete_post.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/add_comment.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/delete_comment.js') }}"></script>
 @endsection

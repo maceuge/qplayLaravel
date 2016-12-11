@@ -32,9 +32,11 @@ class PostController extends Controller
     }
 
     public function delcoment ($id) {
+
         $coment = Coment::find($id);
         $coment->delete();
-        return redirect('/userlog');
+
+        return response()->json(['mensaje' => $coment->id], 200);
     }
 
     public function addcoment (Request $request, $post_id) {
@@ -72,9 +74,9 @@ class PostController extends Controller
                     'user_name'     => $user->name,
                     'user_surname'  => $user->surname,
                     'commentId'     => $coment->id
-                ]);
+                ], 200);
     }
-
+    // Esto se puede borrar
     public function addcomentfriend (Request $request, $post_id, $frd_id) {
         $user = Auth::user();
         $coment = Coment::create([
