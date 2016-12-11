@@ -7,14 +7,14 @@ $(document).ready(function () {
     // Delete post
     $('.post').on('click', function (e) {
 
-        e.preventDefault();
-        e.stopImmediatePropagation();
-
         var target = e.target.parentNode;
 
         var targetElementId = target.getAttribute('id');
 
         if (targetElementId === 'closepost') {
+
+            e.preventDefault();
+            e.stopImmediatePropagation();
 
             var postId = e.target.parentNode.parentNode.dataset['idpost'];
 

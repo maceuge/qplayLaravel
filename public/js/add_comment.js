@@ -7,26 +7,29 @@ $(function(){
 
         var idComment = e.target.attributes[0].value;
 
-        var commentInput = e.target;
-
         if (idComment === 'add-comment') {
-
-            var boxComment = e.target.parentNode.parentNode.parentNode.parentNode;
-
-            var newComment = boxComment.querySelector('#new-comment');
-
-            var countComment = boxComment.querySelector('.box-body').querySelector('.badge');
-
-            var form = e.target.parentNode.parentNode;
-
-            var url = form.getAttribute('action');
+            e.preventDefault();
+            e.stopImmediatePropagation();
 
             $(this).keypress(function (e) {
+
+                var commentInput = e.target;
+
+                var boxComment = e.target.parentNode.parentNode.parentNode.parentNode;
+
+                var newComment = boxComment.querySelector('#new-comment');
+
+                var countComment = boxComment.querySelector('.box-body').querySelector('.badge');
+
+                var form = e.target.parentNode.parentNode;
+
+                var url = form.getAttribute('action');
+
                 if ( e.which === 13 ) {
                     e.preventDefault();
                     e.stopImmediatePropagation();
 
-                    var comment = e.target.value;
+                    var comment = commentInput.value;
 
                     $.ajax({
                         method: 'POST',

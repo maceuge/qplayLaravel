@@ -25,6 +25,15 @@ $(function(){
             result.urlAddComment = urlAddCommentReplace;
 
             renderTemplate(result);
+
+            $(".clpost").hide();
+
+            $(".user-block").on("mouseover", function () {
+                $(this).find(".clpost").show();
+            });
+            $(".user-block").on("mouseleave", function () {
+                $(this).find(".clpost").hide();
+            });
         });
     });
 

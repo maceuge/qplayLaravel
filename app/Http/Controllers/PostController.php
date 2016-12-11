@@ -68,6 +68,7 @@ class PostController extends Controller
     public function addcoment (Request $request, $post_id) {
 
         $user = Auth::user();
+
         $coment = Coment::create([
             'post_id' => $post_id,
             'user_id' => $user->id,
