@@ -178,12 +178,13 @@
             </div>
         </div>
 
+
         <div class="col-md-8 col-sm-12">
             {{-- Barra principal del POST--}}
-            <div class="box profile-info n-border-top">
+            <div class="box profile-info n-border-top postbox">
                 <form action="{{ route('posting') }}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
-                    <textarea id="post-body" class="form-control input-lg p-text-area" name="post" rows="2" placeholder="Que cuentas hoy?"></textarea>
+                    <textarea id="post-body" class="form-control input-lg p-text-area posttext" name="post" rows="2" placeholder="Que cuentas hoy?"></textarea>
                     <div class="box-footer box-form">
                         <button type="submit" class="btn btn-qplay pull-right" id="btn-crear-post"> Comentar</button>
                         <ul class="nav nav-pills">
@@ -314,6 +315,8 @@
         </div><!-- fin de la columna del medio -->
     </div>  {{--fin del row del post--}}
 
+    <div class="modalox"></div>
+
 </div> {{--fin del contenedor del post--}}
  {{-- Modal Box para editar post --}}
         <div class="modal fade" tabindex="-1" role="dialog" id="edit-modal">
@@ -351,6 +354,7 @@
     <script type="text/javascript" src="{{ asset('/js/navanim.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/file_input_init.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/bootstrap_file-input.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/postmodal.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/closepost.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/edit_post.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/delete_post.js') }}"></script>
