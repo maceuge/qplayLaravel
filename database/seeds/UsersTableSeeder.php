@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
             'email'     => 'ivan@lopez.com',
             'gender'    => 'Hombre'
         ]);
-        factory(App\User::class, 50)
+        factory(App\User::class, 70)
             ->create()
             ->each(function ($user) {
                 $user->instrument()->save(factory(App\Instrument::class)->make());

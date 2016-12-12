@@ -55,7 +55,7 @@ $factory->define(App\Band::class, function (Faker\Generator $faker) {
 
     return [
         'user_id' => $faker->randomElement($usersListId),
-        'band' => $faker->randomElement(['Petra','Guardian','P.O.D.','Babasonicos','Nueva Luna','Sombras','Las Sandalias','RM2'])
+        'band' => $faker->randomElement(['Petra','Guardian','P.O.D.','Babasonicos','Nueva Luna','Sombras','Las Sandalias','RM2','David Guetta', 'Los Pitukos','David Bisbal','U2','Alma Fuerte','Divididos', 'Carajo'])
     ];
 });
 
@@ -111,5 +111,19 @@ $factory->define(App\Friend::class, function (Faker\Generator $faker) {
     return [
         'user_id' => $randomUserId,
         'friend_id' => $faker->randomElement($newFriendList)
+    ];
+});
+
+$factory->define(App\Like::class, function (Faker\Generator $faker) {
+
+    // obtener todos user_ids desde la base de datos
+    $usersListId = App\User::pluck('id')->all();
+    // obtener a todos los post desde la base de datos
+    $postListId = App\Post::pluck('id')->all();
+
+    return [
+        'user_id'   =>  $faker->randomElement($usersListId),
+        'post_id'   =>  $faker->randomElement($postListId),
+        'islike'    =>  $faker->randomElement([0,1])
     ];
 });

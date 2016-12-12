@@ -29,6 +29,6 @@ class FriendsTableSeeder extends Seeder
             $index ++;
         }
 
-        factory(App\Friend::class, 20)->create();
+        factory(App\Friend::class, 50)->create();
     }
 }

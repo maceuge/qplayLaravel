@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BandsTableSeeder::class);
         $this->call(ComentsTableSeeder::class);
         $this->call(FriendsTableSeeder::class);
+        $this->call(LikesTableSeeder::class);
     }
 }
