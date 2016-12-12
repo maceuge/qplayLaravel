@@ -119,11 +119,12 @@ class PostController extends Controller
     }
 
     public function updatepost (Request $request) {
-        $post = Post::find($request['postId']);
-        $post->post = $request['body'];
-        $post->update();
 
-        return response()->json(['new_body' => $post->post], 200);
+        $post = Post::findorfail($request['postId']);
+        $post->post = $request['postContent'];
+        $post->save();
+
+        return response()->json(['postModificado' => $post->post], 200);
     }
 
     public function isLikePost (Request $request) {

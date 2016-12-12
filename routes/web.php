@@ -41,7 +41,7 @@ Route::delete('/delete', 'PostController@deletePost')->name('delete');
 // Ruta para borrar Laravel
 //Route::get('/delete/{id}', 'PostController@deletePost');
 // Ruta para editar post por ajax
-Route::post('/edition', 'PostController@updatepost')->name('edition');
+Route::post('/edition', ['as' => 'edition', 'uses' => 'PostController@updatepost']);
 // Ruta para editar post por laravel (ejemplo)
 //Route::post('/edition/{id}', 'PostController@updateWithEditedPost');
 
