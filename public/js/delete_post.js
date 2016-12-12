@@ -40,7 +40,7 @@ $(document).ready(function () {
                 url: urldelete,
                 data: {postId: postId, _token: token}
             }).done(function (result) {
-                    $(box).slideUp(700);
+                $(box).slideUp(700);
             });
         }
     });

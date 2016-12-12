@@ -3,21 +3,23 @@
  */
 $(function(){
 
-    $('.post').click(function (e) {
+    console.log('add comment');
+
+    $('.post').on('click keypress',function (e) {
 
         var idComment = e.target.attributes[0].value;
 
         if (idComment === 'add-comment') {
-            e.preventDefault();
-            e.stopImmediatePropagation();
 
-            $(this).keypress(function (e) {
+            if ( e.which === 13 ) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
 
                 var commentInput = e.target;
 
                 var boxComment = e.target.parentNode.parentNode.parentNode.parentNode;
 
-                var newComment = boxComment.querySelector('#new-comment');
+                var newCommentBox = boxComment.querySelector('#new-comment');
 
                 var countComment = boxComment.querySelector('.box-body').querySelector('.comentbadge');
 
@@ -25,45 +27,43 @@ $(function(){
 
                 var url = form.getAttribute('action');
 
-                if ( e.which === 13 ) {
-                    e.preventDefault();
-                    e.stopImmediatePropagation();
+                var comment = commentInput.value;
 
-                    var comment = commentInput.value;
+                console.log(comment, form, idComment);
 
-                    $.ajax({
-                        method: 'POST',
-                        url: url,
-                        data:   {
-                            comment:    comment,
-                            _token:     token
-                        }
-                    }).done(function (result) {
-                        var data = result;
-                        data.url = urlDelComment.replace(':commentId', data['commentId']);
-                        data.user_avatar = assetImg + data['user_avatar'];
-                        countComment.textContent = parseInt(countComment.textContent) + 1;
-                        $(newComment).append(showComment(data));
-                        commentInput.value = '';
 
-                        $(".clcoment").hide();
+                $.ajax({
+                    method: 'POST',
+                    url: url,
+                    data:   {
+                        comment:    comment,
+                        _token:     token
+                    }
+                }).done(function (result) {
+                    commentInput.value = '';
 
-                        $(".comment-text").on("mouseover", function () {
-                            $(this).find(".clcoment").show();
-                        });
-                        $(".comment-text").on("mouseleave", function () {
-                            $(this).find(".clcoment").hide();
-                        });
+                    var data = result;
+                    data.url = urlDelComment.replace(':commentId', data['commentId']);
+                    data.user_avatar = assetImg + data['user_avatar'];
+
+                    renderTemplate(data, newCommentBox);
+
+                    countComment.textContent = parseInt(countComment.textContent) + 1;
+
+                    $(".clcoment").hide();
+
+                    $(".comment-text").on("mouseover", function () {
+                        $(this).find(".clcoment").show();
                     });
-
-
-
-                }
-            });
+                    $(".comment-text").on("mouseleave", function () {
+                        $(this).find(".clcoment").hide();
+                    });
+                });
+            }
         }
     });
 
-    function showComment(data) {
+    function renderTemplate(data, commentBox) {
         var newComment = '';
 
         /* Begin Comment Box */
@@ -87,7 +87,7 @@ $(function(){
 
         /* End Comment Box*/
 
-        return newComment;
+        $(newComment).appendTo(commentBox).hide().slideDown();
     }
 
 });

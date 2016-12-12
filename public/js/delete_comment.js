@@ -41,13 +41,9 @@ $(function(){
                     _token: token
                 }
             }).done(function (msg) {
-                    //$(box).fadeOut('slow');
-                    countComment.textContent = parseInt(countComment.textContent) - 1;
-
-                    $(box).fadeTo(100, 500).slideUp(500, function(){
-                        $(box).slideUp(500);
-                    });
-
+                //$(box).fadeOut('slow');
+                $(box).slideUp();
+                countComment.textContent = parseInt(countComment.textContent) - 1;
             });
         }
     });

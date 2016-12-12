@@ -26,14 +26,14 @@ $(document).ready( function(){
             result.token = token;
             renderTemplate(result);
 
-            // $(".clpost").hide();
-            //
-            // $(".user-block").on("mouseover", function () {
-            //     $(this).find(".clpost").show();
-            // });
-            // $(".user-block").on("mouseleave", function () {
-            //     $(this).find(".clpost").hide();
-            // });
+            $(".clpost").hide();
+
+            $(".user-block").on("mouseover", function () {
+                $(this).find(".clpost").show();
+            });
+            $(".user-block").on("mouseleave", function () {
+                $(this).find(".clpost").hide();
+            });
         });
     });
 
@@ -66,7 +66,7 @@ $(document).ready( function(){
         newPost += '<i class="fa fa-thumbs-up"></i>';
         newPost += ' Me Gusta ';
         newPost += '<span class="badge liked">0</span>';
-        newPost += '</a>';
+        newPost += '</a> ';
 
         newPost += '<a href="" class="btn btn-danger btn-xs like"><i class="fa fa-thumbs-down"></i> No me Gusta <span class="badge disliked">0</span></a>';
         newPost += '</span>';
@@ -84,10 +84,10 @@ $(document).ready( function(){
         newPost += '<div class="box-footer" style="display: block;">';
 
         newPost += '<form action="' + data['urlAddComment'] + '" method="post" id="form-add-comment">';
+        newPost += '<input type="hidden" value="'+ data['token'] +'" name="_token">';
         newPost += '<img  src="' + urlImg + data['user_avatar'] + '" class="img-responsive img-circle img-sm" alt="Alt Text">';
-        // newPost += '<input type="hidden" value="'+ data['token'] +'" name="_token">';
         newPost += '<div class="img-push">';
-        newPost += '<input type="text" name="coment" class="form-control input-sm bordered-palegreen" placeholder="Presiona Enter para comentar">';
+        newPost += '<input id="add-comment" type="text" name="coment" class="form-control input-sm bordered-palegreen" placeholder="Presiona Enter para comentar">';
 
         newPost += '</div>';
         newPost += '</form>';
@@ -96,10 +96,10 @@ $(document).ready( function(){
         
         newPost += '</div>';
 
-        $(newPost).prependTo('#new-post').hide().slideDown('slow');
+        $(newPost).prependTo('#new-post').hide().slideDown();
 
-        reload_close('closepost.js');
-        reload_like('like_post.js');
+        //reload_close('closepost.js');
+        //reload_like('like_post.js');
 
     }
 

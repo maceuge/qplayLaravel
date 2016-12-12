@@ -4,11 +4,11 @@
 
 //
 function reload_close(src) {
-    $('script[src="http://localhost:8000/js/' +src+ '"]').remove();
-    $('<script>').attr('type', 'text/javascript').attr('src', 'http://localhost:8000/js/'+src).appendTo('.javaplugin');
+    $('script[src="http://localhost:8888/qplayLaravel/public/js/' +src+ '"]').remove();
+    $('<script>').attr('type', 'text/javascript').attr('src', 'http://localhost:8888/qplayLaravel/public/js/'+src).appendTo('.javaplugin');
 }
 
 function reload_like(src) {
-    $('script[src="http://localhost:8000/js/' +src+ '"]').remove();
-    $('<script>').attr('type', 'text/javascript').attr('src', 'http://localhost:8000/js/'+src).appendTo('.javaplugin');
+    $('script[src="http://localhost:8888/qplayLaravel/public/js/' +src+ '"]').remove();
+    $('<script>').attr('type', 'text/javascript').attr('src', 'http://localhost:8888/qplayLaravel/public/js/'+src).appendTo('.javaplugin');
 }
