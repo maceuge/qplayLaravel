@@ -23,7 +23,6 @@
     </script>
 </head>
 <body>
-
 <!-- COMIENZO DEL NAVBAR Y SU CONTENIDO -->
 <!-- el yield del navbar trae la barra de navegacion fixed o no segun la pagina -->
 
@@ -47,15 +46,15 @@
 
         @if (!Auth::guest())
         <div class="collapse navbar-collapse" id="myNavbar">
-            <form class="navbar-form navbar-left" action="{{ url('friendsearch') }}" method="post">
-                {{ csrf_field() }}
-                <div class="input-group">
-                    <input type="text" name="query" class="nav-search" placeholder="Buscar Amigos...">
-                    <span class="input-group-btn">
-                    <button class="btn btn-search" type="submit"> <i class="fa fa-search"></i></button>
-                  </span>
-                </div>
-            </form>
+            {{--<form class="navbar-form navbar-left" action="{{ url('friendsearch') }}" method="post">--}}
+{{--                {{ csrf_field() }}--}}
+                {{--<div class="input-group">--}}
+                    {{--<input type="text" name="query" class="nav-search" placeholder="Buscar Amigos...">--}}
+                    {{--<span class="input-group-btn">--}}
+                    {{--<button class="btn btn-search" type="submit"> <i class="fa fa-search"></i></button>--}}
+                  {{--</span>--}}
+                {{--</div>--}}
+            {{--</form>--}}
         @endif
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
@@ -191,17 +190,19 @@
 @endif
 <!-- FIN DEL FOOTER -->
 
-<div class="javaplugin">
 <!-- COMIENZO DE JAVASCRIPT PLUGINS -->
 {{--GENEREC PLUGIN--}}
 <script type="text/javascript" src="{{ asset('/js/jquery-2.2.3.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/bootstrap.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/botcolaps.js') }}"></script>
-{{--ADDITIONAL PLUGIN--}}
 @yield('plugin')
+<div class="javaplugin">
+{{--ADDITIONAL PLUGIN--}}
+
 {{--<script type="text/javascript" src="/js/app.js"></script>--}}
 @yield('scripts')
 
 </div>
+
 </body>
 </html>

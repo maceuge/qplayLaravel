@@ -8,7 +8,7 @@ $(document).ready( function(){
 
         e.preventDefault();
         e.stopImmediatePropagation();
-
+        $('.modalox').fadeOut(500);
         $.ajax({
             method:  'POST',
             url:    urlCreatePost,
@@ -97,9 +97,6 @@ $(document).ready( function(){
         newPost += '</div>';
 
         $(newPost).prependTo('#new-post').hide().slideDown();
-
-        //reload_close('closepost.js');
-        //reload_like('like_post.js');
 
     }
 
