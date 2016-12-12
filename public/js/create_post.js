@@ -87,7 +87,7 @@ $(document).ready( function(){
         newPost += '<input type="hidden" value="'+ data['token'] +'" name="_token">';
         newPost += '<img  src="' + urlImg + data['user_avatar'] + '" class="img-responsive img-circle img-sm" alt="Alt Text">';
         newPost += '<div class="img-push">';
-        newPost += '<input id="add-comment" type="text" name="coment" class="form-control input-sm bordered-palegreen" placeholder="Presiona Enter para comentar">';
+        newPost += '<input id="add-comment" type="text" name="coment" class="form-control input-sm bordered-palegreen" placeholder="Presiona Enter para comentar" autocomplete="off">';
 
         newPost += '</div>';
         newPost += '</form>';
@@ -97,6 +97,9 @@ $(document).ready( function(){
         newPost += '</div>';
 
         $(newPost).prependTo('#new-post').hide().slideDown();
+
+        //reload_close('closepost.js');
+        //reload_like('like_post.js');
 
     }
 
