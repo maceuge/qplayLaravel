@@ -126,49 +126,77 @@
 <div class="col-md-8 col-sm-12">
      @forelse($posts as $post)
          <div class="box box-widget bordered-info">
-             <div class="box-header with-border">
-                  <div class="user-block">
-                      @if ($post->user->avatar)
-                          <img src="/{{ $post->user->avatar }}" class="img-circle"  alt="User Image">
-                      @else
-                          @if ($post->user->gender == 'Hombre')
-                              <img src="{{ asset('img/default_male.jpg') }}"  class="img-circle"  alt="User Image">
-                          @elseif ($post->user->gender == 'Mujer' )
-                              <img src="{{ asset('img/default_female.jpg') }}" class="img-circle"  alt="User Image">
-                          @else
-                              <img src="{{ asset('img/default_other.jpg') }}" class="img-circle"  alt="User Image">
-                          @endif
-                      @endif
-                       <span class="usernamebox"><a href="#">{{ $friend->name.' '.$friend->surname }}.</a></span>
-                       <span class="description">Publicado - {{ $post->created_at  }}</span>
-                  </div>
+
+             <div class="box-header with-border {{ ($post->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}">
+                 <div class="user-block" data-idpost="{{$post->id}}">
+                     @if ($post->user->avatar)
+                         <img src="{{ $post->user->avatar }}" class="img-circle"  alt="User Image">
+                     @else
+                         @if ($post->user->gender == 'Hombre')
+                             <img src="{{ asset('/img/default_male.jpg') }}"  class="img-circle"  alt="User Image">
+                         @elseif ($post->user->gender == 'Mujer' )
+                             <img src="{{ asset('/img/default_female.jpg') }}" class="img-circle"  alt="User Image">
+                         @else
+                             <img src="{{ asset('/img/default_other.jpg') }}" class="img-circle"  alt="User Image">
+                         @endif
+                     @endif
+
+
+                     <span class="usernamebox">{{ $post->user->name.' '.$post->user->surname }}</span>
+                     @if ($post->user->id == $user->id)
+                         <a class="close clpost" id="closepost" href=""><i class="fa fa-close fright"></i></a>
+                     @endif
+                     <span class="description">Publicado - {{ $post->created_at }}</span>
+                 </div>
              </div>
 
-             <div class="box-body" style="display: block;">
+             <div class="box-body" style="display: block;" data-postid="{{$post->id}}">
                  <p class="posted">{{ $post->post }}</p>
-                 <a href="" class="btn btn-info btn-xs"><i class="fa fa-thumbs-up"></i> Me Gusta</a>
-                 <a href="" class="btn btn-warning btn-xs"><i class="fa fa-thumbs-down"></i> No me Gusta</a>
-                 <span class="pull-right text-muted"><span class="badge">{{ count($post->coment) }}</span> Comentarios</span>
+                 @if ($post->user->id == $user->id)
+                     <a href="" class="btn btn-warning btn-xs" id="edit"><i class="fa fa-edit"></i> Editar</a>
+                     <span>
+                    <a href="" class="btn btn-info btn-xs like">
+                        <i class="fa fa-thumbs-up"></i> Me Gusta
+                        <span class="badge liked">{{ count($post->like->where('islike', '==', 1)) }}</span>
+                    </a>
+                    <a href="" class="btn btn-danger btn-xs like">
+                        <i class="fa fa-thumbs-down"></i> No me Gusta
+                        <span class="badge disliked">{{ count($post->like->where('islike', '==', 0)) }}</span>
+                    </a>
+                    </span>
+                 @else
+                     <span>
+                    <a href="" class="btn btn-info btn-xs like">
+                        <i class="fa fa-thumbs-up"></i> Me Gusta
+                        <span class="badge liked">{{ count($post->like->where('islike', '==', 1)) }}</span>
+                    </a>
+                    <a href="" class="btn btn-danger btn-xs like">
+                        <i class="fa fa-thumbs-down"></i> No me Gusta
+                        <span class="badge disliked">{{ count($post->like->where('islike', '==', 0)) }}</span>
+                    </a>
+                    </span>
+                 @endif
+                 <span class="pull-right text-muted"><span class="badge comentbadge">{{ count($post->coment) }}</span> Comentarios</span>
              </div>
 
              @foreach($post->coment as $coments)
                  <div class="box-footer box-comments" style="display: block;">
                      <div class="box-comment" data-commentId="{{ $coments->id }}">
                          @if($coments->user->avatar)
-                             <img src="/{{ $coments->user->avatar }}" class="img-circle img-sm" alt="User Image">
+                             <img src="{{ $coments->user->avatar }}" class="img-circle img-sm" alt="User Image">
                          @else
                              @if ($coments->user->gender == 'Hombre')
-                                 <img src="{{ asset('img/default_male.jpg') }}"  class="img-circle img-sm" alt="User Image">
+                                 <img src="{{ asset('/img/default_male.jpg') }}"  class="img-circle img-sm" alt="User Image">
                              @elseif ($coments->user->gender == 'Mujer' )
-                                 <img src="{{ asset('img/default_female.jpg') }}" class="img-circle img-sm" alt="User Image">
+                                 <img src="{{ asset('/img/default_female.jpg') }}" class="img-circle img-sm" alt="User Image">
                              @else
-                                 <img src="{{ asset('img/default_other.jpg') }}" class="img-circle img-sm" alt="User Image">
+                                 <img src="{{ asset('/img/default_other.jpg') }}" class="img-circle img-sm" alt="User Image">
                              @endif
                          @endif
                          <div class="comment-text">
                             <span class="usernamecom">{{ $coments->user->name.' '.$coments->user->surname }}
                                 @if ($coments->user->id == $user->id)
-                                    <span><a class="clcoment" id="close-comment" href="{{ route('delcoment', $coments->id)}}"><i class="fa fa-close fright fa-lg"></i></a></span>
+                                    <span><a class="clcoment" id="close-comment" href="{{ route('delcoment', $coments->id) }}"><i class="fa fa-close fright fa-lg"></i></a></span>
                                 @endif
                                 <span class="text-muted pull-right">{{ $coments->created_at }}</span>
                             </span>
@@ -182,21 +210,22 @@
                  <!-- new Ajax comment here -->
              </div>
 
-             <div class="box-footer" style="display: block;">
+             <div class="box-footer" style="display: block;" data-idpost="{{$post->id}}">
                  <form action="{{ route('comment.add', $post->id) }}" method="post" id="form-add-comment">
                      {{ csrf_field() }}
                      @if($user->avatar)
-                         <img  src="/{{ $user->avatar }}" class="img-responsive img-circle img-sm" alt="Alt Text">
+                         <img  src="{{ $user->avatar }}" class="img-responsive img-circle img-sm" alt="Alt Text">
                      @else
                          @if ($user->gender == 'Hombre')
-                             <img src="{{ asset('img/default_male.jpg') }}" class="img-responsive img-circle img-sm" alt="Alt Text">
+                             <img src="{{ asset('/img/default_male.jpg') }}" class="img-responsive img-circle img-sm" alt="Alt Text">
                          @elseif ($user->gender == 'Mujer' )
-                             <img src="{{ asset('img/default_female.jpg') }}" class="img-responsive img-circle img-sm" alt="Alt Text">
+                             <img src="{{ asset('/img/default_female.jpg') }}" class="img-responsive img-circle img-sm" alt="Alt Text">
                          @else
-                             <img src="{{ asset('img/default_other.jpg') }}" class="img-responsive img-circle img-sm" alt="Alt Text">
+                             <img src="{{ asset('/img/default_other.jpg') }}" class="img-responsive img-circle img-sm" alt="Alt Text">
                          @endif
-                     @endif<div class="img-push">
-                         <input id="add-comment" type="text" name="coment" class="form-control input-sm {{ ($post->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}" placeholder="Presiona Enter para comentar">
+                     @endif
+                     <div class="img-push">
+                         <input id="add-comment" type="text" name="coment" class="form-control input-sm {{ ($post->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}" placeholder="Presiona Enter para comentar" autocomplete="off">
                      </div>
                  </form>
              </div>
@@ -210,15 +239,21 @@
 </div> {{--fin del contenedor del post--}}
 <script>
     var token = '{{ Session::token() }}';
+    var urledit = '{{ route('edition') }}';
+    var urldelete = '{{ route('delete') }}';
+    var urllike = '{{ route('islike') }}';
     var assetImg = '{{ asset('/img') }}';
     var urlDelComment = '{{ route('delcoment',':commentId') }}';
+    var urlCreatePost = '{{ route('posting') }}';
+    var urlImg = '{{ asset('/img') }}';
+    var urlAddComment = '{{ route('comment.add',':postId') }}';
 </script>
 @endsection
 
 @section('plugin')
     <script type="text/javascript" src="{{ asset('/js/navanim.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/closepost.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/js/delete_post.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/add_comment.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/delete_comment.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/like_post.js') }}"></script>
 @endsection

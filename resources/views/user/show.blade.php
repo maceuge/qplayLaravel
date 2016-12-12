@@ -301,7 +301,7 @@
                             @endif
                         @endif
                         <div class="img-push">
-                            <input id="add-comment" type="text" name="coment" class="form-control input-sm {{ ($post[$i]->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}" placeholder="Presiona Enter para comentar">
+                            <input id="add-comment" type="text" name="coment" class="form-control input-sm {{ ($post[$i]->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}" placeholder="Presiona Enter para comentar" autocomplete="off">
                         </div>
                     </form>
                 </div>

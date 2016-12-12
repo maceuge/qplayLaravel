@@ -3,8 +3,6 @@
  */
 $(function(){
 
-    console.log('add comment');
-
     $('.post').on('click keypress',function (e) {
 
         var idComment = e.target.attributes[0].value;
@@ -29,9 +27,6 @@ $(function(){
 
                 var comment = commentInput.value;
 
-                console.log(comment, form, idComment);
-
-
                 $.ajax({
                     method: 'POST',
                     url: url,
@@ -40,6 +35,7 @@ $(function(){
                         _token:     token
                     }
                 }).done(function (result) {
+
                     commentInput.value = '';
 
                     var data = result;
@@ -89,5 +85,4 @@ $(function(){
 
         $(newComment).appendTo(commentBox).hide().slideDown();
     }
-
 });

@@ -20,15 +20,21 @@
     DB_USERNAME={su usuario}
     DB_PASSWORD={su contraseña}
     
-   5.- Ejecutar las migraciones para creacion de tablas
+   5.- Ejecutar las migraciones para creacion de las tablas
     
     php artisan migrate
+    
+   6.- Para inicializar las tablas con los datos ejecutar
+    
+    php atisan db:seed
+    *la contraseña de todos los usuarios inicializados es: Ga123456´
+    
 
-   6.- Generar la clave de la aplicacion
+   7.- Generar la clave de la aplicacion
     
     php artisan key:generate
     
-   7.- Luego ejecute el servidor de Laravel para probar el proyecto, registrando cuenta 
+   8.- Luego ejecute el servidor de Laravel para probar el proyecto, registrando cuenta 
     y ingresando dentro del la pagina principal del User
          
     php artisan serv
