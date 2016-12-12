@@ -26,26 +26,21 @@ $(document).ready(function () {
     $('.post').on('click', function (e) {
 
         var target = e.target.parentNode;
-
         var targetElementId = target.getAttribute('id');
 
         if (targetElementId === 'closepost') {
-
             e.preventDefault();
             e.stopImmediatePropagation();
 
             var postId = e.target.parentNode.parentNode.dataset['idpost'];
-
             var box = e.target.parentNode.parentNode.parentNode.parentNode;
 
             $.ajax({
                 method: 'DELETE',
-                url: urldel,
+                url: urldelete,
                 data: {postId: postId, _token: token}
             }).done(function (result) {
-                    $(box).fadeTo(100, 1000).slideUp(1000, function(){
-                        $(box).slideUp(1000);
-                    });
+                    $(box).slideUp(700);
             });
         }
     });

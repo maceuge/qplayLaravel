@@ -31,7 +31,7 @@ $(function(){
                 var boxComment = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
             }
 
-            var countComment = boxComment.querySelector('.box-body').querySelector('.badge');
+            var countComment = boxComment.querySelector('.box-body').querySelector('.comentbadge');
 
             $.ajax({
                 method: 'DELETE',

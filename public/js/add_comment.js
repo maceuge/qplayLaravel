@@ -19,7 +19,7 @@ $(function(){
 
                 var newComment = boxComment.querySelector('#new-comment');
 
-                var countComment = boxComment.querySelector('.box-body').querySelector('.badge');
+                var countComment = boxComment.querySelector('.box-body').querySelector('.comentbadge');
 
                 var form = e.target.parentNode.parentNode;
 

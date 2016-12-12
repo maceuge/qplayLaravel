@@ -185,7 +185,7 @@
                     {{ csrf_field() }}
                     <textarea id="post-body" class="form-control input-lg p-text-area" name="post" rows="2" placeholder="Que cuentas hoy?"></textarea>
                     <div class="box-footer box-form">
-                        <button type="submit" class="btn btn-success pull-right" id="btn-crear-post"> Comentar</button>
+                        <button type="submit" class="btn btn-qplay pull-right" id="btn-crear-post"> Comentar</button>
                         <ul class="nav nav-pills">
                             {{--<li><a href="#"><i class="fa fa-map-marker"></i></a></li>--}}
                             <li><a href="#"><i class="fa fa-camera"></i></a></li>
@@ -227,9 +227,8 @@
                 </div>
 
                 <div class="box-body" style="display: block;" data-postid="{{$post[$i]->id}}">
-                    <p class="posted" id="contenido{{$post[$i]->id}}">{{ $post[$i]->post }}</p>
+                    <p class="posted">{{ $post[$i]->post }}</p>
                     @if ($post[$i]->user->id == $user->id)
-                    {{--<button id="edit{{$post[$i]->id}}" class="btn btn-warning btn-xs botonEditar"><i class="fa fa-edit"></i> Editar</button>--}}
                     <a href="" class="btn btn-warning btn-xs" id="edit"><i class="fa fa-edit"></i> Editar</a>
                     <span>
                     <a href="" class="btn btn-info btn-xs like">
@@ -253,7 +252,7 @@
                     </a>
                     </span>
                     @endif
-                    <span class="pull-right text-muted"><span class="badge">{{ count($post[$i]->coment) }}</span> Comentarios</span>
+                    <span class="pull-right text-muted"><span class="badge comentbadge">{{ count($post[$i]->coment) }}</span> Comentarios</span>
                 </div>
 
                 @foreach($post[$i]->coment as $coments)
@@ -350,17 +349,15 @@
 
 @section('plugin')
     <script type="text/javascript" src="{{ asset('/js/navanim.js') }}"></script>
-    <script>
-        $(document).ready(function(){
-            $('input[type=file]').bootstrapFileInput();
-        });
-    </script>
-    <script type="text/javascript" src="{{ asset('/js/closepost.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/file_input_init.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/bootstrap_file-input.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/closepost.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/edit_post.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/delete_post.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/like_post.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/add_comment.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/delete_comment.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/create_post.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/reload_js.js') }}"></script>
+
 @endsection

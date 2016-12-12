@@ -191,7 +191,7 @@
 @endif
 <!-- FIN DEL FOOTER -->
 
-
+<div class="javaplugin">
 <!-- COMIENZO DE JAVASCRIPT PLUGINS -->
 {{--GENEREC PLUGIN--}}
 <script type="text/javascript" src="{{ asset('/js/jquery-2.2.3.js') }}"></script>
@@ -202,5 +202,6 @@
 {{--<script type="text/javascript" src="/js/app.js"></script>--}}
 @yield('scripts')
 
+</div>
 </body>
 </html>

@@ -200,6 +200,24 @@ ul > li {
     color: #cccccc;
 }
 
+.btn-qplay {
+    font-family: 'Maven Pro', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #282227;
+    background-color: #94d500;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.btn-qplay:hover {
+    background-color: #6e9f00;
+    color: #d9d8d5;
+}
+
 /*====================== Timeline posts ================*/
 
 .usernamebox {
