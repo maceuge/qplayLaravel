@@ -341,10 +341,11 @@
             var urledit = '{{ route('edition') }}';
             var urldelete = '{{ route('delete') }}';
             var urllike = '{{ route('islike') }}';
-            var assetImg = '{{ asset('/img') }}';
+            {{--var assetImg = '{{ asset('/img') }}';--}}
             var urlDelComment = '{{ route('delcoment',':commentId') }}';
             var urlCreatePost = '{{ route('posting') }}';
-            var urlImg = '{{ asset('/img') }}';
+            {{--var urlImg = '{{ asset('/img') }}';--}}
+            var urlImg = '';
             var urlAddComment = '{{ route('comment.add',':postId') }}';
         </script>
 

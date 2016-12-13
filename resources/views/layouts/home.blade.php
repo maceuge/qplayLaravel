@@ -44,8 +44,8 @@
             @yield('slogan')
         </div>
 
-        @if (!Auth::guest())
         <div class="collapse navbar-collapse" id="myNavbar">
+        @if (!Auth::guest())
             <form class="navbar-form navbar-left" action="{{ url('friendsearch') }}" method="post">
                 {{ csrf_field() }}
                 <div class="input-group">

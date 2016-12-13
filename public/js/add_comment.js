@@ -40,7 +40,7 @@ $(function(){
 
                     var data = result;
                     data.url = urlDelComment.replace(':commentId', data['commentId']);
-                    data.user_avatar = assetImg + data['user_avatar'];
+                    data.user_avatar = data['user_avatar'];
 
                     renderTemplate(data, newCommentBox);
 
@@ -66,7 +66,7 @@ $(function(){
 
         newComment += '<div class="box-footer box-comments" style="display: block;">';
         newComment += '<div class="box-comment" data-commentId="' + data['commentId'] + '">';
-        newComment += '<img src="'+ data['user_avatar'] + '" class="img-circle img-sm" alt="User Image">';
+        newComment += '<img src="'+ urlImg + data['user_avatar'] + '" class="img-circle img-sm" alt="User Image">';
         newComment += '<div class="comment-text">';
         newComment += '<span class="usernamecom">' + data['user_name'] + ' ' + data['user_surname'];
 

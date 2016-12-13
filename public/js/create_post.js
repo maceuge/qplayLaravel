@@ -22,6 +22,14 @@ $(document).ready( function(){
 
             var urlAddCommentReplace = urlAddComment.replace(':postId', result['postId']);
 
+            // console.log(result['user_avatar']);
+
+            if (result['user_avatar'] == '/default_male.jpg' || result['user_avatar'] == '/default_female.jpg' || result['user_avatar'] == '/default_other.jpg') {
+                urlImg = '/img';
+            } else {
+                urlImg = '';
+            }
+
             result.urlAddComment = urlAddCommentReplace;
             result.token = token;
             renderTemplate(result);
