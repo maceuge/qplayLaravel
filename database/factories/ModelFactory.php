@@ -43,7 +43,7 @@ $factory->define(App\Instrument::class, function (Faker\Generator $faker) {
 
     return [
         'user_id' => $faker->randomElement($usersListId),
-        'instrument' => $faker->randomElement(['piano','guitarra electrica','bajo','bateria','percucion','violin','saxofon','piolin']),
+        'instrument' => $faker->randomElement(['Piano','Guitarra Eléctrica','Bajo','Bateria','Percusión','Violín','Saxofón','Banjo', 'Oboe', 'Ukelele']),
         'level' => $faker->randomElement(['Principiante','Intermedio', 'Avanzado','Experto'])
     ];
 });
@@ -54,8 +54,7 @@ $factory->define(App\Band::class, function (Faker\Generator $faker) {
     $usersListId = App\User::pluck('id')->all();
 
     return [
-        'user_id' => $faker->randomElement($usersListId),
-        'band' => $faker->randomElement(['Petra','Guardian','P.O.D.','Babasonicos','Nueva Luna','Sombras','Las Sandalias','RM2','David Guetta', 'Los Pitukos','David Bisbal','U2','Alma Fuerte','Divididos', 'Carajo'])
+        'user_id' => $faker->randomElement($usersListId), 'band' => $faker->randomElement(['Petra','Guardian','P.O.D.','Babasónicos','El Pepo', 'Damas Gratis','Nueva Luna','Sombras','Las Sandalias','RM2','David Guetta', 'Los Pitukos','David Bisbal','U2','Almafuerte','Hermetica','Divididos', 'Carajo', 'Red Hot Chili Peppers', 'Avantasia', 'Pearl Jam', 'Foo Fighters', 'Green Day', 'El mató a un policia motorizado', 'El Cuarteto de Nos'])
     ];
 });
 
