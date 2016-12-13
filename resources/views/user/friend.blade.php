@@ -130,7 +130,7 @@
              <div class="box-header with-border {{ ($post->user->id == $user->id)? 'bordered-palegreen': 'bordered-sky' }}">
                  <div class="user-block" data-idpost="{{$post->id}}">
                      @if ($post->user->avatar)
-                         <img src="{{ $post->user->avatar }}" class="img-circle"  alt="User Image">
+                         <img src="/{{ $post->user->avatar }}" class="img-circle"  alt="User Image">
                      @else
                          @if ($post->user->gender == 'Hombre')
                              <img src="{{ asset('/img/default_male.jpg') }}"  class="img-circle"  alt="User Image">
@@ -183,7 +183,7 @@
                  <div class="box-footer box-comments" style="display: block;">
                      <div class="box-comment" data-commentId="{{ $coments->id }}">
                          @if($coments->user->avatar)
-                             <img src="{{ $coments->user->avatar }}" class="img-circle img-sm" alt="User Image">
+                             <img src="/{{ $coments->user->avatar }}" class="img-circle img-sm" alt="User Image">
                          @else
                              @if ($coments->user->gender == 'Hombre')
                                  <img src="{{ asset('/img/default_male.jpg') }}"  class="img-circle img-sm" alt="User Image">
@@ -214,7 +214,7 @@
                  <form action="{{ route('comment.add', $post->id) }}" method="post" id="form-add-comment">
                      {{ csrf_field() }}
                      @if($user->avatar)
-                         <img  src="{{ $user->avatar }}" class="img-responsive img-circle img-sm" alt="Alt Text">
+                         <img  src="/{{ $user->avatar }}" class="img-responsive img-circle img-sm" alt="Alt Text">
                      @else
                          @if ($user->gender == 'Hombre')
                              <img src="{{ asset('/img/default_male.jpg') }}" class="img-responsive img-circle img-sm" alt="Alt Text">

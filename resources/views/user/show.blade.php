@@ -141,7 +141,7 @@
             {{-- lista de amigos --}}
             <div class="widget widget-friends">
                 <div class="widget-header">
-                    <h3 class="widget-caption">Siguiendo</h3>
+                    <h3 class="widget-caption">Amigos</h3>
                 </div>
                 <div class="widget-body bordered-top  bordered-red">
                     <div class="row">
@@ -186,7 +186,7 @@
                     {{ csrf_field() }}
                     <textarea id="post-body" class="form-control input-lg p-text-area posttext" name="post" rows="2" placeholder="Que cuentas hoy?"></textarea>
                     <div class="box-footer box-form">
-                        <button type="submit" class="btn btn-qplay pull-right" id="btn-crear-post"> Comentar</button>
+                        <button type="submit" class="btn btn-qplay pull-right" id="btn-crear-post"> Publicar</button>
                         <ul class="nav nav-pills">
                             {{--<li><a href="#"><i class="fa fa-map-marker"></i></a></li>--}}
                             <li><a href="#"><i class="fa fa-camera"></i></a></li>

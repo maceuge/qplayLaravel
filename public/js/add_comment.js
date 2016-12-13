@@ -38,6 +38,12 @@ $(function(){
 
                     commentInput.value = '';
 
+                    if (result['user_avatar'] == '/default_male.jpg' || result['user_avatar'] == '/default_female.jpg' || result['user_avatar'] == '/default_other.jpg') {
+                        urlImg = '/img';
+                    } else {
+                        urlImg = '';
+                    }
+
                     var data = result;
                     data.url = urlDelComment.replace(':commentId', data['commentId']);
                     data.user_avatar = data['user_avatar'];
