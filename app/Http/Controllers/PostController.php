@@ -149,7 +149,21 @@ class PostController extends Controller
             $update = true;
             if ($already_like == $is_like) {
                 $like->delete();
-                return null;
+                //return null;
+                $likeNumber = Like::where('post_id',$post_id)
+                    ->where('islike', 1)
+                    ->get()
+                    ->count();
+
+                $unLikeNumber = Like::where('post_id',$post_id)
+                    ->where('islike', 0)
+                    ->get()
+                    ->count();
+                return response()->json([
+                    //'islike' => $like,
+                    'likeNumber'    =>  $likeNumber,
+                    'unLikeNumber'  =>  $unLikeNumber
+                ], 200);
             }
         } else {
             $like = new Like();
@@ -165,8 +179,19 @@ class PostController extends Controller
             $like->save();
         }
 
+        $likeNumber = Like::where('post_id',$post_id)
+                            ->where('islike', 1)
+                            ->get()
+                            ->count();
+
+        $unLikeNumber = Like::where('post_id',$post_id)
+                            ->where('islike', 0)
+                            ->get()
+                            ->count();
+
         return response()->json([
-            'islike' => $like,
+            'likeNumber'    =>  $likeNumber,
+            'unLikeNumber'  =>  $unLikeNumber
         ], 200);
 
 //        return null;
